@@ -78,7 +78,7 @@ Emacs buffer, too. So that's killing two birds with one stone!
 
 Of course, in Emacs, you will need to navigate more than a single line, e.g.
 paragraphs, pages, or the whole file. These commands are all available online,
-but may be a bit scattered. I will summarize those I thought are most handy
-ones in a later post.
+but may be a bit scattered. I will summarize those most handy ones to me in a
+later post.
 
 Cheers.
