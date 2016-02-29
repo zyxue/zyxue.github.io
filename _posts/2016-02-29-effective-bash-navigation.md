@@ -11,6 +11,10 @@ slow. In fact, you could boost your productivity immediately in a few minitues
 by mastering the following key bindings. I summarized them from many years of
 experience, and try to show you the most handy ones.
 
+*Note*: In the Mac OS X Terminal.app, the alt key doesn't work by default. You
+ need to open the terminal setting (`Command-,`), and in the Keyboard tab, tick
+ `Use Option as Meta key`, and then you're good to go.
+
 ### Navigation:
 
 Navigation by line, word or letter offers different levels of granularity.
