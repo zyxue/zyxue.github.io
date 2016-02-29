@@ -4,4 +4,6 @@ title: About
 permalink: /about/
 ---
 
-This is zyxue's blog.
+This is the zyxue's blog.
+
+{% include footer.html %}
