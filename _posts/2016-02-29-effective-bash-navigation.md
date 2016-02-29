@@ -1,14 +1,12 @@
 ---
 layout: post
-title:  Effective shell navigations & operations in bash!"
-tags: bash,shell,navigation
+title:  Effective shell navigations & operations in bash
+tags: shell,bash,navigation
 ---
 
-I only use bash, so I am not sure if the following content applies to other
-shell environment (e.g. ksh) or not.
-
 I see many of my colleagues still using arrow keys (`↑`, `↓`, `←`, `→`), to
-navigate and `Ctrl + C/D` to do copy/paste in the shell environment, which is
+navigate and `Ctrl + C/D` to do copy/paste in the
+[bash](https://www.gnu.org/software/bash/) shell environment, which is
 slow. In fact, you could boost your productivity immediately in a few minitues
 by mastering the following key bindings. I summarized them from many years of
 experience, and try to show you the most handy ones.
