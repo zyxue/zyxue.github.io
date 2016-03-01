@@ -64,7 +64,7 @@ installed by linuxbrew only have `libboost-thread-mt.a` and
 `libboost-thread-mt.so` available, and caffe will complain later. My fix is to
 do the following symlinks
 
-{% highlight bash %}
+{% highlight bash linenos %}
 $ cd ~/.linuxbrew/Cellar/boost/1.58.0/lib/
 $ ln -s libboost_thread-mt.a libboost_thread.a
 $ ln -s libboost_thread-mt.so libboost_thread.so
@@ -80,7 +80,7 @@ and the one without it are the same, partially based on
 
 Next [OpenCV](http://opencv.org/),
 
-{% highlight bash %}
+{% highlight bash linenos %}
 # This is the info after I have installed OpenCV, yours is probably DIFFERENT.
 $ brew info opencv
 opencv: stable 2.4.11, devel 3.0.0-rc1, HEAD
@@ -118,9 +118,10 @@ This is an easy one, and I didn't encounter any issue with it. Next I installed
 [glog](https://github.com/google/glog) because gflags is a dependency of glog,
 and its installation needs some tweaking in interactive mode.
 
-{% highlight bash %}
+{% highlight bash linenos %}
 # to enter interactive mode, use -i.
-# In the interactive mode, a sandbox is created by linuxbrew with relevant environment variables setup.
+# In the interactive mode, a sandbox is created by linuxbrew with relevant
+# environment variables setup.
 $ brew install -i gflags
 # In the interactive mode, this is what I did
 # pwd would be something like
@@ -193,7 +194,7 @@ Now we're ready install caffe, Yey! Everything should be straight forward from
 now on except for one thing, which will be told soon. Just follow the steps on
 the caffe page.
 
-{% highlight bash %}
+{% highlight bash linenos %}
 $ cp Makefile.config.example Makefile.config
 # Adjust Makefile.config, if you've followed the above steps exactly,
 # Make.config should be easy to follow.
@@ -223,7 +224,7 @@ However, at the time of writing, the formula for boost-python seems to be
 cooked for Mac only. This isn't a surprise since linuxbrew is forked from
 homebrew, which was initially designed for Mac OS X. Anyway, here is my fix
 
-{% highlight bash %}
+{% highlight bash linenos %}
 # Open the formula in your editor
 $ brew edit boost-python
 # change the following line
@@ -248,7 +249,7 @@ $ make distribute
 Finally, we're ready to try out one of the tutorials with our newly brewed
 caffe.
 
-{% highlight bash %}
+{% highlight bash linenos %}
 $ cd $CAFFE_ROOT
 $ ./data/mnist/get_mnist.sh
 $ ./examples/mnist/create_mnist.sh
