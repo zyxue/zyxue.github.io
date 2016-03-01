@@ -7,10 +7,10 @@ tags: shell,bash,navigation
 
 I see many of my colleagues still using arrow keys (`↑`, `↓`, `←`, `→`) to
 navigate and `Ctrl + C/D` to do copy/paste in the
-[bash](https://www.gnu.org/software/bash/) shell environment, which is
-slow. In fact, you could boost your productivity immediately in a few minitues
-by mastering the following key bindings. I summarized them from many years of
-experience, and try to show you the most handy ones.
+[bash](https://www.gnu.org/software/bash/) shell environment, which is slow. In
+fact, you could boost your productivity in just a few minitues by mastering the
+following key bindings. I summarized them from many years of experience, and
+here I try to show you the most handy ones.
 
 *Note*: In the Mac OS X Terminal.app, the alt key doesn't work by default. You
  need to open the terminal setting (`Command-,`), and in the Keyboard tab, tick
@@ -44,12 +44,12 @@ Deletion by line, word or letter also offers different levels of granularity.
 
 ### Cut/Paste:
 
-* `Ctrl-u`, `Ctrl-k`, `Alt-d` and `Alt-Delete` as introduced in the [Delete](#del)
-  section above not only delete the target content, but also store the deleted
-  content in memory for later use, so they're more like a typical Cut
-  operation.
-* `Ctrl-y`: paste the cutted content. Think y as in **y**ank. Yank is related to
-  paste or copy for some reason I am not sure of. If you happened to know,
+* `Ctrl-u`, `Ctrl-k`, `Alt-d` and `Alt-Delete`: as introduced in the
+  [Delete](#del) section above not only delete the targeted content, but also
+  store the deleted content in memory for later use, so they're more like a
+  typical Cut operation.
+* `Ctrl-y`: paste the cutted content. Think y as in **y**ank. Yank is related
+  to paste or copy for some reason I am not sure of. If you happen to know why,
   please drop me a message.
 * `Alt-y`: paste the previously cutted content in reverse order.
 
@@ -68,9 +68,6 @@ operations. e.g. `Ctrl-d`-`Ctrl-y`-`Ctrl-y`.
   is the opposite of `Ctrl-r`, if it doesn't work. Try executing `stty -ixon`
   first, then if it works, put `stty -ixon` in your `~/.bashrc`.
 
-I think that's all what you need, with more practise, you're well on your way
-to become an expert in shell.
-
 ### Case manipulation:
 
 * `Alt-c`: **C**apitalize a word
@@ -81,6 +78,10 @@ to become an expert in shell.
 
 * `Alt-\`: Remove all continuous spaces starting from the current position of
   the marker on both sides.
+
+
+I think that's all what you need, with a bit more practise, you're well on your
+way to become an expert in the shell environment.
 
 ### Bonus:
 
