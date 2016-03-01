@@ -5,7 +5,7 @@ author: Zhuyi Xue
 tags: shell,bash,navigation
 ---
 
-I see many of my colleagues still using arrow keys (`↑`, `↓`, `←`, `→`), to
+I see many of my colleagues still using arrow keys (`↑`, `↓`, `←`, `→`) to
 navigate and `Ctrl + C/D` to do copy/paste in the
 [bash](https://www.gnu.org/software/bash/) shell environment, which is
 slow. In fact, you could boost your productivity immediately in a few minitues
