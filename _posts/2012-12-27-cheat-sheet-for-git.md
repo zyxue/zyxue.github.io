@@ -8,9 +8,8 @@ tags: cheat sheet,git
 
 #### Most commonly used commands:
 
-{% highlight bash %}
+{% highlight bash linenos %}
 git remote add origin git@github.com:someaccount/something.git
-
 git pull origin master
 git pull origin an_other_branch
 git push origin master
