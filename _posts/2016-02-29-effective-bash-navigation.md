@@ -71,11 +71,23 @@ operations. e.g. `Ctrl-d`-`Ctrl-y`-`Ctrl-y`.
 I think that's all what you need, with more practise, you're well on your way
 to become an expert in shell.
 
+### Case manipulation:
+
+* `Alt-c`: **C**apitalize a word
+* `Alt-u`: **U**ppercase a word
+* `Alt-l`: **L**owercase a word
+
+### Space manipulation:
+
+* `Alt-\`: Remove all continuous spaces starting from the current position of
+  the marker on both sides.
+
 ### Bonus
 
 If you happens to use [Emacs](https://www.gnu.org/software/emacs/) as your
-favorite editor, the above commands applies to navigation and operations in the
-Emacs buffer, too. So that's killing two birds with one stone!
+favorite editor, most of the above commands (except `Ctrl-u` as far as I am
+aware) applies to navigation and operations in the Emacs buffer, too. So that's
+killing two birds with one stone!
 
 Of course, in Emacs, you will need to navigate more than a single line, e.g.
 paragraphs, pages, or the whole file. These commands are all available online,
