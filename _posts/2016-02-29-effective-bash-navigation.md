@@ -42,7 +42,7 @@ Deletion by line, word or letter also offers different levels of granularity.
 * `Ctrl-d`: delete to the next letter
 * `Delete`: delete to the previous letter
 
-### Cut/Paste
+### Cut/Paste:
 
 * `Ctrl-u`, `Ctrl-k`, `Alt-d` and `Alt-Delete` as introduced in the [Delete](#del)
   section above not only delete the target content, but also store the deleted
@@ -82,7 +82,7 @@ to become an expert in shell.
 * `Alt-\`: Remove all continuous spaces starting from the current position of
   the marker on both sides.
 
-### Bonus
+### Bonus:
 
 If you happens to use [Emacs](https://www.gnu.org/software/emacs/) as your
 favorite editor, most of the above commands (except `Ctrl-u` as far as I am
