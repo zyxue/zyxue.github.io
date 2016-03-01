@@ -2,7 +2,7 @@
 layout: post
 title:  Quick Setup for Python logging
 author: Zhuyi Xue
-tags: shell,bash,navigation
+tags: python,logging
 ---
 
 The following snippet serves as a cheat sheet for quickly setting up Python
