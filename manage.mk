@@ -2,8 +2,5 @@
 build:
 	bundle exec jekyll build --safe
 
-serve:
-	bundle exec jekyll serve
-
 install:
 	bundle install
