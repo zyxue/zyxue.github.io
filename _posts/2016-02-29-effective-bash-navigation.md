@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  Effective shell navigations & operations in bash
+author: Zhuyi Xue
 tags: shell,bash,navigation
 ---
 
