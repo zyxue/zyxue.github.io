@@ -86,7 +86,7 @@ to become an expert in shell.
 
 If you happens to use [Emacs](https://www.gnu.org/software/emacs/) as your
 favorite editor, most of the above commands (except `Ctrl-u` as far as I am
-aware) applies to navigation and operations in the Emacs buffer, too. So that's
+aware of) applies to navigation and operations in the Emacs buffer, too. So that's
 killing two birds with one stone!
 
 Of course, in Emacs, you will need to navigate more than a single line, e.g.
