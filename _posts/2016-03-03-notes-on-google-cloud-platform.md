@@ -78,7 +78,7 @@ Snapshots are more for backup. Use
 
       gcloud compute copy-files some_local_file.txt dev:/path/to/target/dir
 
-### [Google Container Engine](https://cloud.google.com/container-engine/docs/)
+### [Google Container Engine](https://cloud.google.com/container-engine/docs/) (GKE)
 
 * Create a container cluster
 
