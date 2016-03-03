@@ -9,7 +9,7 @@ This post mainly lists example commands related to working on
 [Google Cloud Platform](https://cloud.google.com/) (GCP)
 
 ### Install the Google Cloud SDK
-    
+
 Follow instructions on [https://cloud.google.com/sdk/](https://cloud.google.com/sdk/)
 
 ### Login to GCP in the terminal
