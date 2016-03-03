@@ -19,14 +19,9 @@ Software versions:
 
 #### Get help:
 
-    >\h
-    or 
-    >\? 
-    or 
-    >help [COMAND]
+    >\h # OR >\? OR >help [COMAND]
     # vs.
-    >\h 
-    >\?
+    >\h # OR >\?
 
 #### Init a database:
 
@@ -36,13 +31,13 @@ Software versions:
 
 #### Start a server:
 
-    mysql.server start
+    mysql.server start # OR service mysqld start
     # vs.
 	pg_ctl -D <DIR> -l <FILE> start
 
 #### Stop server
 	
-    mysql.server stop
+    mysql.server stop # OR service mysqld stop
 	# vs.
 	pg_ctl -D <DIR> stop [-s -m fast]
 
