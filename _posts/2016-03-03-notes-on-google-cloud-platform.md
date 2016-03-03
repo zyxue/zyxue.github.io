@@ -16,6 +16,37 @@ Follow instructions on [https://cloud.google.com/sdk/](https://cloud.google.com/
 
     gcloud login
 
+### [Google Cloud Strage](https://cloud.google.com/storage/docs/overview) (GCS)
+
+* [List](https://cloud.google.com/storage/docs/gsutil/commands/ls) a bucket
+
+      gsutil ls gs://my-bucket/path/to/some/dir
+
+* [Renaming](https://cloud.google.com/storage/docs/gsutil/commands/mv) a file
+
+      gsutil mv gs://my-bucket/dir1/file.txt \
+	            gs://another-bucket/dir2/anothername.txt
+
+* [Copy](https://cloud.google.com/storage/docs/gsutil/commands/cp) files below
+  localhost and GCS bucket
+
+      # GCS to local (-r means recursively)
+      gsutil -m cp -r gs://gs://my-bucket/dir1 .
+      # local to GCS
+      gsutil -m cp local_file.txt gs://gs://my-bucket/remote-dir/
+
+* [Sync](https://cloud.google.com/storage/docs/gsutil/commands/rsync)
+  directories between localhost and GCS bucket
+
+	  # -n means dry-run, handy for testing
+      # -R & -r are synonymous, means synchronising recursively
+      # argument to -x should be a regular expression used to match the full
+      # path of files inthe bucket
+      gsutil rsync \
+	      -n -R \
+		  -x '.*\.log$|.*\.html|.*pass2.*' \
+	      gs://ccle-results .
+
 ### [Google Compute Engine](https://cloud.google.com/compute/docs/) (GCE)
 
 <!-- Even though https://daringfireball.net/projects/markdown/syntax#block says
