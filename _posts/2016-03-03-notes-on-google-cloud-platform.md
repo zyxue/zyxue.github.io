@@ -12,7 +12,7 @@ This post mainly lists example commands related to working on
     
 Follow instructions on [https://cloud.google.com/sdk/](https://cloud.google.com/sdk/)
 
-### Login too GCP in the terminal
+### Login to GCP in the terminal
 
     gcloud login
 
