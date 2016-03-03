@@ -25,7 +25,7 @@ Follow instructions on [https://cloud.google.com/sdk/](https://cloud.google.com/
 * [Renaming](https://cloud.google.com/storage/docs/gsutil/commands/mv) a file
 
       gsutil mv gs://my-bucket/dir1/file.txt \
-	            gs://another-bucket/dir2/anothername.txt
+                gs://another-bucket/dir2/anothername.txt
 
 * [Copy](https://cloud.google.com/storage/docs/gsutil/commands/cp) files below
   localhost and GCS bucket
@@ -38,14 +38,14 @@ Follow instructions on [https://cloud.google.com/sdk/](https://cloud.google.com/
 * [Sync](https://cloud.google.com/storage/docs/gsutil/commands/rsync)
   directories between localhost and GCS bucket
 
-	  # -n means dry-run, handy for testing
+      # -n means dry-run, handy for testing
       # -R & -r are synonymous, means synchronising recursively
       # argument to -x should be a regular expression used to match the full
       # path of files inthe bucket
       gsutil rsync \
-	      -n -R \
-		  -x '.*\.log$|.*\.html|.*pass2.*' \
-	      gs://ccle-results .
+          -n -R \
+          -x '.*\.log$|.*\.html|.*pass2.*' \
+          gs://ccle-results .
 
 ### [Google Compute Engine](https://cloud.google.com/compute/docs/) (GCE)
 
@@ -84,7 +84,7 @@ Snapshots are more for backup. Use
 
       # machine of type n1-standard-2 has 2 CPUs & 7.5 GB MEM
       gcloud container clusters create mycluster \
-	      --num-nodes 3 --machine-type n1-standard-2
+          --num-nodes 3 --machine-type n1-standard-2
 
   See [here](https://cloud.google.com/compute/docs/machine-types) for all machine types
 
