@@ -83,8 +83,9 @@ Snapshots are more for backup. Use
 * Create a container cluster
 
       # machine of type n1-standard-2 has 2 CPUs & 7.5 GB MEM
+	  # --disk-size is in GB
       gcloud container clusters create mycluster \
-          --num-nodes 3 --machine-type n1-standard-2
+          --num-nodes 3 --machine-type n1-standard-2 --disk-size 200
 
   See [here](https://cloud.google.com/compute/docs/machine-types) for all machine types
 
