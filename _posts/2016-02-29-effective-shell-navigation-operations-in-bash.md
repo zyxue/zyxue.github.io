@@ -79,6 +79,16 @@ operations. e.g. `Ctrl-d`-`Ctrl-y`-`Ctrl-y`.
 * `Alt-\`: Remove all continuous spaces starting from the current position of
   the marker on both sides.
 
+### Do/Undo:
+
+* `Ctrl-Shift--`: this can do both do & undo. For exmaple, you've done some
+  editing and get into the state of s4: s1-s2-s3-s4. You want to go back to s2,
+  then you type the key binding twice, ending up at s2. If you type the key
+  binding a third time, you'll go back to s1. However, assume for some reason,
+  actually you want to go forward to s3. To reverse the order of undo, you need
+  to do some temprary editing (e.g. just type a space), and then type the
+  key-binding twice, you now should get to s3. Hopefully, this little example
+  demonstrates how do/undo works.
 
 I think that's all what you need, with a bit more practise, you're well on your
 way to become an expert in the shell environment.
