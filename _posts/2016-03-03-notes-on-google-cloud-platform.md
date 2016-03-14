@@ -125,3 +125,10 @@ Snapshots are more for backup. Use
   Then go the the server IP address in a browser and follow the
   instruction. More information about UI is available
   [here](https://github.com/kubernetes/kubernetes/blob/v1.0.6/docs/user-guide/ui.md).
+
+
+## Docker
+
+* To see the file size of your containers, you can use the -s argument of docker ps:
+
+      docker ps -s
