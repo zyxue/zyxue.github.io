@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Notes on Google Cloud Platform (Draft)
+title:  Notes on Google Cloud Platform
 author: Zhuyi Xue
 tags: google cloud platform,GCP
 ---
