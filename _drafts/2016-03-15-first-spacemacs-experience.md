@@ -5,24 +5,23 @@ author: Zhuyi Xue
 tags: spaceemacs,emacs,python
 ---
 
-I am a 5-year heavy user, and I write almost everything in emacs. I have been
+I am a 5-year emacs user, and I write almost everything in emacs. I have been
 hearing [Spacemacs](https://github.com/syl20bnr/spacemacs) several times before
-I actually try it recently. Here I summarize my first hands on experience with
-it. Also, since I am a Python developer, I will also comment a little on Python
-development environment setup at the end.
+I actually tried it recently. Here I summarize briefly my first hands-on
+experience with it. Also, since I am a Python developer, I will also comment a
+little on Python development environment setup at the end.
 
 
 Overall, I am really impressed by the outlook of spacemacs. I have my own
 configuration accumulated in the past 5 years, and I have enjoyed using
 [Solarized](http://ethanschoonover.com/solarized) color theme for a long time.
 But when it compares to spacemacs, it still looks so out of date, like in the
-80s. This is the first reason that gets me attracted to spaceemacs. The other
-reason is its layers system. I currently think it as a way to help modularize
-all the emacs configuration, which I have been doing manually myself, and I
-version controlled all my configurations to a git repo. Since spaceemacs is a
-community based project, I tend to trust its structure would be much more
-elegant, maintainable and scalable. I still need to learn more about the layers
-system though.
+80s. This is the first reason that gets me attracted to spacemacs. The other
+reason is its layer system. I currently think the layer system as a way to help
+modularize all the emacs configuration, which I have been doing manually
+myself, and I version controlled all my configurations to a git repo. Since
+spaceemacs is a community-based project, I tend to believe that its module
+systemwould be much better-designed, more maintainable and scalable.
 
 Install
 
