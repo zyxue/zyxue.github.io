@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  Cool Django tags and filters
+title:  Useful Django tags and filters
 author: Zhuyi Xue
-tags: spaceemacs,emacs,python
+tags: django,python,tags,filters
 ---
 
-This is for my personal preference, I think the following tags and filters are
-more useful than others.
+Out of the many filters and tags in Django, here I listed those that I think
+more useful ones.
 
 ### Tags:
 1. [block](https://docs.djangoproject.com/en/dev/ref/templates/builtins/#block)
