@@ -5,12 +5,13 @@ author: Zhuyi Xue
 tags: google cloud platform,GCP,HPC
 ---
 
-Recently, I have enjoyed using Google Cloud Platform (GCP) a lot. I have also
-been doing high throughput computing for the last 5 years. Here I summarize the
-major difference between the Google Cloud Platform and a typical HPC
-environment. In my opinion, Google Cloud Platform is much better and flexible
-to use regardless of cost. I don't have a concrete idea on how much HPC setup
-and maintainence costs either, but GCP to me is [not cheap](https://cloud.google.com/products/calculator/).
+Recently, I have enjoyed using Google Cloud Platform (GCP) quite a bit. I have
+also been doing high throughput computing for the last 5 years. Here I
+summarize the major difference between the Google Cloud Platform and a typical
+HPC environment. In my opinion, Google Cloud Platform is much better and more
+flexible to use regardless of cost. I don't have a concrete idea on how much
+HPC setup and maintainence costs, but GCP to me is
+[not cheap](https://cloud.google.com/products/calculator/).
 
 | |GCP| In-house HPC |
 |:-|:-----|:--------------|
