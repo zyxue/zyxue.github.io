@@ -36,7 +36,7 @@ handler = logging.StreamHandler()
 handler.setLevel(logging.DEBUG)
 handler.setFormatter(
     colorlog.ColoredFormatter('%(log_color)s%(levelname)s:%(name)s:%(message)s'))
-	logger.addHandler(handler)
+logger.addHandler(handler)
 
 # Basic setup ENDS here, below are just sample code for printing out some
 # example messages of different levels.
