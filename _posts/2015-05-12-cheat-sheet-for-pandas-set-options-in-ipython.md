@@ -22,8 +22,20 @@ to show them on one line, then do this:
 pd.set_option('max_columns', 20)
 {% endhighlight %}
 
-If you don't have many columns, and want each column to a bigger width,
+Similarly, you can set the number of rows to display (esp. in
+[Jupyter Notebook](http://jupyter.org/)),
+{% highlight python %}
+pd.set_option('max_rows', 1000)
+{% endhighlight %}
 
+If you don't have many columns, and want each column to a bigger width,
 {% highlight python %}
 pd.set_option('display.max_colwidth', 300)
+{% endhighlight %}
+
+If you don't want long string omitted in a notebook cell in Jupyter,
+{% highlight python %}
+# Don't cut off long string
+# http://stackoverflow.com/questions/26277757/pandas-to-html-truncates-string-contents
+pd.set_option('display.max_colwidth', -1)
 {% endhighlight %}
