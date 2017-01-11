@@ -64,9 +64,9 @@ Output:
 ---
 {% endhighlight %}
 
-So basically, every primitive type is a specialized function that inherits the
-`function` function, which inherits the `object Object`, which inherits from
-`null`.
+So basically, every primitive type is a specialized function that inherits from
+the `function` function, which inherits from the `object Object`, which inherits
+from `null`. Also, `typeof null`is an object.
 
 
 Let's try it with some real values
@@ -96,6 +96,6 @@ Output:
 ---
 {% endhighlight %}
 
-Look more carefully, and see what they are. You could inspect each node in the
-browser dev tools, which will provide more insight as they won't be printed just
-in plain string.
+Look more carefully, and see what they are. You could also inspect each node in
+the browser dev tools, which will provide more insight as they won't be have to
+be printed in just plain string.
