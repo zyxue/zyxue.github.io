@@ -20,9 +20,7 @@ chain as it is the root of the chain already, and `undefined` does not have
 protype chain, either.
 
 First we defined a function to print the chain. Then, apply it to all remaining 4
-primitive types and `Object`. Here is what it looks like
-
-
+primitive types and `Object`.
 
 {% highlight javascript %}
 function formatNode(o) {
@@ -40,7 +38,11 @@ function getPrototypeChains(type) {
     }
     return chains.join(' => ');
 }
+{% endhighlight %}
 
+Now, we test it out
+
+{% highlight javascript %}
 [Boolean, Number, String, Symbol, Object].forEach((type) => {
     console.log(getPrototypeChains(type));
     console.log('---');  // separator
@@ -49,8 +51,7 @@ function getPrototypeChains(type) {
 
 Output:
 
-
-```
+{% highlight default %}
 (function Boolean() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
 ---
 (function Number() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
@@ -61,8 +62,40 @@ Output:
 ---
 (function Object() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
 ---
-```
+{% endhighlight %}
 
 So basically, every primitive type is a specialized function that inherits the
 `function` function, which inherits the `object Object`, which inherits from
 `null`.
+
+
+Let's try it with some real values
+
+{% highlight javascript %}
+[true, 1, 'xyz',
+ // Symbol would create trouble when converting to string, so commented out for
+ // now, you're encouraged to try it out, and see what happens
+ // Symbol('s'),
+ {'a': 1}
+].forEach((type) => {
+    console.log(getPrototypeChains(type));
+    console.log('---');  // separator
+});
+{% endhighlight %}
+
+Output:
+
+{% highlight default %}
+(true, boolean) => (false, object) => ([object Object], object) => (null, object)
+---
+(1, number) => (0, object) => ([object Object], object) => (null, object)
+---
+(xyz, string) => (, object) => ([object Object], object) => (null, object)
+---
+([object Object], object) => ([object Object], object) => (null, object)
+---
+{% endhighlight %}
+
+Look more carefully, and see what they are. You could inspect each node in the
+browser dev tools, which will provide more insight as they won't be printed just
+in plain string.
