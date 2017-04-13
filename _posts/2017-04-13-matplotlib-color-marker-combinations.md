@@ -41,8 +41,8 @@ Output:
 Here is an example:
 
 {% highlight python %}
-
 import matplotlib.pyplot as plt
+import numpy as np
 
 markers = ['o', 'v', '^', '<', '>', '1', '2', '3', '4', '8', 's', 'p', 'P', '*', 'h', 'H', '+', 'x', 'X', 'D']
 colors = ['blue', 'green', 'red', 'magenta']
@@ -61,7 +61,7 @@ plt.legend(loc='upper left', bbox_to_anchor=(1.02, 1.03), numpoints=1)
 
 {% endhighlight %}
 
-<p><img src="/assets/many-lines-plot-example.png" alt="many-lines-plot-example.png"/></p>
+<p><img src="/assets/many-lines-plot-example.png" alt="many-lines-plot-example.png" width="600"/></p>
 
 I think I would never use up all the combinations as the plot would become too
 busy at some point.
