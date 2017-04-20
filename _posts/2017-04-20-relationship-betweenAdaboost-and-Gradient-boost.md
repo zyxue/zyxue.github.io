@@ -18,18 +18,14 @@ MathJax.Hub.Config({
 **Q**: What's the difference between [Adaboost](https://en.wikipedia.org/wiki/AdaBoost)
 and [Gradient boosting](https://en.wikipedia.org/wiki/Gradient_boosting)?
 
-I have been pondering on this question for a while now. Having searched
-for posts and wiki, I found them still not so helpful for my understanding. So I
-digged a bit deeper. I read the two papers and a related book chapter:
+I'd like to share my current understanding of this question after some reading:
 
 1. Friedman, Jerome; Hastie, Trevor; Tibshirani, Robert. Additive logistic regression: a statistical view of boosting (With discussion and a rejoinder by the authors). Ann. Statist. 28 (2000), no. 2, 337--407. doi:10.1214/aos/1016218223. [http://projecteuclid.org/euclid.aos/1016218223](http://projecteuclid.org/euclid.aos/1016218223).
 1. Friedman, Jerome H. Greedy function approximation: A gradient boosting machine. Ann. Statist. 29 (2001), no. 5, 1189--1232. doi:10.1214/aos/1013203451. [http://projecteuclid.org/euclid.aos/1013203451](http://projecteuclid.org/euclid.aos/1013203451).
 1. [Chapter 10. Boosting and Additive Trees](https://statweb.stanford.edu/~tibs/ElemStatLearn/). The Elements of Statistical Learning: Data Mining, Inference, and Prediction. Second Edition, February 2009, Trevor Hastie, Robert Tibshirani, and Jerome Friedman
 
-Not until I finished reading, did I realize they were all from the same authors.
-The first two are really technically detailed, but it's the book chapter that
-really helped me see the overall picture. So here, I am trying to summarize and
-share my current understanding of this question.
+They are all from the same authors. The first two are very technically
+detailed, while the book chapter provides a relatively more high-level view.
 
 **TL;DR:**
 
