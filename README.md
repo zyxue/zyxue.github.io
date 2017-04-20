@@ -2,8 +2,18 @@ This is my personal blog
 
 # Setup
 
-Follow documentions on this [page](https://help.github.com/articles/using-jekyll-as-a-static-site-generator-with-github-pages/).
+If not already
+```
+gem install bundler
+```
 
-# Start server
+Then,
+```
+bundle install
+```
 
+Then, to start the server,
+
+```
 foreman start
+```
