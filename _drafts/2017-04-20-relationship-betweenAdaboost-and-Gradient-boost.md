@@ -31,182 +31,105 @@ The first two are really technically detailed, but it's the book chapter that
 really helped me see the overall picture. So here, I am trying to summarize and
 share my current understanding of this question.
 
-TL;DR:
+**TL;DR:**
 
-The two are not concepts at the same level, hence not so meaningful for
-comparison. Instead, the higher level concept is **forward stagewise additive
-modeling (FSAM)**. 
+1. The two are concepts not at the same level, hence their comparison are not so meaningful.
+2. Two more higher level concepts are needed to explain the relationship between
+   them: 
+   1. Forward stagewise additive modeling (FSAM)
+   1. Additive model
 
-$$f_m(x) = f_{m-1}(x) + \beta_m b(x;\gamma_m)$$
+Basically, 
 
-where
+1. FSAM is a specific form of additive model
+1. Adaboost is a specific form of FSAM
+1. Gradient boosting, on the other hand, is a numerical process for optimizing
+   FSAM using gradient descent by treating functions as numerical parameters.
+1. Adaboost, given it is a two-class classification problem with scaled
+   classification trees (with $$-1/1$$ encoding for classes), and a specific
+   loss function (exponent loss), the opimization of its coressponding FSAM is
+   relatively easy even without gradient descent.
 
-1. $$f_m(x)$$ is the learned model at the $$m$$th iteration (e.g. boosting
-iteration),
-1. $$b$$ is the basis function (e.g. tree stump),
-1. $$\beta$$ is the associated coefficent (also named expansion coefficient in
-the aforementioned book chapter).
-1. $$x$$ is the data, and
-1. $$\gamma$$ is the model parameters (e.g. split
-variable and cutoff if $$b$$ is a tree stump).
+**More:**
 
-An even higher level concept is **additive modeling**, which is effectively the
-ensemble method, i.e. combining how multiple models together.
-
-$$f(x) = \sum_{m=1}^{M} \beta_{m}b(x;\gamma_m)$$
-
-where $$\beta_m$$ are coefficients assigned to each individual model
-$$b(x;\gamma_m$$) output.
-
-The sepcialty about FASM is that there is an element of sequence dependency in
-it, hence forward stagewise, i.e. at iteration $$m$$, $$f_m$$ depends on
-$$f_{m-1}$$, and the parameters of the previously added basis functions won't be
-adjusted in later iterations. The advantage of such dependency is that it makes
-the model optimization (learning) process easier. I have no clue how to optimize
-the additive model altogether at once, considering hundreds of thousands of
-$$b$$.
-
-Now, we get to **Adaboost**, which is simply a specific case of FSAM, with an
-exponential loss function:
-
-$$L(y, f(x)) = exp(-y f(x))$$.
-
-asd
+Let's start with **additive modeling** first, which is effectively the
+ensemble method, i.e. combining how multiple models ($$M$$) together.
 
 \begin{equation}
-   E = mc^2
-   \label{emc}
+    f(x) = \sum_{m=1}^{M} \beta_{m}b(x;\gamma_m)
+    \label{eq:additiveModel}
 \end{equation}
 
+where 
 
-This is very generic a name, FYI, other common loss functions include accuray,
-binomial deviance (aka. cross-entroy), and squared error. Figure 10.4 in the
-book chapter has a comparison of them, and it explains them well. It proved that
-with such a loss function, Adaboost, fits an FSAM. It can be induced to a form
-consistent compatible with Equation \eqref{emc}.
+* $$\beta_m$$ is the associated coefficent (also named expansion coefficient in
+the aforementioned book chapter), and
+* $$b(x;\gamma_m$$) is the $$m$$th basis function (e.g. tree stump) with
+  * $$x$$ being the input data, and 
+  * $$\gamma_m$$ being the model parameters (e.g. split variable and cutoff for a
+    tree stump).
 
-Let's consider <math><mi>a</mi><mo>≠</mo><mn>0</mn></math>.
-       
+**Forward stagewise additive modeling (FSAM)** is also additive,
 
-Inspired from *Inheritance and the prototype chain* on
-this
-[page](https://developer.mozilla.org/en/docs/Web/JavaScript/Inheritance_and_the_prototype_chain),
-I decided to figure out prototype chains of all standard built-in objects in Javascript.
+\begin{equation}
+    f_m(x) = f_{m-1}(x) + \beta b(x;\gamma)
+    \label{eq:fsam}
+\end{equation}
 
-First we defined a function to print the chain.
+where $$f_m(x)$$ is the learned model at the $$m$$th iteration (e.g. boosting
+iteration), and there could be $$M$$ iterations.
 
-{% highlight javascript %}
-function formatNode(o) {
-    // specifiy how a node should be formatted in the chain
-    return '(' + o + ', ' + typeof o + ')';
-}
+However, its sepcialty is that there is an element of sequence dependency in it,
+hence the so-called forward stagewise, i.e. at iteration $$m$$, $$f_m$$ depends
+on $$f_{m-1}$$. Noteably, the parameters of the previously added basis functions
+won't be adjusted in later iterations. The advantage of such a dependency is
+that it makes the model optimization (learning) process easier. I still have no
+clue how to optimize the additive model \eqref{eq:additiveModel} altogether at
+once, considering hundreds of thousands of $$b$$ (e.g. $$M=1000$$).
 
-function getPrototypeChains(type) {
-    let o = type;
-    let chains = [];
-    chains.push(formatNode(o));
-    while (o !== null) {
-        o = Object.getPrototypeOf(o);
-        chains.push(formatNode(o));
-    }
-    return chains.join(' => ');
-}
-{% endhighlight %}
+Now, we get to **AdaBoost**, which is a specific case of FSAM, with an
+exponential loss function:
 
-Now, we test it out for all the standard built-in objects collected from [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript).
+\begin{equation}
+    L(y, f(x)) = e^{(-y f(x))}
+    \label{eq:exponentialLoss}
+\end{equation}
 
-{% highlight javascript %}
-[Array,
- Boolean,
- Date,
- Error,
- Function,
- JSON,
- Math,
- Number,
- Object,
- RegExp,
- String,
- Map,
- Set,
- WeakMap,
- WeakSet].forEach((type) => {
-     console.log(getPrototypeChains(type));
-     console.log('---');  // separator
- });
-{% endhighlight %}
+The is not obvious at all without looking at the algorithm of Adaboost. But even
+after so, it's not so intuitive. That **Adaboost* is a type of FSAM was not
+discovered till 5 years later it was first invented. After all, it's proved in
+the book chapter (I also rederived it on paper) that by plugging in
+\eqref{eq:exponentialLoss}, adaboost fits into a specific case of
+\eqref{eq:fsam}.
 
-Output:
+Before we get to gradient boosting, let's look at the exponent of the loss
+function $$(y f(x))$$ with negative sign removed. This is called the "margin",
+and interestingly it has a analogous role to the residual $$y - f(x)$$ in
+regression. For formalize it a bit the two expressions are analogous:
 
-{% highlight default %}
-(function Array() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function Boolean() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function Date() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function Error() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function Function() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-([object JSON], object) => ([object Object], object) => (null, object)
----
-([object Math], object) => ([object Object], object) => (null, object)
----
-(function Number() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function Object() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function RegExp() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function String() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function Map() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function Set() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function WeakMap() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function WeakSet() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-{% endhighlight %}
+* $$y \cdot f(x)$$ in a classification problem with ($$-1/1$$ response)
+* $$y - f(x)$$ in a regression problem: 
 
-As you can see, most of them are specialized functions that inherit from the
-`function` function, which inherits from the `object Object`, which inherits
-from `null`.
+where $$y$$ is the truth label and $$f(x)$$ is the model prediction. Concretely,
+when the $$y f(x)$$ is $$1$$ when the classification is correct otherwise
+$$-1$$.
 
-`JSON` and `Math` are the exceptions as they inherit from the `object Object`
-directly. 
+Now, let's get to **gradient boosting**, which describes a numerical method for
+optimizing FSAM using gradient descent. 
 
-Also, it shows that `typeof null`is an object.
+TODO: will update with more details on **gradient boosting** later.
 
-Let's try it with some real values
 
-{% highlight javascript %}
-[true, 1, 'xyz',
- // Symbol would create trouble when converting to string, so commented out for
- // now, you're encouraged to try it out, and see what happens
- // Symbol('s'),
- {'a': 1}
-].forEach((type) => {
-    console.log(getPrototypeChains(type));
-    console.log('---');  // separator
-});
-{% endhighlight %}
+Thank you for reading along. Please leavage a message and correct me if my
+understanding is not correct.
 
-Output:
+<!-- (This is a tricky part that I still don't understand well, how to do -->
+<!-- optimization on the function space?) -->
 
-{% highlight default %}
-(true, boolean) => (false, object) => ([object Object], object) => (null, object)
----
-(1, number) => (0, object) => ([object Object], object) => (null, object)
----
-(xyz, string) => (, object) => ([object Object], object) => (null, object)
----
-([object Object], object) => ([object Object], object) => (null, object)
----
-{% endhighlight %}
+<!-- Please leavage a message and correct me if my understanding, and I will make the -->
+<!-- necessary update promptly. Or just not publish till fully digesting the content. -->
+<!-- At least now, I feel I have a much better understanding of the confusion now. -->
 
-Look more carefully, and see what they are. You could also inspect each node in
-the browser dev tools, which will provide more insight as they won't be have to
-be printed in just plain string.
+<!-- This is very generic a name, FYI, other common loss functions include accuray, -->
+<!-- binomial deviance (aka. cross-entroy), and squared error. Figure 10.4 in the -->
+<!-- book chapter has a comparison of them, and it explains -->
