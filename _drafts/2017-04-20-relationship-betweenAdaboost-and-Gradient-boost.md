@@ -31,13 +31,16 @@ The first two are really technically detailed, but it's the book chapter that
 really helped me see the overall picture. So here, I am trying to summarize and
 share my current understanding of this question.
 
-TL;DR:
+_TL;DR: TODO_
 
 The two are not concepts at the same level, hence not so meaningful for
 comparison. Instead, the higher level concept is **forward stagewise additive
 modeling (FSAM)**. 
 
-$$f_m(x) = f_{m-1}(x) + \beta_m b(x;\gamma_m)$$
+\begin{equation}
+    f_m(x) = f_{m-1}(x) + \beta_m b(x;\gamma_m)
+    \label{eq:fsam}
+\end{equation}
 
 where
 
@@ -53,160 +56,56 @@ variable and cutoff if $$b$$ is a tree stump).
 An even higher level concept is **additive modeling**, which is effectively the
 ensemble method, i.e. combining how multiple models together.
 
-$$f(x) = \sum_{m=1}^{M} \beta_{m}b(x;\gamma_m)$$
+\begin{equation}
+    f(x) = \sum_{m=1}^{M} \beta_{m}b(x;\gamma_m)
+    \label{eq:additiveModel}
+\end{equation}
 
 where $$\beta_m$$ are coefficients assigned to each individual model
 $$b(x;\gamma_m$$) output.
 
 The sepcialty about FASM is that there is an element of sequence dependency in
-it, hence forward stagewise, i.e. at iteration $$m$$, $$f_m$$ depends on
-$$f_{m-1}$$, and the parameters of the previously added basis functions won't be
-adjusted in later iterations. The advantage of such dependency is that it makes
-the model optimization (learning) process easier. I have no clue how to optimize
-the additive model altogether at once, considering hundreds of thousands of
-$$b$$.
+it, hence the so-called forward stagewise, i.e. at iteration $$m$$, $$f_m$$
+depends on $$f_{m-1}$$. Noteably, the parameters of the previously added basis
+functions won't be adjusted in later iterations. The advantage of such a
+dependency is that it makes the model optimization (learning) process easier. I
+still have no clue how to optimize the additive model \eqref{eq:additiveModel}
+altogether at once, considering hundreds of thousands of $$b$$ (e.g.
+$$M=1000$$).
 
-Now, we get to **Adaboost**, which is simply a specific case of FSAM, with an
+Now, we get to **AdaBoost**, which is a specific case of FSAM, with an
 exponential loss function:
 
-$$L(y, f(x)) = exp(-y f(x))$$.
-
-asd
-
 \begin{equation}
-   E = mc^2
-   \label{emc}
+    L(y, f(x)) = e^{(-y f(x))}
+    \label{eq:exponentialLoss}
 \end{equation}
 
+The is not obvious at all without looking at the algorithm of Adaboost. But even
+after so, it's not so intuitive. That **Adaboost* is a type of FSAM was not
+discovered till 5 years later it was first invented. After all, it's proved in
+the book chapter (I also rederived it on paper) that by plugging in
+\eqref{eq:exponentialLoss}, adaboost fits into a specific case of
+\eqref{eq:fsam}.
 
-This is very generic a name, FYI, other common loss functions include accuray,
-binomial deviance (aka. cross-entroy), and squared error. Figure 10.4 in the
-book chapter has a comparison of them, and it explains them well. It proved that
-with such a loss function, Adaboost, fits an FSAM. It can be induced to a form
-consistent compatible with Equation \eqref{emc}.
+Before we get to gradient boosting, let's look at the exponent of the loss
+function $$(y f(x))$$ with negative sign removed. This is called the "margin",
+and interestingly it has a analogous role to the residual $$y - f(x)$$ in
+regression. For formalize it a bit the two expressions are analogous:
 
-Let's consider <math><mi>a</mi><mo>≠</mo><mn>0</mn></math>.
-       
+* $$y \cdot f(x)$$ in a classification problem with ($$-1/1$$ response)
+* $$y - f(x)$$ in a regression problem: 
 
-Inspired from *Inheritance and the prototype chain* on
-this
-[page](https://developer.mozilla.org/en/docs/Web/JavaScript/Inheritance_and_the_prototype_chain),
-I decided to figure out prototype chains of all standard built-in objects in Javascript.
+where $$y$$ is the truth label and $$f(x)$$ is the model prediction. Concretely,
+when the $$y f(x)$$ is $$1$$ when the classification is correct otherwise
+$$-1$$.
 
-First we defined a function to print the chain.
+Now, let's get to **gradient boosting**, which describes a numerical method for
+optimizing FSAM in general.
 
-{% highlight javascript %}
-function formatNode(o) {
-    // specifiy how a node should be formatted in the chain
-    return '(' + o + ', ' + typeof o + ')';
-}
+(This is a tricky part that I still don't understand well, how to do
+optimization on the function space?)
 
-function getPrototypeChains(type) {
-    let o = type;
-    let chains = [];
-    chains.push(formatNode(o));
-    while (o !== null) {
-        o = Object.getPrototypeOf(o);
-        chains.push(formatNode(o));
-    }
-    return chains.join(' => ');
-}
-{% endhighlight %}
-
-Now, we test it out for all the standard built-in objects collected from [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript).
-
-{% highlight javascript %}
-[Array,
- Boolean,
- Date,
- Error,
- Function,
- JSON,
- Math,
- Number,
- Object,
- RegExp,
- String,
- Map,
- Set,
- WeakMap,
- WeakSet].forEach((type) => {
-     console.log(getPrototypeChains(type));
-     console.log('---');  // separator
- });
-{% endhighlight %}
-
-Output:
-
-{% highlight default %}
-(function Array() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function Boolean() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function Date() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function Error() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function Function() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-([object JSON], object) => ([object Object], object) => (null, object)
----
-([object Math], object) => ([object Object], object) => (null, object)
----
-(function Number() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function Object() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function RegExp() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function String() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function Map() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function Set() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function WeakMap() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-(function WeakSet() { [native code] }, function) => (function () {}, function) => ([object Object], object) => (null, object)
----
-{% endhighlight %}
-
-As you can see, most of them are specialized functions that inherit from the
-`function` function, which inherits from the `object Object`, which inherits
-from `null`.
-
-`JSON` and `Math` are the exceptions as they inherit from the `object Object`
-directly. 
-
-Also, it shows that `typeof null`is an object.
-
-Let's try it with some real values
-
-{% highlight javascript %}
-[true, 1, 'xyz',
- // Symbol would create trouble when converting to string, so commented out for
- // now, you're encouraged to try it out, and see what happens
- // Symbol('s'),
- {'a': 1}
-].forEach((type) => {
-    console.log(getPrototypeChains(type));
-    console.log('---');  // separator
-});
-{% endhighlight %}
-
-Output:
-
-{% highlight default %}
-(true, boolean) => (false, object) => ([object Object], object) => (null, object)
----
-(1, number) => (0, object) => ([object Object], object) => (null, object)
----
-(xyz, string) => (, object) => ([object Object], object) => (null, object)
----
-([object Object], object) => ([object Object], object) => (null, object)
----
-{% endhighlight %}
-
-Look more carefully, and see what they are. You could also inspect each node in
-the browser dev tools, which will provide more insight as they won't be have to
-be printed in just plain string.
+<!-- This is very generic a name, FYI, other common loss functions include accuray, -->
+<!-- binomial deviance (aka. cross-entroy), and squared error. Figure 10.4 in the -->
+<!-- book chapter has a comparison of them, and it explains -->
