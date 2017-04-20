@@ -126,10 +126,6 @@ understanding is not correct.
 <!-- (This is a tricky part that I still don't understand well, how to do -->
 <!-- optimization on the function space?) -->
 
-<!-- Please leavage a message and correct me if my understanding, and I will make the -->
-<!-- necessary update promptly. Or just not publish till fully digesting the content. -->
-<!-- At least now, I feel I have a much better understanding of the confusion now. -->
-
 <!-- This is very generic a name, FYI, other common loss functions include accuray, -->
 <!-- binomial deviance (aka. cross-entroy), and squared error. Figure 10.4 in the -->
 <!-- book chapter has a comparison of them, and it explains -->
