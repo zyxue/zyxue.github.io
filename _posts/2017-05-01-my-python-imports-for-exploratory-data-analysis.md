@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Zhuyi's Python imports for exploratory data analysis
+title: My Python imports for exploratory data analysis
 author: Zhuyi Xue
 tags: Python, data analysis, Jupyter
 ---
