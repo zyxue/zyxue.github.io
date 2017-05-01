@@ -1,2 +1,2 @@
-web: bundle exec jekyll serve -P 8000 --drafts
+web: bundle exec jekyll serve -P 8123 --drafts
 worker: bundle exec guard -i
