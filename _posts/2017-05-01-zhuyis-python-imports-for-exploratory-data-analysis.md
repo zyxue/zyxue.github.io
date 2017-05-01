@@ -9,12 +9,11 @@ With Python [Jupyter](http://jupyter.org/) and
 [SciPy stack](https://www.scipy.org/stackspec.html), we can quickly set up a
 very interactive environment for exploratory data analysis (EDA).
 
-Here I listed the libraries I normally use. I just import all of them in the
-first cell in a Jupyter notebook, and then start working on the data. It's ok if
-they're not all used, at the exploratory stage, the notebook quickly gets messy.
-I could always removed redundant ones when the analysis is mostly done and it is
-time to clean up. After all, it's much easier to remove lines than to think of
-the exact name of a library/module to import.
+Here I listed the libraries I normally used. I just import all of them in the
+first cell in a Jupyter notebook, and then start working on the data. When the
+analysis is almost done, then I will start cleaning up and removing the
+redundant ones. I find easier to remove lines than to think of the exact name of
+a library/module to import.
 
 The list could be long, and for clarity, I usually loosely categorize them into
 a few groups groups separated by empty newline such as:
