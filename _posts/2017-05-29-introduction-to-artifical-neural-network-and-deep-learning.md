@@ -2,7 +2,7 @@
 layout: post
 title: Introduction to Artificial Neural Network and Deep Learning
 author: Zhuyi Xue
-tags: MySQL
+tags: neural network, deep learning, talk
 ---
 
 This is a talk initially given within my research group, in which I summarized
