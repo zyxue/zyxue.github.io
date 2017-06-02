@@ -29,15 +29,19 @@ However, when I download it and look inside, it contains headers as such with
 very long lines.
 
 ```
-Hybridization  REF        TCGA-KL-8323-01A-21R-2315-07  TCGA-KL-8323-01A-21R-2315-07  TCGA-KL-8323-01A-21R-2315-07  TCGA-KL-8324-11A-01R-2315-07  TCGA-KL-8324-11A-01R-2315-07  TCGA-KL-8324-11A-01R-2315-07  TCGA-KL-8324-01A-11R-2315-07...
-gene_id        raw_count  scaled_estimate               transcript_id                 raw_count                     scaled_estimate               transcript_id                 raw_count                     scaled_estimate...
-?|100130426    0.00       0                             uc011lsn.1                    0.00                          0                             uc011lsn.1                    0.00                          0...
+Hybridization REF TCGA-KL-8323-01A-21R-2315-07 TCGA-KL-8323-01A-21R-2315-07.1 TCGA-KL-8323-01A-21R-2315-07.2 TCGA-KL-8324-11A-01R-2315-07 TCGA-KL-8324-11A-01R-2315-07.1 TCGA-KL-8324-11A-01R-2315-07.2 ...
+0           gene_id                    raw_count                scaled_estimate                  transcript_id                    raw_count                scaled_estimate                  transcript_id ...
+1       ?|100130426                         0.00                              0                     uc011lsn.1                         0.00                              0                     uc011lsn.1 ...
+2       ?|100133144                        22.18           5.56262138762192e-07          uc010unu.1,uc010uoa.1                        20.92           5.66666965654224e-07          uc010unu.1,uc010uoa.1 ...
+3       ?|100134869                        13.82           2.50584617744958e-07          uc002bgz.2,uc002bic.2                        17.08           3.34550559455013e-07          uc002bgz.2,uc002bic.2 ...
+4           ?|10357                       247.31           1.44524322577865e-05                     uc010zzl.1                       328.97           2.06751089262803e-05                     uc010zzl.1 ...
+5           ?|10431                      1814.00           4.74864023757294e-05          uc001jiu.2,uc010qhg.1                      2691.00           7.60539144597261e-05          uc001jiu.2,uc010qhg.1 ...
+...
 ```
 
-I find 
-
-1. it confusing why transcript_ids are involved when it's a file about genes
-2. the file format is not very intuitive, and creates inconvenience for future
+So for each sample, there are three columns (barcode, barcode.1, barcode.2)
+corresponding to `raw_count`, `scaled_estimates`, and `transcript_id`(s). I find
+the file format is not very intuitive, and creates inconvenience for future
 parsing. Such nested structure would've been much better handled by
 XML/JSON/YAML, etc instead.
 
@@ -92,9 +96,10 @@ I think the documentation could've been much improved so that no one needs to
 hack around file formats, which bioinformaticians have already spent too much
 time doing so in general.
 
-Back to my own problem, I think I will try the `raw_count` file (e.g.
-`KICH.uncv2.mRNAseq_raw_counts.txt`) first for differential expression analysis
-with DESeq2.
+Back to my own problem, I prefer to use `RSEM_genes` (unnormalized) file over
+the `raw_count` file for differential expression analysis with DESeq2, as the
+later uses short 12-letter barcode (e.g `TCGA-KL-8323-01`), which may be
+unspecific enough for later analysis.
 
   [1]: https://ibb.co/iXrmoF
   [2]: https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#why-un-normalized-counts
