@@ -5,6 +5,9 @@ author: Zhuyi Xue
 tags: mRNA-Seq, FireBrowse, FireHose, RSEM
 ---
 
+The corresponding gitlab repo:
+[understanding-firebrowse-data-format](https://gitlab.com/zyxue/understanding-firebrowse-data-format/tree/master).
+
 I am trying to figure out which mRNA analysis results file from Firehose I
 should use for differential gene expression (e.g. with DESeq2). However, I find
 the documentation relatively poor. As I have spent quite some time figuring out
