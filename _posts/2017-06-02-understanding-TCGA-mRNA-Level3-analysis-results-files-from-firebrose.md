@@ -8,6 +8,37 @@ tags: mRNA-Seq, FireBrowse, FireHose, RSEM
 The corresponding gitlab repo:
 [understanding-firebrowse-data-format](https://gitlab.com/zyxue/understanding-firebrowse-data-format/tree/master).
 
+A useful quote from
+[http://seqanswers.com/forums/showthread.php?t=42911](http://seqanswers.com/forums/showthread.php?t=42911).
+
+>It took me a while to get my head around this, since the column names in the
+>rsem.genes/isoforms.results files don't match the default output of RSEM,
+>neither the version they claim to have used nor the most current version.
+
+>The (first) RSEM paper explains that the program calculates two values. One
+>represent the (estimated) number of reads that aligned to a transcript. This
+>value is not an integer because RSEM only reports a guess of how many
+>ambiguously mapping reads belong to a transcript/gene. This number is what the
+>TCGA slightly misleadingly calls raw counts.
+
+>The scaled estimate value on the other hand is the estimated frequency of the
+>gene/transcript amongst the total number of transcripts that were sequenced.
+>Newer versions of RSEM call this value (multiplied by 1e6) TPM - Transcripts
+>Per Million. It's closely related to FPKM, as explained on the RSEM website.
+>The important point is that TPM, like FPKM, is independent of transcript
+>length, whereas "raw" counts are not!
+
+>The *.normalized_results files on the other hand just contain a scaled version
+>of the raw_counts column. The values are divided by the 75-percentile and
+>multiplied by 1000. This should make the values a bit more comparable between
+>experiments. The Perl code for this quantile normalisation can be found here.
+
+>In conclusion, I would strongly recommend using the TPM/scaled_estimate values
+>for all intents and purposes. It seems to me to be the more robust and
+>mathematically sound value.
+
+<hr>
+
 I am trying to figure out which mRNA analysis results file from Firehose I
 should use for differential gene expression (e.g. with DESeq2). However, I find
 the documentation relatively poor. As I have spent quite some time figuring out
