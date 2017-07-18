@@ -88,3 +88,45 @@ If without [Bessel's correction](https://en.wikipedia.org/wiki/Bessel%27s_correc
     \textrm{SEM} = \frac{s}{\sqrt n} = \frac{\sqrt{\sum_{i=1}^{n}(x_i - \overline{x}) ^2}}{n}
     \label{eq:standardErrorWithoutCorrection}
 \end{equation}
+
+
+### Standardization
+
+[Standardization](https://en.wikipedia.org/wiki/Feature_scaling#Standardization)
+is a very common data transformation in machine learning. Let's use $$x'$$ as the
+transformed value, and prove how it works
+
+The transformation:
+
+\begin{equation}
+    x'_i = \frac{x_i - \overline{x}}{s}
+    \label{eq:standardization}
+\end{equation}
+
+Apparently, the mean after standardization $$\overline{x'}$$ becomes 0. What
+about the variance $$s' ^2$$.
+
+<!-- reference: view-source:http://karpathy.github.io/2016/05/31/rl/ -->
+<!-- '\ ' force a space -->
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+    s'^2 & = \frac{\sum_{i=1}^{n}(x'_i - 0) ^2}{n - 1} \nonumber \\
+         & = \frac{\sum_{i=1}^{n}(\frac{x_i - \overline{x}}{s}) ^2}{n - 1}                                                     & \text{replacing}\ x_i'\ \text{with Eq. \eqref{eq:standardization}} \nonumber \\
+         & = \frac{\frac{1}{s^2} \sum_{i=1}^{n}({x_i - \overline{x}}) ^2}{n - 1}                                               & \text{move constant}\  s^2\ \text{to the front} \nonumber \\
+         & = \frac{\frac{n - 1}{\sum_{i=1}^{n}({x_i - \overline{x}}) ^2} \sum_{i=1}^{n}({x_i - \overline{x}}) ^2}{n - 1}       & \text{replacing }\ s^2\ \text{with Eq. \eqref{eq:sampleStd}} \nonumber \\
+         & = 1 \nonumber \\
+         \label{eq:standarizedSampleStd}
+\end{align}
+%]]></script>
+
+
+<!-- <script type="math/tex; mode=display">% <![CDATA[ -->
+<!-- \begin{align} -->
+<!-- \nabla_{\theta} E_x[f(x)] &= \nabla_{\theta} \sum_x p(x) f(x) & \text{definition of expectation} \\ -->
+<!-- & = \sum_x \nabla_{\theta} p(x) f(x) & \text{swap sum and gradient} \\ -->
+<!-- & = \sum_x p(x) \frac{\nabla_{\theta} p(x)}{p(x)} f(x) & \text{both multiply and divide by } p(x) \\ -->
+<!-- & = \sum_x p(x) \nabla_{\theta} \log p(x) f(x) & \text{use the fact that } \nabla_{\theta} \log(z) = \frac{1}{z} \nabla_{\theta} z \\ -->
+<!-- & = E_x[f(x) \nabla_{\theta} \log p(x) ] & \text{definition of expectation} -->
+<!-- \end{align} % -->
+<!-- ]]></script> -->
