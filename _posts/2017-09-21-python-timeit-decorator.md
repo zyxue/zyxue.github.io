@@ -1,11 +1,11 @@
 ---
 layout: post
-<!-- title:  -->
+title: Python timeit decorator
 author: Zhuyi Xue
 tags: python, time, timeit, decorator
 ---
 
-A plain python timeit decorator, time any function
+A plain python `timeit` decorator, time any function
 
 {% highlight python %}
 import time
@@ -30,7 +30,7 @@ def timeit(f):
         print("time spent on {0}: {1:.2f}s".format(f.__name__, et - bt))
         return r
     return new_f
-{% end highlight %}
+{% endhighlight %}
 
 
 ### Example usage:
@@ -53,4 +53,4 @@ def another_awesome_function(msg):
 
 # as a function, timeit returns a decorated function
 timeit(another_awesome_function)('timeit used as a function')
-{% end highlight %}
+{% endhighlight %}
