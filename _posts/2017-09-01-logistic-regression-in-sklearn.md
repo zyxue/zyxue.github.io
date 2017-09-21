@@ -84,11 +84,11 @@ Put [Newton-Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method) in 
 Define
 
 \begin{align}
-    y_{\mathrm{nx1}}
+    y_{\mathrm{n \times 1}}
 \end{align}
 
 \begin{align}
-	X_{\mathrm{n \times (d+x)}}
+	X_{\mathrm{n \times (d+1)}}
 \end{align}
 
 \begin{align}
@@ -104,18 +104,23 @@ and a diagonal matrix
 Then, 
 
 \begin{align}
-	\frac {\partial l(\beta)}{\partial \beta} = (y - P) ^T X
+	\frac {\partial l(\beta)}{\partial \beta} = X^T (y - P)
 \end{align}
+
+is of shape $$(d+1) \times 1$$.
 
 \begin{align}
 	\frac {\partial^2 l(\beta)}{\partial \beta \partial \beta ^T} = -X^T W X
 \end{align}
 
-<span style='color:red'>Still need to check the dimension of matrix multiplication!</span>
+is of shape $$(d+1) \times (d+1)$$.
+
+So
 
 \begin{align}
-	\beta^{\mathrm{new}} \leftarrow \beta ^{\mathrm{old}} - ((y - P) ^T X)(-X^T W X)^{-1}
+	\beta^{\mathrm{new}} \leftarrow \beta ^{\mathrm{old}} + (X^T W X)^{-1} X^T(y - P)
 \end{align}
+
 
 
 
