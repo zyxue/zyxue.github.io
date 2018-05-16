@@ -52,35 +52,36 @@ white-space: nowrap;
 **TL;DR:** 
 
 **Defintion**: P-value is the probability of observing the **current** or **more
-extreme data** conditioned on the **null hypothesis being true**. (key words
-highlighted). Note it's a conditional probability, and it's NOT only about
-observing the current data, but also more extreme ones.
+extreme data** conditioned on a **true null hypothesis**. (key words are
+highlighted). Note that it is a conditional probability, and it is NOT only
+about observing the current data, but also more extreme ones.
 
 P-value could be written as 
 
-$$\mathrm{Pr}(\left| X \right| \ge x|H_0)$$
+$$\mathrm{Pr}(X \le x|H_0)$$
 
-where the absolute value ($|X|$) takes both one-sided and two-sided tests into
-consideration, and $H_0$ means true null hypothesis.
+This is the formula for one-tailed test, but is generalizable to the other-tail
+or two-tail tests. Here, we will focus on one-tail test. $H_0$ means that null
+hypothesis is being true. In this post, I will use hypothesis always to mean
+null hypothesis unless noted otherwise.
 
-**Interpretation**: P-value is equal to 1 - specificity, and it does not tell
-you anything about sensitivity or false discovery rate (FDR). With a p-value of
-0.05, a sensitvity of 0.8, and a prior probability of 0.01 for false null
-hypothesis, FDR could be up to 0.86. In other words, 0.05 is too generous a
-cutoff in general.
+**Interpretation**: P-value is equal to 1 - specificity, and it provides little
+information about sensitivity or false discovery rate (FDR). With a p-value of
+0.05, a sensitvity of 0.8, and a prior probability of 0.99 for a null hypothesis
+being true, FDR could be as high as 0.86. In other words, 0.05 is too generous a
+cutoff for p-value in general.
 
 # Calculation of p-value
 
 I have heard of null-hypothesis testing for a long time, but not until recently,
-I set out to implements several common testing methods (z-test, t-test,
+I set out to implement several common hypothesis testing methods (t-test,
 Mann–Whitney U test, Wilcoxon signed-rank test, Fisher's exact test) myself,
-trying to really internalize my understanding. In this post, hypothesis alwaysm
-eans null hypothesis unless noted otherwise.
+trying to really internalize my understanding.
 
-The calculation of p-values follow a consistent pattern. 
+The calculation of a p-value follow a consistent pattern.
 
-* First, the data under consideration is summarized a test statistic. For
-example, the statisic is called $Z$ in z-test, $T$ in t-test, $U$ in
+* First, the data under consideration is summarized with a test statistic. For
+example, the test statisic is called $Z$ in z-test, $T$ in t-test, $U$ in
 Mann-Whiteney U test, $W$ in Wilcoxon signed-rank test. In Fisher's exact test,
 with the margins fixed, any of the four cell values could be considered a test
 statistic
@@ -101,21 +102,21 @@ calculated t value to the critical value, I could know my p-value is above or
 below $\alpha$.
 
 You may wonder how do we know about the probability distribution of the test
-statistic. It should've been proved when those testing methods were initially
+statistic. It should have been proved when the testing methods were initially
 developed. For example, $Z$ follows a normal distribution, $T$ follows a
 t-distribution. Both $U$ (Mann–Whitney U test) and $W$ (Wilcoxon signed-rank
 test) follow a normal distribution when the sample size is large, so they
-essentially become a z-test when the statistic is obtained. For Fisher's exact
-test, since the probability distribution is discrete, so all possible values are
-calculated and then summed accordingly.
+essentially become z-test once the statistic is obtained. For Fisher's exact
+test, since the probability distribution is discrete, so all probabilities
+corresponding to the current or more extreme tuplets are calculated and then
+summed up.
 
 # Distribution of p-values under null hypothesis
 
-Under the null hypothesis is true, p-value follows a uniform distribution. A
+When the null hypothesis is true, p-value follows a uniform distribution. A
 brief proof using the
 [universality of uniform distribution](https://www.quora.com/What-is-Universality-of-the-Uniform)
-for one-sided test is provided below, which could be generalized to two-sided
-test.
+is provided below.
 
 Let $P = F(X)$, the cumulative distribution function of $X$. Then, $X =
 F^{-1}(P)$.
@@ -129,25 +130,27 @@ P &= \mathrm{Pr}(X \le x | H_0) \\
 \end{align*}
 $$
 
-Hence, P follows a uniform distribution.
+Therefore, P follows a uniform distribution.
 
 # Frequentist interpretation of p-value
 
-So now we know how p-values are calculated, what does a p-value exactly mean? If
-the definition in the **TL;DR** section sounds still too abstract, I find it
-useful to interpret p-value in the context of a confusion table (thus
-frequentist view).
+We will interpret the p-value from two perspectives, *frequentist* and
+*Bayesian*. Let's start with the frequentist view.
+
+What does a p-value exactly mean? The definition in the **TL;DR** section may
+sound still too abstract, I find it very useful to interpret p-value in the
+context of a confusion table;thus, it is the frequentist view.
 
 <table class="confusion-table">
   <tr>
     <th></th>
-    <th>Condition positive (<span class="marginal">CP</span>) <br> (False null hypotheses)</th>
-    <th>Condition negative (<span class="marginal">CN</span>) <br> (True  null hypotheses)</th>
+    <th><span class="nowrap">Condition positive</span> <br> (<span class="marginal">CP</span>, False null hypotheses)</th>
+    <th><span class="nowrap">Condition negative</span> <br> (<span class="marginal">CN</span>, True  null hypotheses)</th>
     <th>Row margin</th>
     <th colspan="2">Row metrics</th>
   </tr>
   <tr>
-    <td><b>Predicted positive (<span class="marginal">PP</span>) <br> (rejected hypotheses)</b></td>
+    <td><b>Predicted positive (<span class="marginal">PP</span>, rejected hypotheses)</b></td>
     <td class="true-positive">True positive (<span class="true-positive">TP</span>)</td>
     <td class="false-positive">False positive (<span class="false-positive">FP</span>) <br> Type I error</td>
     <td class="nowrap"><span class="marginal">PP</span> = <span class="true-positive">TP</span> + <span class="false-positive">FP</span></td>
@@ -155,7 +158,7 @@ frequentist view).
     <td><span class="nowrap">FDR = <span class="false-positive">FP</span> / <span class="marginal">PP</span></span> <br> <i>False discovery rate</i> </td>
   </tr>
   <tr>
-    <td><b>Predicted negative (<span class="marginal">PN</span>) <br> (accepted hypotheses)</b></td>
+    <td><b>Predicted negative (<span class="marginal">PN</span>, accepted hypotheses)</b></td>
     <td class="false-negative">False negative (<span class="false-negative">FN</span>) <br> Type II error</td>
     <td class="true-negative">True negative (<span class="true-negative">TN</span>)</td>
     <td><span class="nowrap"><span class="marginal">PN</span> = <span class="false-negative">FN</span> + <span class="true-negative">TN</span></span></td>
@@ -173,14 +176,14 @@ frequentist view).
   <tr>
     <td rowspan="2">Column metrics</td>
     <td><span class="nowrap">TPR = <span class="true-positive">TP</span> / <span class="marginal">CP</span></span> <br> True positive rate, <i>Sensitivity</i>, <i>Recall</i>, <i>Power</i></td>
-    <td><span class="nowrap">FPR = <span class="false-positive">FP</span> / <span class="marginal">CN</span></span> <br> False positive rate, p-value</td>
+    <td><span class="nowrap">FPR = <span class="false-positive">FP</span> / <span class="marginal">CN</span></span> <br> False positive rate, <i>p-value</i></td>
     <td></td>
     <td></td>
     <td></td>
   </tr>
   <tr>
     <td><span class="nowrap">FNR = <span class="false-negative">FN</span> / <span class="marginal">CP</span></span> <br> False negative rate</td>
-    <td><span class="nowrap">TNR = <span class="true-negative">TN</span> / <span class="marginal">CN</span></span> <br> True negative rate, Specificity</td>
+    <td><span class="nowrap">TNR = <span class="true-negative">TN</span> / <span class="marginal">CN</span></span> <br> True negative rate, <i>Specificity</i></td>
     <td></td>
     <td></td>
     <td></td>
@@ -188,20 +191,25 @@ frequentist view).
 </table>
 
 The table is adapted from <a
-href="https://en.wikipedia.org/wiki/Sensitivity_and_specificity">wiki</a>, with
-a more consistent naming and styling convention applied. For example,
-
-* All eight metrics are named with three letters (TPR, FPR, FNR, TNR, PPV, FDR,
+href="https://en.wikipedia.org/wiki/Sensitivity_and_specificity">wiki</a> with a
+more consistent naming and styling convention applied. For example,
+* All eight metrics are named with three-letter acronyms (TPR, FPR, FNR, TNR, PPV, FDR,
 FOR, NPV). Their full names, as well as alternative names, are listed below
 their respective equations. Relatively more well-known metrics are <i>italicized</i>.
-* All eight variables are named with two letters, and they are colored to be more trackable.
-  * Marginal sum (CP, CN, PP, PN) are black, while
-  * the four key variables (<span class="true-positive">TP</span>, <span
+* All eight input variables to the equations are named with two letters, and
+  they are colored to be more trackable.
+  * Marginal sums (<span class="marginal">CP</span>, <span
+    class="marginal">CN</span>, <span class="marginal">PP</span>, <span
+    class="marginal">PN</span>) are black, while
+  * the other four key variables (<span class="true-positive">TP</span>, <span
 class="true-negative">TN</span>, <span class="false-positive">FP</span>, <span
 class="false-negative">FN</span>) are colored differently.
-  * background color: <span class="green">green</span> means good, while <span class="redish">redish</span> means bad.
-* Aside of CP, CN, PP, PN, I also add their respective description in the
-  context of null hypothesis testing.
+  * As for background color: <span class="green">green</span> means good (e.g.
+    true positives and true negatives), while <span class="redish">redish</span>
+    means bad (e.g. false positives and false negatives).
+* Aside of <span class="marginal">CP</span>, <span class="marginal">CN</span>,
+  <span class="marginal">PP</span>, <span class="marginal">PN</span>, I also add
+  their respective description in the context of null hypothesis testing.
 
 **Insight**: If you try to match the definition of p-value that is "the
 probability of observing the **current** or **more extreme data** conditioned on
@@ -210,19 +218,19 @@ since all hypotheses are true in this column so that it meets the condition. If
 p-value is less than a cutoff (e.g. significance level, α=0.05), then hypothesis
 is rejected, which results in a false positive. Therefore a p-value is
 effectively the FPR (at least in a single-hypothesis testing case), which is
-complement to specificity as FPR = 1 - specificity. Therefore, keeping p-value
-low is equivalent to keeping specificity high.
+complement to specificity as FPR = 1 - specificity. Therefore, keeping the
+p-value low is equivalent to keeping the specificity high.
 
-While this post is mostly about single-hypothesis testing (SHT), here is a few notes
-about p-values in the context of multiple-hypothesis testing (MHT).
+While this post is mostly about single-hypothesis testing (SHT), here I put a
+few notes about p-values in the context of multiple-hypothesis testing (MHT).
 
-* While such interpretation (1 - specificity) applies to the raw p-values in
-MHT, the adjusted p-values would have a different interpretation depending on
-what kind of type I error rate is being controlled (e.g. per-comparison error
-rate (PCER), family-wise error rate (FWER), and false discovery rate (FDR)).
-* Because adjusted p-values may have a different interpretation in the MHT case,
-the corresponding significance level (α) will also needs interpreted
-differently.
+* While such interpretation (i.e. 1 - specificity) applies to the raw p-values
+in MHT, the adjusted p-values would have a different interpretation depending on
+what kind of type I error rate is being controlled, e.g. per-comparison error
+rate (PCER), family-wise error rate (FWER), or false discovery rate (FDR).
+* Because adjusted p-values may have a different interpretation (not related to
+specificity anymore) in the MHT case, the corresponding significance level (α)
+will also need interpreted differently.
 * You may have noticed that FDR is also defined in the above table. However, in
 reality, usually none of <span class="true-positive">TP</span>, <span
 class="true-negative">TN</span>, <span class="false-positive">FP</span>, <span
@@ -233,98 +241,114 @@ href="https://www.jstor.org/stable/pdf/2346101.pdf?refreqid=excelsior%3Afeea25ba
 target="_black">Benjamini-Hochberg correction method</a>.
  
 Now, we have estabilished the relationship between p-value and specificity, does
-p-value tell us more than that, for example, sensitivity or false discovery rate
-(FDR)? Since precision and FDR sum to one, knowing one will get us to the other,
-so we'll focus only on FDR.
+p-value tell us more, for example, sensitivity or false discovery rate (FDR)?
+Since precision and FDR sum to one, knowing one will get us the other, so we'll
+focus only on FDR.
 
 First, since sensitivity and specificity depend on completely different
 variables (<span class="true-positive">TP</span> and <span
 class="false-positive">FP</span> vs <span class="true-negative">TN</span> and
-<span class="false-negative">FN</span>), and these are unknown variables. So
-sensitivity is intractable given specificity). Then, what about FDR? Although
-FDR and specificity share <span class="false-positive">FP</span>, it is also
-intractable without further information. As noted in <a
+<span class="false-negative">FN</span>), and these are usually unobserved
+variables, even if with margins fixed, sensitivity is intractable given
+specificity. Then, what about FDR? Although FDR and specificity share <span
+class="false-positive">FP</span>, it is also intractable without further
+information. As noted in <a
 href="http://rsos.royalsocietypublishing.org/content/1/3/140216"
 target="_blank">An investigation of the false discovery rate and the
 misinterpretation of p-values (2014)</a> by David Colquhoun, knowing p-value
-gets you "nothing whatsoever about the FDR". This is a bit disappointing, but
-crucial to keep in mind so as not to over interprete a p-value.
+gets you "nothing whatsoever about the FDR". This is a bit disappointing, but it
+is also crucial to keep in mind so as not to over-interpret a p-value.
 
 It turns out there is a simple equation that connects sensitivity, specificity
-and FDR. Just one bit more but crucial information is necessary, a prior
-probability of a hypothesis being true ($\mathrm{Pr}(H_0)$). Then, we have
+and FDR. Just one more bit of critical information is needed, the prior
+probability of a hypothesis being false ($\mathrm{Pr}(H_0^C)$ or $r$). In the
+context of diagnostic method development, the prior probability could be the
+probability of NOT having a disease in the population. Then, we have
 
-$$\mathsf{FDR} = \frac{N\mathrm{Pr}(H_0)(1 - \mathsf{specificity})}{N\mathrm{Pr}(H_0)(1 - \mathsf{specificity}) + N(1 - \mathrm{Pr}(H_0))\mathsf{Sensitivity}}$$
+$$\mathsf{FDR} = \frac{N (1 - r) (1 - \mathsf{specificity})}{N(1 - r)(1 - \mathsf{specificity}) + Nr\mathsf{Sensitivity}}$$
 
-$N$ is the population size, which would be cancelled. This relationship is
-easily verifiable according to the confusion table. Let's take a concrete
-example first and then draw a 3D surface to illustrate the relationship. Suppose
-$\mathrm{Pr}(H_0)=0.99$, specificity is 0.95 (corresponding to the common cutoff
-0.05 for p-value), and sensitivity (power) is 0.80. This is a reasonable setup,
-not extreme at all, but if you replace the variables with these numbers in the
+$N$ is the population size, which would be cancelled anyway, so we do not need
+to know its exact value. This relationship is easily verifiable according to the
+confusion table. Let's take a concrete example first and then draw a 3D surface
+to visualize the relationship. Suppose $r=0.01$ (in other words, the disease is
+rare), specificity is 0.95 (corresponding to the common cutoff of 0.05 for
+p-value), and sensitivity (power) is 0.80. This is a reasonable setup, not
+extreme at all, but if you replace the variables with these numbers in the
 equation, you get a FDR of 0.86, which effectively renders the test method under
-consideration is useless.Remarkably, even when the sensitivity is 0.99, the FDR
-is still as low as 0.83.
+consideration useless. Remarkably, even when the sensitivity is 0.99, the FDR is
+still as low as 0.83.
 
-If you draw the surface of FDR ~ sensitivity & specificity as shown in the first
-subplot below
+The surface of FDR ~ sensitivity & specificity is shown below for different $r$ values.
 
 <img src="/assets/FDR_sensitivity_specificity.png" />
 
-The notebook for generating this figure is available at <a
-href="https://github.com/zyxue/sutton-barto-rl-exercises/blob/master/stats/relationship-between-FDR-sensitivity-and-specificity.ipynb"
-target="_blank">here</a>. So when $r$ (1 - $\mathrm{Pr}(H_0)$) is low, FDR is
-mostly near 1 untill specificity becomes extremely high, which explains <a
+Note when $r = 0.01$ or low in general, FDR is mostly near 1 until specificity
+becomes extremely high, which explains <a
 href="http://rsos.royalsocietypublishing.org/content/1/3/140216"
 target="_blank">Colquhoun's advice</a> that "if you wish to keep your false
-discovery rate below 5%, you need to ... insist on p≤0.001" (equivalently,
-specificity > 0.999). The surface changes as $r$ increases.
+discovery rate below 5%, you need to ... insist on p≤0.001" (i.e. specificity >
+0.999). The surface changes as $r$ increases.
+
+The notebook for generating this figure is available at <a
+href="https://github.com/zyxue/sutton-barto-rl-exercises/blob/master/stats/relationship-between-FDR-sensitivity-and-specificity.ipynb"
+target="_blank">here</a>. In it, I also plotted FDR ~ rate & sensitivity for
+different specificities.
+
+<img src="/assets/FDR_rate_sensitivity.png" />
+
+Note when the specificity is very high (0.9999 or 0.9999, in other words, p <
+0.0001 or p < 0.001), then the surface is mostly around 0 unless when the rate
+is extremely low (see the sharp color transitions around the edges, beyond which
+the FDR shoots up like a rocket).
 
 # Bayesian interpretation of p-value
 
 As p-value is a conditional probability, we could write it in terms of Bayes
-rule, and there comes some new insight.
+rule, and there comes to be some more insight.
 
 $$
-\mathrm{Pr}(\left|X\right| \ge x | H_0) = \frac{\mathrm{Pr}(H_0 | \left| X \right| \ge x)\mathrm{Pr}(\left| X \right| \ge x)}{\mathrm{Pr(H_0)}}
+\mathrm{Pr}(X \le x | H_0) = \frac{\mathrm{Pr}(H_0 | X \le x)\mathrm{Pr}(X \le x)}{\mathrm{Pr(H_0)}}
 $$
 
-The left-hand side is what p-value represents. However, what we usually care the
-most lies on at the right-hand side that is the probability of null hypothesis
-being false given the test statistic, $\mathrm{Pr}(H_0 | \left| X \right| \ge
-x)$. Unfortunately, without knowing $\mathrm{Pr}(\left| X \right| \ge x)$ and
-$\mathrm{Pr(H_0)}$, we cannot deduce it. Therefore, an important **insight** is
-that **rejecting a hypothesis** is very different from saying **the probability
-of hypothesis being false is high**, or equivalently, **the probability of the
-alternative hypothesis being true**. Actually, they don't have much to
-do with each other. Quoting <a
+The left-hand side is the p-value. However, what we usually care the most lies
+on at the right-hand side that is the probability of null hypothesis being true
+or false given the test statistic, $\mathrm{Pr}(H_0 | X \le x)$. Unfortunately,
+without knowing $\mathrm{Pr}(X \le x)$ and $\mathrm{Pr(H_0)}$, we cannot
+calculate its exact value. Therefore, an important **insight** from this
+observation is that **rejecting a hypothesis** is very different from saying
+**the probability of the hypothesis being true is low or high**, or
+equivalently, **the probability of the alternative hypothesis being true is high
+or low**. Actually, they don't have much to do with each other. Quoting <a
 href="http://rsos.royalsocietypublishing.org/content/1/3/140216"
-target="_blank">Colquhoun</a> again, rejecting a hypothesis (p-value < a cutoff)
-simply means it's worth another look to see if the hypothesis could be false.
+target="_blank">Colquhoun</a> again, rejecting a hypothesis (e.g. p-value <
+0.05) simply means it's worth another look. But you might get a sense already
+that a cutoff of 0.05 is likely to be really generous, if not too generous.
 
 # Summary
 
-If you've read the long version, I hope now you have a better sense of the
-limited information conveyed by p-value. In summary, p-value is complement to
-specificity, keeping p-value low is equivalent to keeping specificity high, but
-it provides little clue to the sensitivity or specificity of the test.
+If you've read the long version, I hope you now have a better sense of the
+limited information conveyed by a p-value. In summary, a p-value is complement
+to specificity, keeping the p-value low is equivalent to keeping the specificity
+high, but it provides little information to the sensitivity or FDR of the test.
 **Importantly**, if the prior probability of the hypothesis being false is low
-(which is common, e.g. 0.01), then even a very sensitive (e.g. 0.8) and specific
-(e.g. 0.95) test could still have an unacceptably high FDR (e.g. 0.86). This is
-the main message conveyed in the seemingly absurd paper <a
+which could be common (0.01), then even a very sensitive (e.g. 0.8) and specific
+(e.g. 0.95) test could still have an unacceptably high FDR (e.g. 0.86). I
+thought this is the main message conveyed in the seemingly absurd paper <a
 href="https://doi.org/10.1371/journal.pmed.0020124" target="_blank">Ioannidis
 JPA (2005) Why Most Published Research Findings Are False. PLoS Med 2(8):
-e124.</a>. But if you understand how such a high FDR is reached and the surface
-plot in this post (esp. the first subplot), you may not feel it so absurd
-anymore. To me, the widespread of a generally too generous cutoff of 0.05 seems
-an unfortunate accident. Such generosity explains why <a
+e124.</a>. But if you understand how such a high FDR is calculated and the
+surface plots shown in this post, you may not feel it so absurd anymore. 
+
+To me, the widespread of a generally too generous cutoff of 0.05 appears to be
+an unfortunate accident due to miunderstanding of a p-value. Such generosity
+explains why <a
 href="https://www.nature.com/news/psychology-journal-bans-p-values-1.17001"
 target="_blank">some journal went as far as to ban p-values</a>, but in my
 opinion, it is not that p-value is bad, but more of that a p-value of 0.05 is
-often too lenient a cutoff. More importantly, if you insist on having p<0.05,
-then be conservative with the conclusion, because *extraordinary conclusions
-require extraordinary evidence* and the evidence of p<0.05 is usually not so
-extraordinary.
+often too generous a cutoff. Perhaps More importantly, if you insist on having
+p<0.05, then be conservative with the conclusion, because *extraordinary
+conclusions require extraordinary evidence* and the evidence of a p<0.05 is
+usually not so extraordinary.
 
 This post reflects my current understanding of p-value and null hypothesis
 testing, if you see any mistake in the post, please let me know by commenting
