@@ -169,24 +169,24 @@ context of a confusion table;thus, it is the frequentist view.
     <td><strong>Column margin</strong></td>
     <td><span class="marginal">CP</span> = <span class="true-positive">TP</span> + <span class="false-negative">FN</span></td>
     <td><span class="marginal">CN</span> = <span class="false-positive">FP</span> + <span class="true-negative">TN</span></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td colspan="3" rowspan="3"></td>
+    <!-- <td></td> -->
+    <!-- <td></td> -->
   </tr>
   <tr>
     <td rowspan="2">Column metrics</td>
     <td><span class="nowrap">TPR = <span class="true-positive">TP</span> / <span class="marginal">CP</span></span> <br> True positive rate, <i>Sensitivity</i>, <i>Recall</i>, <i>Power</i></td>
     <td><span class="nowrap">FPR = <span class="false-positive">FP</span> / <span class="marginal">CN</span></span> <br> False positive rate, <i>p-value</i></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <!-- <td></td> -->
+    <!-- <td></td> -->
+    <!-- <td></td> -->
   </tr>
   <tr>
     <td><span class="nowrap">FNR = <span class="false-negative">FN</span> / <span class="marginal">CP</span></span> <br> False negative rate</td>
     <td><span class="nowrap">TNR = <span class="true-negative">TN</span> / <span class="marginal">CN</span></span> <br> True negative rate, <i>Specificity</i></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <!-- <td></td> -->
+    <!-- <td></td> -->
+    <!-- <td></td> -->
   </tr>
 </table>
 
