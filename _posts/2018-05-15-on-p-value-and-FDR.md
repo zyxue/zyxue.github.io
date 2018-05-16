@@ -275,12 +275,17 @@ rare), specificity is 0.95 (corresponding to the common cutoff of 0.05 for
 p-value), and sensitivity (power) is 0.80. This is a reasonable setup, not
 extreme at all, but if you replace the variables with these numbers in the
 equation, you get a FDR of 0.86, which effectively renders the test method under
-consideration useless. Remarkably, even when the sensitivity is 0.99, the FDR is
-still as low as 0.83.
+consideration useless. Remarkably, even when the sensitivity is 1, the FDR is
+still as high as 0.83. It turns out that increasing sensitivity has a limited
+effect on the FDR when the $r$ is low and specificity is not high enough (<
+0.999), which is seen from the following plots for $r=0.01$ and different
+specificities.
+
+<img src="/assets/FDR_sensitivity.png" alt="FDR vs sensitivity" />
 
 The surface of FDR ~ sensitivity & specificity is shown below for different $r$ values.
 
-<img src="/assets/FDR_sensitivity_specificity.png" />
+<img src="/assets/FDR_sensitivity_specificity.png" alt="FDR vs sensitivity and specificity"/>
 
 Note when $r = 0.01$ or low in general, FDR is mostly near 1 until specificity
 becomes extremely high, which explains <a
@@ -294,7 +299,7 @@ href="https://github.com/zyxue/sutton-barto-rl-exercises/blob/master/stats/relat
 target="_blank">here</a>. In it, I also plotted FDR ~ rate & sensitivity for
 different specificities.
 
-<img src="/assets/FDR_rate_sensitivity.png" />
+<img src="/assets/FDR_rate_sensitivity.png" alt="FDR vs rate and sensitivity" />
 
 Note when the specificity is very high (0.9999 or 0.9999, in other words, p <
 0.0001 or p < 0.001), then the surface is mostly around 0 unless when the rate
