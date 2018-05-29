@@ -67,15 +67,23 @@ P-value could be written as
 
 $$\mathrm{Pr}(X \le x|H_0)$$
 
-This is the formula for one-tailed test, but is generalizable to the other-tail
-or two-tail tests. Here, we will focus on one-tail test. $H_0$ means that null
-hypothesis is being true. In this post, I will use hypothesis always to mean
+This is the formula for one-tailed test, and generalizable to the other-tail or
+two-tail tests. Here, we will focus on one-tail test. $H_0$ means that null
+hypothesis is being true. In this post, I will use hypothesis as a shorthand for
 null hypothesis unless noted otherwise.
 
-**Interpretation**: P-value is equal to 1 - specificity, and it provides little
-information about sensitivity or false discovery rate (FDR). With a p-value of
-0.05, a sensitvity of 0.8, and a prior probability of 0.99 for a null hypothesis
-being true, FDR could be as high as 0.86. In other words, 0.05 is too generous a
+**Note**: Usually, an experiment requires p-value to be smaller than a cutoff
+known as $\alpha$ significance level. Controlling $\alpha$ to be low (e.g. 0.05)
+is equivalent to keeping specificity high (0.95) as $\alpha +
+\textsf{specificity} = 1$. If you haven't thought about $\alpha$ and specificity
+together before, a related discussion on this topic can be found on <a
+href="https://stats.stackexchange.com/questions/347653/is-the-sum-of-p-value-and-specificity-1"
+target="_blank">stats.exchange</a>.
+
+P-value provides little information about the sensitivity or false discovery
+rate (FDR) of a test. A somewhat surprising fact is that with a p-value of 0.05,
+a sensitvity of 0.8, and a prior probability of 0.99 for a null hypothesis being
+true, FDR could be as high as 0.86. In other words, 0.05 is too generous a
 cutoff for p-value in general.
 
 # Calculation of p-value
@@ -83,7 +91,7 @@ cutoff for p-value in general.
 I have heard of null-hypothesis testing for a long time, but not until recently,
 I set out to implement several common hypothesis testing methods (t-test,
 Mann–Whitney U test, Wilcoxon signed-rank test, Fisher's exact test) myself,
-trying to really internalize my understanding.
+trying to internalize my understanding.
 
 The calculation of a p-value follow a consistent pattern.
 
@@ -99,16 +107,16 @@ of the data under consideration.
 distribution, p-value is obtained by integrating over the area that corresponds
 to the current statistic value and more extreme ones.
 
-This process would sound familiar if you have done t-test at least once. When I
+This process would sound familiar if you have conducted t-test before. When I
 learned t-test for the first time, I was taught to look up a critical value in
 the t-table instead of computing the p-value directly, which could be difficult
 without a computer. The critical value is the value of a test static that
 corresponds to a desired upper bound of p-value (e.g. 0.05, aka significance
 level, $\alpha$). So even without knowning the exact p-value, by comparing my
-calculated t value to the critical value, I could know my p-value is above or
+calculated t value to the critical value, we could know my p-value is above or
 below $\alpha$.
 
-You may wonder how do we know about the probability distribution of the test
+You may wonder how do we know about the probability distribution of a test
 statistic. It should have been proved when the testing methods were initially
 developed. For example, $Z$ follows a normal distribution, $T$ follows a
 t-distribution. Both $U$ (Mann–Whitney U test) and $W$ (Wilcoxon signed-rank
@@ -183,7 +191,7 @@ context of a confusion table;thus, it is the frequentist view.
   <tr>
     <td rowspan="2">Column metrics</td>
     <td class="true-positive-rate"><span class="nowrap">TPR = <span class="true-positive">TP</span> / <span class="marginal">CP</span></span> <br> True positive rate, <i>Sensitivity</i>, <i>Recall</i>, <i>Power</i></td>
-    <td class="false-positive-rate"><span class="nowrap">FPR = <span class="false-positive">FP</span> / <span class="marginal">CN</span></span> <br> False positive rate, <i>p-value</i></td>
+    <td class="false-positive-rate"><span class="nowrap">FPR = <span class="false-positive">FP</span> / <span class="marginal">CN</span></span> <br> False positive rate, <i>$\alpha$ level</i></td>
     <!-- <td></td> -->
     <!-- <td></td> -->
     <!-- <td></td> -->
@@ -211,9 +219,9 @@ their respective equations. Relatively more well-known metrics are <i>italicized
   * the other four key variables (<span class="true-positive">TP</span>, <span
 class="true-negative">TN</span>, <span class="false-positive">FP</span>, <span
 class="false-negative">FN</span>) are colored differently.
-  * As for background color, those with grey background colors are the variables
-    and metrics that the higher, the better. You could see them distributed
-    diagonally.
+  * As for background color, those with grey background colors are the
+    variables/metrics that the higher, the better. You could see them
+    distributed diagonally.
   * Row/Column margins are higlighted in light grey.
   * Hovering a cell of interest will related cells, and you shall see the
     pattern of which metrics are related to which variables. <span
@@ -231,21 +239,22 @@ probability of observing the **current** or **more extreme data** conditioned on
 that **the null hypothesis being true**", you would focus on the **CN** column
 since all hypotheses are true in this column so that it meets the condition. If
 p-value is less than a cutoff (e.g. significance level, α=0.05), then hypothesis
-is rejected, which results in a false positive. Therefore a p-value is
-effectively the FPR (at least in a single-hypothesis testing case), which is
-complement to specificity as FPR = 1 - specificity. Therefore, keeping the
-p-value low is equivalent to keeping the specificity high.
+is rejected, which results in a false positive. Therefore a p-value is related
+to the FPR. To be more concrete, since p-value follows a uniform distribution
+under true null hypotheses (see derivation above), when you conduct multiple
+tests, an $\alpha$ port of those tests would turn out be false positive.
+Therefore, keeping the $\alpha$ low is equivalent to keeping the specificity
+high, and an $\alpha$ of 0.05 corresponds to a specificity of 0.95. In other
+words, FPR = 1 - specificity = $\alpha$.
 
-While this post is mostly about single-hypothesis testing (SHT), here I put a
-few notes about p-values in the context of multiple-hypothesis testing (MHT).
+This post is mostly about single-hypothesis testing (SHT), but here I'd like to
+put a few notes about p-values in the context of multiple-hypothesis testing
+(MHT).
 
-* While such interpretation (i.e. 1 - specificity) applies to the raw p-values
-in MHT, the adjusted p-values would have a different interpretation depending on
-what kind of type I error rate is being controlled, e.g. per-comparison error
-rate (PCER), family-wise error rate (FWER), or false discovery rate (FDR).
-* Because adjusted p-values may have a different interpretation (not related to
-specificity anymore) in the MHT case, the corresponding significance level (α)
-will also need interpreted differently.
+* While $\alpha$ level in a single hypothesis test can be interpreted as 1 -
+specificity, it could have a different interpretation in MHT depending on what
+kind of type I error rate is being controlled, e.g. per-comparison error rate
+(PCER), family-wise error rate (FWER), or false discovery rate (FDR).
 * You may have noticed that FDR is also defined in the above table. However, in
 reality, usually none of <span class="true-positive">TP</span>, <span
 class="true-negative">TN</span>, <span class="false-positive">FP</span>, <span
@@ -255,10 +264,10 @@ E(<span class="false-positive">FP</span>/PP) as in the famous <a
 href="https://www.jstor.org/stable/pdf/2346101.pdf?refreqid=excelsior%3Afeea25ba73d9297f8b5983e66f141208"
 target="_black">Benjamini-Hochberg correction method</a>.
 
-Now, we have estabilished the relationship between p-value and specificity, does
-p-value tell us more, for example, sensitivity or false discovery rate (FDR)?
-Since precision and FDR sum to one, knowing one will get us the other, so we'll
-focus only on FDR.
+Now, we have estabilished the relationship between p-value/$\alpha$ and
+specificity, does p-value tell us more, for example, sensitivity or false
+discovery rate (FDR)? Since precision and FDR sum to one, knowing one will get
+us the other, so we'll focus only on FDR.
 
 First, since sensitivity and specificity depend on completely different
 variables (<span class="true-positive">TP</span> and <span
@@ -305,8 +314,8 @@ The surface of FDR ~ sensitivity & specificity is shown below for different $r$ 
 Note when $r = 0.01$ or low in general, FDR is mostly near 1 until specificity
 becomes extremely high, which explains <a
 href="http://rsos.royalsocietypublishing.org/content/1/3/140216"
-target="_blank">Colquhoun's advice</a> that "if you wish to keep your false
-discovery rate below 5%, you need to ... insist on p≤0.001" (i.e. specificity >
+target="_blank">Colquhoun's advice</a> that "*if you wish to keep your false
+discovery rate below 5%, you need to ... insist on p≤0.001*" (i.e. specificity >
 0.999). The surface changes as $r$ increases.
 
 The notebook for generating this figure is available at <a
@@ -348,20 +357,21 @@ that a cutoff of 0.05 is likely to be really generous, if not too generous.
 # Summary
 
 If you've read the long version, I hope you now have a better sense of the
-limited information conveyed by a p-value. In summary, a p-value is complement
-to specificity, keeping the p-value low is equivalent to keeping the specificity
-high, but it provides little information to the sensitivity or FDR of the test.
-**Importantly**, if the prior probability of the hypothesis being false is low
-which could be common (0.01), then even a very sensitive (e.g. 0.8) and specific
-(e.g. 0.95) test could still have an unacceptably high FDR (e.g. 0.86). I
-thought this is the main message conveyed in the seemingly absurd paper <a
+limited information conveyed by a p-value. In summary, a p-value is related to
+specificity, controlling the p-value to be low is equivalent to keeping the
+specificity high as $\alpha + \textsf{specificity} = 1$, but it provides little
+information to the sensitivity or FDR of the test. **Importantly**, if the prior
+probability of the hypothesis being false is low which could be common (0.01),
+then even a very sensitive (e.g. 0.8) and specific (e.g. 0.95) test could still
+have an unacceptably high FDR (e.g. 0.86). I thought this is the main message
+conveyed in the seemingly absurdly titled paper <a
 href="https://doi.org/10.1371/journal.pmed.0020124" target="_blank">Ioannidis
 JPA (2005) Why Most Published Research Findings Are False. PLoS Med 2(8):
 e124.</a>. But if you understand how such a high FDR is calculated and the
 surface plots shown in this post, you may not feel it so absurd anymore.
 
 To me, the widespread of a generally too generous cutoff of 0.05 appears to be
-an unfortunate accident due to miunderstanding of a p-value. Such generosity
+an unfortunate accident due to misunderstanding of a p-value. Such generosity
 explains why <a
 href="https://www.nature.com/news/psychology-journal-bans-p-values-1.17001"
 target="_blank">some journal went as far as to ban p-values</a>, but in my
