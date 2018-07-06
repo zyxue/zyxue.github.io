@@ -7,6 +7,8 @@ tags: sequence, protein, neural networks
 
 # 0-based programs or file formats:
 
+0-based index is often the convention in computer science
+
 * BAM, BCFv2, BED, and PSL formats (https://samtools.github.io/hts-specs/SAMv1.pdf)
 * IGV (https://software.broadinstitute.org/software/igv/IGV, "the end position
   is excluded")
@@ -15,10 +17,31 @@ tags: sequence, protein, neural networks
     browser display, and python string handling.
 * pysam (always 0-based, following convention of Python, http://pysam.readthedocs.io/en/latest/api.html)
 
+e.g.
+```
+ATCG
+01234 <- coord
+
+beg: 0
+end: 3
+seq: [0, 4)  # excluding end
+```
+
 # 1-based programs or file formats:
+
+1-based index may be more intuitive for visualization.
 
 * SAM, VCF, GFF and Wiggle formats (https://samtools.github.io/hts-specs/SAMv1.pdf)
 
+e.g. 
+```
+ATCG
+1234  <- coord
+
+beg: 1
+end: 4
+seq: [1, 4]   # including end (the file formats may still be excluding the end, UNCONFIRMED)
+```
 
 # Comparison of IGV, UCSC genome browser and Python string handling
 
