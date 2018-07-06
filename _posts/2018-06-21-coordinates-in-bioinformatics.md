@@ -26,12 +26,12 @@ Here, we look at one particular position, chr3:38184488
 
 **IGV** centers at T
 
-<img src="/assets/igv_chr3_38184488.png" width=400, alt="igv_chr3_38184488.png"/>
+<img src="/assets/igv_chr3_38184488.png" width="800" alt="igv_chr3_38184488.png"/>
 
 **UCSC genome browser** also centers at T, showing views with 3x and 10x zoom-out, respectively
 
-<img src="/assets/ucsc_3x_zoomout_chr3_38184488.png" width=400, alt="ucsc_3x_zoomout_chr3_38184488.png"/>
-<img src="/assets/ucsc_10x_zoomout_chr3_38184488.png" width=400, alt="ucsc_10x_zoomout_chr3_38184488.png"/>
+<img src="/assets/ucsc_3x_zoomout_chr3_38184488.png" width="800" alt="ucsc_3x_zoomout_chr3_38184488.png"/>
+<img src="/assets/ucsc_10x_zoomout_chr3_38184488.png" width="800" alt="ucsc_10x_zoomout_chr3_38184488.png"/>
 
 **Python string handling**
 
