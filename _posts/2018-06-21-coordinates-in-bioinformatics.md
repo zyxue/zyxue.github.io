@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Coordinates in Bioinformatics
+title: Coordinates in bioinformatics
 author: Zhuyi Xue
 tags: sequence, protein, neural networks
 ---
