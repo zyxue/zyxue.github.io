@@ -156,7 +156,7 @@ What does a p-value exactly mean? The definition in the **TL;DR** section may
 sound still too abstract, I find it very useful to interpret p-value in the
 context of a confusion table;thus, it is the frequentist view.
 
-<table class="confusion-table">
+<table id="interactive-confusion-table" class="confusion-table">
   <tr>
     <th></th>
     <th><span class="nowrap">Condition positive</span> <br> (<span class="marginal">CP</span>, False null hypotheses)</th>

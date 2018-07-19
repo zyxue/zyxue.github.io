@@ -10,8 +10,10 @@ sensitivity/recall) and false positive rate (FPR, i.e. 1 - specificity), while a
 precision-recall (PR) curve plots the relationship between positive predictive
 value (PPV, i.e. precision) and recall (TPR).
 
-For a tabular view of these metrics, please see the confusion table at
-https://en.wikipedia.org/wiki/Sensitivity_and_specificity.
+For a tabular view of these metrics, please see an interactive confusion table
+that I created at
+[here](/2018/05/15/on-the-p-value.html#interactive-confusion-table), or the one
+at [wiki](https://en.wikipedia.org/wiki/Sensitivity_and_specificity).
 
 Today, I reread a very insightful paper, **The Relationship Between
 Precision-Recall and ROC Curves**
