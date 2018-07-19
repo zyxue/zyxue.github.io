@@ -242,7 +242,7 @@ p-value is less than a cutoff (e.g. significance level, α=0.05), then hypothesi
 is rejected, which results in a false positive. Therefore a p-value is related
 to the FPR. To be more concrete, since p-value follows a uniform distribution
 under true null hypotheses (see derivation above), when you conduct multiple
-tests, an $\alpha$ port of those tests would turn out be false positive.
+tests, an $\alpha$ portion of those tests would turn out be false positive.
 Therefore, keeping the $\alpha$ low is equivalent to keeping the specificity
 high, and an $\alpha$ of 0.05 corresponds to a specificity of 0.95. In other
 words, FPR = 1 - specificity = $\alpha$.
