@@ -37,6 +37,6 @@ The result look like such
 * Nadam performs similar to Adam
 
 For details, please see this notebooks and code in
-[here](https://github.com/zyxue/sutton-barto-rl-exercises/tree/master/supervised/neuron_networks/gradient_descent).
+[here](https://github.com/zyxue/sutton-barto-rl-exercises/tree/master/supervised/gradient_descent).
 
 Please let me know if you have any comment or bug report.
