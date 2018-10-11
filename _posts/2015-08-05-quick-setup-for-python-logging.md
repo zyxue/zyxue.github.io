@@ -20,6 +20,47 @@ For complete setup instruction, please see the
  [documentation](https://docs.python.org/2/library/logging.html) for Python
  logging module.
 
+#### Update on 2018-10-10
+
+Quick setup for logging to a file
+
+{% highlight python %}
+def setup_log(log_file):
+    log_format = '%(asctime)s|%(levelname)s|%(message)s'
+    logging.basicConfig(
+        level=logging.INFO,
+        format=log_format,
+        filename=log_file,
+        filemode='w'
+    )
+    console = logging.StreamHandler()
+    console.setLevel(logging.DEBUG)
+    formatter = logging.Formatter(log_format)
+    console.setFormatter(formatter)
+    logging.getLogger(__name__).addHandler(console)
+
+{% endhighlight %}
+
+#### Update on 2017-06-07:
+
+Relationships among logger, handler, and formatter:
+
+1. different loggers are responsible of logging status of different parts of the
+   code (e.g. a library, module)
+1. logger uses handler to writing logging message to a output media (e.g screen,
+   file)
+1. handler uses formatter to format the logging message
+1. handler's logging level overwrites a logger's level. 
+
+
+> Logger logging level as a global restriction on which messages are
+> "interesting" for a given logger and its handlers. The messages that are
+> considered by the logger afterwards get sent to the handlers, which perform
+> their own filtering and logging process.
+
+Quoted from
+[https://stackoverflow.com/questions/17668633/what-is-the-point-of-setlevel-in-a-python-logging-handler](https://stackoverflow.com/questions/17668633/what-is-the-point-of-setlevel-in-a-python-logging-handler).
+
 #### Update on 2016-04-13:
 
 Besides, if you have [colorlog](https://github.com/borntyping/python-colorlog)
@@ -37,6 +78,7 @@ handler.setLevel(logging.DEBUG)
 handler.setFormatter(
     colorlog.ColoredFormatter('%(log_color)s%(levelname)s:%(name)s:%(message)s'))
 logger.addHandler(handler)
+
 
 # Basic setup ENDS here, below are just sample code for printing out some
 # example messages of different levels.
@@ -68,23 +110,3 @@ width="480"/></p>
 
 For more information about colorlog, please see
 [here](https://github.com/borntyping/python-colorlog).
-
-#### Update on 2017-06-07:
-
-Relationships among logger, handler, and formatter:
-
-1. different loggers are responsible of logging status of different parts of the
-   code (e.g. a library, module)
-1. logger uses handler to writing logging message to a output media (e.g screen,
-   file)
-1. handler uses formatter to format the logging message
-1. handler's logging level overwrites a logger's level. 
-
-
-> Logger logging level as a global restriction on which messages are
-> "interesting" for a given logger and its handlers. The messages that are
-> considered by the logger afterwards get sent to the handlers, which perform
-> their own filtering and logging process.
-
-Quoted from
-[https://stackoverflow.com/questions/17668633/what-is-the-point-of-setlevel-in-a-python-logging-handler](https://stackoverflow.com/questions/17668633/what-is-the-point-of-setlevel-in-a-python-logging-handler).
