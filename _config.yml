@@ -23,5 +23,5 @@ github_username:  zyxue
 # Build settings
 markdown: kramdown
 
-gems:
+plugins:
   - jekyll-gist
