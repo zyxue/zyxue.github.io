@@ -43,11 +43,13 @@ Software versions:
 
 #### Connect to server (there are variants, but with the same effect)
 
-    mysql -h ####23.123.123.123 --port 3306 \
-	      --user=USER --password=PASSWD --database DBNAME
-	# vs.
-	psql  -h ####23.123.123.123 --port 5432 \
-          --username USER --pasword PASSWD --dbname DBNAME [sslmode=requir]
+```
+mysql -h 123.123.123.123 --port 3306 --user=USER --password=PASSWD --database DBNAME
+```
+v.s.
+```
+psql  -h 123.123.123.123 --port 5432 --username USER --password --dbname DBNAME [sslmode=requir]
+```
 
 #### List all databases
 
