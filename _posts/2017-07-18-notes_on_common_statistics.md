@@ -5,48 +5,106 @@ author: Zhuyi Xue
 tags: statistics
 ---
 
-Being often confused by those concepts, here I take the note. I fixed the usage
-of symbols, following the convention, to avoid ambiguity.
+# Laws
 
-### Population-wise statistics
+**Law of total expectation** (Adam's Law)
+
+\begin{equation}
+\mathbb{E}[X] = \mathbb{E}\big[\mathbb{E}[X|N]\big] = \mathbb{E}[\mu N] = \mu\mathbb{E}[N]
+\end{equation}
+
+e.g.
+
+* $X$ is the total amount of money all customers spend in a shop in a day
+* $N$ is the number of customers visited that shop
+* $\mu$ is the mean amount of money a customer spends
+
+**Law of total variance** (Eve's law)
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\mathbb{V}[X]
+&= \mathbb{E}\big[\mathbb{V}[X|N]\big] + \mathbb{V}\big[\mathbb{E}[X|N]\big] \\
+&= \mathbb{E}[N\sigma^2] + \mathbb{V}[\mu N] \\
+&= \sigma^2\mathbb{E}[N] + \mu^2\mathbb{V}[N]
+\end{align}
+%]**></script>
+
+# Inequalities
+
+**Cauchy-Schwarz inequality**
+
+\begin{equation}
+\mathbb{E}[XY] \le \sqrt{\mathbb{E}[X^2]\mathbb{E}[Y^2]}
+\end{equation}
+
+**Jensen's inequality**
+
+If $f$ is a convex function
+
+\begin{equation}
+f\big(\mathbb{E}[X]\big) \le \mathbb{E}[f(x)]
+\end{equation}
+
+**Markov's inequality**
+
+\begin{equation}
+\text{P}\big(\left|X\right| \ge a\big) \le \frac{\mathbb{E}[X]}{a}
+\end{equation}
+
+**Chebyshev's inequality**
+
+\begin{equation}
+\text{P}\big(\left|X - \mu\right| \gt a \big) \le \frac{\mathbb{V}[X]}{a^2}
+\end{equation}
+
+where $\mu=\mathbb{E}[X]$, and $a \gt 0$.
+
+**Hoeffding's inequality**
+
+TODO, see All of Statistics book
+
+# Approximation
+
+Approximate binomial distribution with 
+
+* Possion distribution when $n$ is large and $p$ is small ($\to 0$).
+* Normal distribution when $n$ is large and $p$ is close to $1/2$.
+
+# Population statistics
 
 Suppose there are $$N$$ samples in total in the population.
 
-#### Population mean:
+**Population mean**
 
 \begin{equation}
-    \mu = \frac{1}{N}\sum_{i=1}^{N}x_i
+    \mu = \frac{1}{N}\sum_{i=1}^{N}X_i
     \label{eq:populationMean}
 \end{equation}
 
-#### Population variance:
+**Population variance**
 
 \begin{equation}
-    \sigma ^2 = \frac{1}{N}\sum_{i=1}^{N}(x_i - \mu) ^2
+    \sigma ^2 = \frac{1}{N}\sum_{i=1}^{N}(X_i - \mu) ^2
     \label{eq:populationVariance}
 \end{equation}
 
-#### Population standard deviation:
+$\sigma$ is the population standard deviatin.
+
+# Sample statistics
+
+Suppose we take a sample of sample size $$n$$ from the population.
+
+**Sample mean**
+
+*Note*: $$\overline{X}$$ is used instead of $$\mu$$.
 
 \begin{equation}
-    \sigma = \sqrt{\frac{\sum_{i=1}^{N}(x_i - \overline{x}) ^2}{N}}
-    \label{eq:populationStd}
-\end{equation}
-
-### Sample-wise statistics
-
-Now suppose we take a sample of sample size $$n$$ from the population.
-
-#### Sample mean
-
-**NOTE**: $$\overline{x}$$ is used instead of $$\mu$$.
-
-\begin{equation}
-    \overline{x} = \frac{1}{n}\sum_{i=1}^{n}x_i
+    \overline{X} = \frac{1}{n}\sum_{i=1}^{n}X_i
     \label{eq:sampleMean}
 \end{equation}
 
-#### Sample variance 
+**Sample variance**
 
 $$n-1$$ is used instead of $$n$$ after
 [Bessel's correction](https://en.wikipedia.org/wiki/Bessel%27s_correction). The
@@ -54,67 +112,48 @@ intuition behind such correction is that sample variance tends to underestimate
 population variance, so we intentionally enlarge it a bit. Please see
 [Bessel's correction](https://en.wikipedia.org/wiki/Bessel%27s_correction) for more details.
 
-**NOTE**: $$s^2$$ is used instead of $$\sigma ^2$$.
+*Note*: $$s^2$$ is used instead of $$\sigma ^2$$.
 
 \begin{equation}
-    s ^2 = \frac{1}{n - 1}\sum_{i=1}^{n}(x_i - \overline{x}) ^2
+    s ^2 = \frac{1}{n - 1}\sum_{i=1}^{n}(X_i - \overline{X}) ^2
     \label{eq:sampleVariance}
 \end{equation}
 
-#### Sample standard deviation:
+and $s$ is the sample standard deviation.
+
+
+**Standard error**
+
+The full name is the standard error of the mean (SEM), which is the standard
+deviation of sample mean ($$\overline{X}$$), which is still a random variable
+(r.v.).
 
 \begin{equation}
-    s = \sqrt{\frac{\sum_{i=1}^{n}(x_i - \overline{x}) ^2}{n - 1}}
-    \label{eq:sampleStd}
-\end{equation}
-
-#### Standard error:
-
-The full name is the standard error of the mean (SEM), which is the expected
-value of the standard deviation of means of several samples.
-
-**NOTE**: it is the standard deviation of the sample mean ($$\overline{x}$$),
-_NOT_ that of the variable ($$x_i$$).
-
-\begin{equation}
-    \textrm{SEM} = \frac{s}{\sqrt n} = \sqrt{\frac{\sum_{i=1}^{n}(x_i - \overline{x}) ^2}{(n - 1)(n)}}
+    \textrm{SEM} = \frac{s}{\sqrt n}
     \label{eq:standardErrorCorrected}
 \end{equation}
 
-If without [Bessel's correction](https://en.wikipedia.org/wiki/Bessel%27s_correction):
-
-
-\begin{equation}
-    \textrm{SEM} = \frac{s}{\sqrt n} = \frac{\sqrt{\sum_{i=1}^{n}(x_i - \overline{x}) ^2}}{n}
-    \label{eq:standardErrorWithoutCorrection}
-\end{equation}
-
-
-### Standardization
+# Standardization
 
 [Standardization](https://en.wikipedia.org/wiki/Feature_scaling#Standardization)
-is a very common data transformation in machine learning. Let's use $$x'$$ as the
-transformed value, and prove how it works
+is a common transformation that brings data to be centered at 0 with unit standard deviation.
 
-The transformation:
+Let's denote the transformed value of $$X_i$$ as $$X_i'$$,
 
 \begin{equation}
-    x'_i = \frac{x_i - \overline{x}}{s}
+    X'_i = \frac{X_i - \overline{X}}{s}
     \label{eq:standardization}
 \end{equation}
 
-Apparently, the mean after standardization $$\overline{x'}$$ becomes 0. What
-about the variance $$s' ^2$$.
-
-<!-- reference: view-source:http://karpathy.github.io/2016/05/31/rl/ -->
-<!-- '\ ' force a space -->
+Apparently, the mean after standardization $$\overline{x'}$$ becomes 0. Let's
+calculate the variance of the transformed data,
 
 <script type="math/tex; mode=display">% <![CDATA[
 \begin{align}
-    s'^2 & = \frac{\sum_{i=1}^{n}(x'_i - 0) ^2}{n - 1} \nonumber \\
-         & = \frac{\sum_{i=1}^{n}(\frac{x_i - \overline{x}}{s}) ^2}{n - 1}                                                     & \text{replacing}\ x_i'\ \text{with Eq. \eqref{eq:standardization}} \nonumber \\
-         & = \frac{\frac{1}{s^2} \sum_{i=1}^{n}({x_i - \overline{x}}) ^2}{n - 1}                                               & \text{move constant}\  s^2\ \text{to the front} \nonumber \\
-         & = \frac{\frac{n - 1}{\sum_{i=1}^{n}({x_i - \overline{x}}) ^2} \sum_{i=1}^{n}({x_i - \overline{x}}) ^2}{n - 1}       & \text{replacing }\ s^2\ \text{with Eq. \eqref{eq:sampleStd}} \nonumber \\
+    s'^2 & = \frac{\sum_{i=1}^{n}(X'_i) ^2}{n - 1} \nonumber \\
+         & = \frac{\sum_{i=1}^{n}(\frac{X_i - \overline{X}}{s}) ^2}{n - 1}                                                     & \text{replacing}\ X_i'\ \text{with Eq. \eqref{eq:standardization}} \nonumber \\
+         & = \frac{1}{s^2} \frac{\sum_{i=1}^{n}({X_i - \overline{X}}) ^2}{n - 1}                                               & \text{move constant}\  s^2\ \text{to the front} \nonumber \\
+         & = \frac{n - 1}{\sum_{i=1}^{n}({X_i - \overline{X}}) ^2} \frac{\sum_{i=1}^{n}({X_i - \overline{X}}) ^2}{n - 1}       & \text{replacing }\ s^2\ \text{with Eq. \eqref{eq:sampleVariance}} \nonumber \\
          & = 1 \nonumber \\
          \label{eq:standarizedSampleStd}
 \end{align}
