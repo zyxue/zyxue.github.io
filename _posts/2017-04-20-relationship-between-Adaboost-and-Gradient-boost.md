@@ -14,7 +14,7 @@ MathJax.Hub.Config({
 <p style="color:red; font-size:30px;"><strong>UPDATE:</strong> I wrote this post
 a long time ago and it hasn't been very informative. I have learned more about
 boosting and an updated concise description of the relationship between the two
-can be found <a href="/2018/10/15/Gradient-boosting-vs-Adaboost">here</a>.</p>
+can be found <a href="/2018/10/15/Gradient-boosting-vs-Adaboost.html">here</a>.</p>
 
 
 **Q**: What's the difference between [Adaboost](https://en.wikipedia.org/wiki/AdaBoost)
