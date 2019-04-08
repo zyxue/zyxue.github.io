@@ -5,6 +5,13 @@ author: Zhuyi Xue
 tags: linear algebra
 ---
 
+**Outline**
+
+1. PCA perspectives: minimize MSE & maximizing variance along the projected direction)
+1. Use SVD to derive PCA
+1. reduced SVD and truncated SVD (show an exact example from MIT video maybe)
+1. what's randomized SVD
+
 In this post, I will summarize my knowledge about principal component analysis
 (PCA) and its relationship to singular value decomposition (SVD) from first
 principal.
