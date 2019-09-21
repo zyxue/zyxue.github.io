@@ -22,23 +22,26 @@ For complete setup instruction, please see the
 
 #### Update on 2018-10-10
 
-Quick setup for logging to a file
+Quick setup for logging to both a file and the console
 
 {% highlight python %}
 def setup_log(log_file):
     log_format = '%(asctime)s|%(levelname)s|%(message)s'
+
     logging.basicConfig(
-        level=logging.INFO,
+        level=logging.DEBUG,
         format=log_format,
         filename=log_file,
-        filemode='w'
+        filemode='a'
     )
-    console = logging.StreamHandler()
-    console.setLevel(logging.DEBUG)
-    formatter = logging.Formatter(log_format)
-    console.setFormatter(formatter)
-    logging.getLogger(__name__).addHandler(console)
 
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(logging.DEBUG)
+    console_handler.setFormatter(logging.Formatter(log_format))
+
+    # without name, getLogger returns the root logger
+    root_logger = logging.getLogger()
+    root_logger.addHandler(console)
 {% endhighlight %}
 
 #### Update on 2017-06-07:
