@@ -5,8 +5,6 @@ author: Zhuyi Xue
 tags: python, time, timeit, decorator
 ---
 
-A plain python `timeit` decorator, time any function
-
 **Update 2020-04-13:**
 
 A simpler version:
@@ -33,6 +31,10 @@ def timeit(func: Callable[..., Any]) -> Callable[..., Any]:
 
     return timed_func
 {% endhighlight %}
+
+**Before 2020-04-13:**
+
+A plain python `timeit` decorator, time any function
 
 {% highlight python %}
 import time
