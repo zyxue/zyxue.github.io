@@ -7,6 +7,33 @@ tags: python, time, timeit, decorator
 
 A plain python `timeit` decorator, time any function
 
+**Update 2020-04-13:**
+
+A simpler version:
+
+{% highlight python %}
+import datetime
+import time
+from functools import wraps
+from typing import Any, Callable
+
+
+def timeit(func: Callable[..., Any]) -> Callable[..., Any]:
+    """A decorator that times a function"""
+
+    @wraps(func)
+    def timed_func(*args: Any, **kwargs: Any) -> Any:
+        """return the timed function"""
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        elapsed_time = datetime.timedelta(seconds=(end_time - start_time))
+        print(f"time spent on {elapsed_time}")
+        return result
+
+    return timed_func
+{% endhighlight %}
+
 {% highlight python %}
 import time
 from functools import update_wrapper
