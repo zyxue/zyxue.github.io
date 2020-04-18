@@ -21,7 +21,7 @@ def timeit(func: Callable[..., Any]) -> Callable[..., Any]:
 
     @wraps(func)
     def timed_func(*args: Any, **kwargs: Any) -> Any:
-        """return the timed function"""
+        """Returns the timed function"""
         start_time = time.time()
         result = func(*args, **kwargs)
         end_time = time.time()
