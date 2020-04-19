@@ -17,16 +17,15 @@ from typing import Any, Callable
 
 
 def timeit(func: Callable[..., Any]) -> Callable[..., Any]:
-    """A decorator that times a function"""
+    """Times a function, usually used as decorator"""
 
     @wraps(func)
     def timed_func(*args: Any, **kwargs: Any) -> Any:
         """Returns the timed function"""
         start_time = time.time()
         result = func(*args, **kwargs)
-        end_time = time.time()
-        elapsed_time = datetime.timedelta(seconds=(end_time - start_time))
-        print(f"time spent on {elapsed_time}")
+        elapsed_time = datetime.timedelta(seconds=(time.time() - start_time))
+        print("time spent on %s: %s", func.__name__, elapsed_time)
         return result
 
     return timed_func
