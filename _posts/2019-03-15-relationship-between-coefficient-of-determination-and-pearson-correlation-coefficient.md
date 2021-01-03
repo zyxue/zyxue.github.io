@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Relationship between R sqaured and Pearson correlation coefficient
+title: Relationship between R squared and Pearson correlation coefficient
 author: Zhuyi Xue
 tags: machine learning, boosting
 ---
@@ -13,7 +13,7 @@ MathJax.Hub.Config({
 
 # Coefficient of determination (aka. $R^2$)
 
-Consider the ordinary least square (OLS) model: 
+Consider the ordinary least square (OLS) model:
 
 $$
 \begin{equation}
@@ -39,7 +39,7 @@ $$
 
 See proof for the second equality in the Supplemental. The third equation is because $\hat y$ and $\epsilon$ are independent random variables, thus their covariance is 0.
 
-Define 
+Define
 
 $$
 \begin{align*}
@@ -48,7 +48,7 @@ R^2
 \end{align*}
 $$
 
-Therefore, $R^2$ meaures the ratio of $\mathbb{V}[\hat y]$ over $\mathbb{V}[y]$, and it's commonly interpreted as the the amount of variance in $y$ that can be explained by the OLS model.
+Therefore, $R^2$ measures the ratio of $\mathbb{V}[\hat y]$ over $\mathbb{V}[y]$, and it's commonly interpreted as the the amount of variance in $y$ that can be explained by the OLS model.
 
 # Pearson correlation coefficient
 
@@ -62,11 +62,11 @@ See definition on [Wikipedia](https://en.wikipedia.org/wiki/Pearson_correlation_
 
 Now we've defined both coefficient of determination and Pearson correlation coefficient, let's see their relationship.
 
-Note 
+Note
 
 $$
 \begin{align*}
-\text{Cov}(y, \hat y) 
+\text{Cov}(y, \hat y)
 &= \text{Cov}((\hat y + \epsilon), \hat y) \\
 &= \text{Cov}(\hat y, \hat y) +  \text{Cov}(\epsilon, \hat y) \\
 &= \mathbb{V}(\hat y)
@@ -82,17 +82,17 @@ $$
 \end{align*}
 $$
 
-Therefore, $\rho^2 = R^2$, neat! 
+Therefore, $\rho^2 = R^2$, neat!
 
 Here is a [notebook](https://nbviewer.jupyter.org/github/zyxue/sutton-barto-rl-exercises/blob/master/stats/relationship-between-coefficient-of-determination-and-pearson-correlation-coefficient.ipynb) I wrote demonstrating this result.
 
 # Supplemental
 
-Note it's straigtforward to prove 
+Note it's straightforward to prove
 
 $$
 \begin{align}
-    \text{Cov}(X, Y) 
+    \text{Cov}(X, Y)
     &= \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])] \nonumber \\
     &= \mathbb{E}[XY]) - \mathbb{E}[X]\mathbb{E}[Y]
     \label{eq:cov2exp}
