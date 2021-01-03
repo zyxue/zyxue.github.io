@@ -5,10 +5,12 @@ author: Zhuyi Xue
 tags: yaml
 ---
 
-To keep a note about the different newline syntax in YAML
+A note about the different newline syntax in
+[YAML](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html).
+
+Suppose `test.yaml` has the following content:
 
 {% highlight yaml %}
-```
 a: |
   z
   w
@@ -20,17 +22,17 @@ b: >
 c: >-
   z
   w
-```
-{% end yaml %}
+{% endhighlight %}
 
-would become
+Loading it with [PyYAML](https://pyyaml.org/):
 
 ```
+>>> import yaml
+>>> with open('./test.yaml') as opened:
+...     yaml.safe_load(opened)
+... 
 {'a': 'z\nw\n', 'b': 'z w\n', 'c': 'z w'}
 ```
-
-after loaded with `yaml.safe_load` in Python.
-
 
 So
 
