@@ -55,7 +55,10 @@ $$
 \end{align}
 $$
 
-Note, $\Sigma$ is the covariance matrix and $\Lambda$ is its inverse, called precision matrix.
+Note, $\Sigma$ is the covariance matrix and $\Lambda$ is its inverse, called the
+precision matrix. Also note that the partitioned matrices of $\Sigma$ and
+$\Lambda$ are note inverse of each other, i.e.
+$$\Sigma_{ij} \ne \Lambda_{ij}^{-1}$$.
 
 After some algebra, the conditional mean and variance expressed in terms of partitioned precision matrices:
 
@@ -76,8 +79,11 @@ $$
 \end{align}
 $$
 
+Note
+$$\boldsymbol{\mu}_{a|b}$$ is a linear function of $$\mathbf{x}_b$$.
+
 so
-$$p(\mathbf{x}_a|\mathbf{x}_b) \sim \mathcal{N}(\boldsymbol{\mu}_{a|b}, \Sigma_{a|b})$$.
+$$p(\mathbf{x}_a|\mathbf{x}_b) \sim \mathcal{N}(\boldsymbol{\mu}_{a|b},\Sigma_{a|b})$$.
 
 **Marginal distribution**:
 
