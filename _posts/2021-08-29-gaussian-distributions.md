@@ -22,7 +22,16 @@ $$
 
 $$
 \begin{equation}
-p(\mathbf{x}) = \frac{1}{\sqrt{(2 \pi)^D |\Sigma|}} \exp \left \{\frac{1}{2} (\mathbf{x} - \boldsymbol{\mu})^T \Sigma^{-1} (\mathbf{x} - \boldsymbol{\mu}) \right \}
+p(\mathbf{x}) = \frac{1}{\sqrt{(2 \pi)^D |\Sigma|}} \exp \left \{ - \frac{1}{2} (\mathbf{x} - \boldsymbol{\mu})^T \Sigma^{-1} (\mathbf{x} - \boldsymbol{\mu}) \right \}
+\end{equation}
+$$
+
+If in terms of precision ($\Lambda$):
+
+$$
+\begin{equation}
+p(\mathbf{x}) 
+= (2\pi)^{-\frac{D}{2}} |\Lambda|^{\frac{1}{2}} \exp \left \{ - \frac{1}{2} (\mathbf{x} - \boldsymbol{\mu})^T \Lambda(\mathbf{x} - \boldsymbol{\mu}) \right \}
 \end{equation}
 $$
 
@@ -96,3 +105,15 @@ $$
 
 i.e.
 $$p(\mathbf{x}_a) \sim \mathcal{N}(\mathbf{x}_a | \boldsymbol{\mu}_a, \Sigma_{aa})$$, which is straightforward.
+
+
+**Conjugate prior for Gaussian distributions with different unknown parameters**:
+
+| mean    | variance/precision | dimension    | conjugate prior                                        |
+|---------|--------------------|--------------|--------------------------------------------------------|
+| unknown | known              | univariate   | univarite Gaussian distribution                        |
+| unknown | known              | multivariate | multivariate Gaussian distribution                     |
+| known   | unknown            | univariate   | Gamma distribution                                     |
+| known   | unknown            | multivariate | Wishart distribution (Multivariate gamma distribution) |
+| unknown | unknown            | univariate   | Gaussian-gamma distribution                            |
+| unknown | unknown            | multivariate | Gaussian-Wishart distribution                          |
