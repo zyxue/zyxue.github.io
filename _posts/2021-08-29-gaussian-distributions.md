@@ -7,7 +7,7 @@ tags: statistics
 
 Put univariate and multivariate Gaussians together for comparison:
 
-**Univariate Gaussian**:
+### Univariate Gaussian:
 
 $$
 \begin{align}
@@ -18,7 +18,7 @@ p(x)
 $$
 
 
-**Multivariate Gaussian**:
+### Multivariate Gaussian:
 
 $$
 \begin{equation}
@@ -36,7 +36,7 @@ p(\mathbf{x})
 $$
 
 
-**Conditional distributions**:
+### Conditional distributions
 
 Given
 
@@ -94,7 +94,7 @@ $$\boldsymbol{\mu}_{a|b}$$ is a linear function of $$\mathbf{x}_b$$.
 so
 $$p(\mathbf{x}_a|\mathbf{x}_b) \sim \mathcal{N}(\boldsymbol{\mu}_{a|b},\Sigma_{a|b})$$.
 
-**Marginal distribution**:
+### Marginal distribution
 
 $$
 \begin{align}
@@ -107,7 +107,7 @@ i.e.
 $$p(\mathbf{x}_a) \sim \mathcal{N}(\mathbf{x}_a | \boldsymbol{\mu}_a, \Sigma_{aa})$$, which is straightforward.
 
 
-**Conjugate prior for Gaussian distributions with different unknown parameters**:
+### Conjugate prior for Gaussian distributions with different unknown parameters:
 
 | mean    | variance/precision | dimension    | conjugate prior                                        |
 |---------|--------------------|--------------|--------------------------------------------------------|
@@ -117,3 +117,9 @@ $$p(\mathbf{x}_a) \sim \mathcal{N}(\mathbf{x}_a | \boldsymbol{\mu}_a, \Sigma_{aa
 | known   | unknown            | multivariate | Wishart distribution (Multivariate gamma distribution) |
 | unknown | unknown            | univariate   | Gaussian-gamma distribution                            |
 | unknown | unknown            | multivariate | Gaussian-Wishart distribution                          |
+
+<br>
+
+### Maximum-likelihood estimates
+
+See this [notebook](https://github.com/zyxue/book-notes-pattern-recognition-and-machine-learning-bishop/blob/master/ch2-probability-distributions/ex-2.34-find-maximum-likelihood-estimate-of-covariance-matrix-of-a-multivariate-gaussian.ipynb).
