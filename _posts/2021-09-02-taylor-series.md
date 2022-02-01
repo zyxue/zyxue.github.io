@@ -19,7 +19,7 @@ $$
 
 $$
 \begin{equation}
-f(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \frac{f^{(3)}(a)}{3!}x^3 + \cdots + \frac{f^{(n)}(0)}{n!}x^n + \cdots
+f(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \frac{f^{(3)}(0)}{3!}x^3 + \cdots + \frac{f^{(n)}(0)}{n!}x^n + \cdots
 \end{equation}
 $$
 
