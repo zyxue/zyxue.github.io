@@ -124,7 +124,7 @@ grpc repo.
 
 * The post
   [https://realpython.com/python-metaclasses/](https://realpython.com/python-metaclasses/)
-  has an informative intro to Python metaclasses.
+  has an informative intro to Python metaclasses. That a class is an instance of a metaclass is like a typical object being an instance of a class.
 * Protobuf Python tutorial:
   [https://developers.google.com/protocol-buffers/docs/pythontutorial](https://developers.google.com/protocol-buffers/docs/pythontutorial)
 * gRPC Python tutorial:
