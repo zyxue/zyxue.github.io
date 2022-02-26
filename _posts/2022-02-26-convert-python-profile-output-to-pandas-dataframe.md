@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Convert Python profile output to Pandas DataFrame.
+title:  Convert Python profile output to Pandas DataFrame
 author: Zhuyi Xue
 tags: python cProfile
 ---
