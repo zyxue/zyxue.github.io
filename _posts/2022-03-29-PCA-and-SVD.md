@@ -2,7 +2,7 @@
 layout: post
 title:  PCA and SVD
 author: Zhuyi Xue
-tags: linear algebra
+tags: linear_algebra
 toc: true
 ---
 
@@ -42,10 +42,10 @@ coordinate of the projected vector is $\mathbf{u}^T \mathbf{x}$ (See Appendices
 for a proof), so we formulate the optimization problem
 
 $$
-\begin{align*}
+\begin{align}
 \max_{\mathbf{u}} \quad & \text{Var}(\mathbf{u}^T X)  = \mathbf{u}^T S \mathbf{u} \\
 \text{s.t.} \quad & \mathbf{u}^T \mathbf{u} = 1
-\end{align*}
+\end{align}
 $$
 
 Note
@@ -61,31 +61,31 @@ Note
 To maximize $\mathbf{u}^T S \mathbf{u}$, we form the Lagrangian,
 
 $$
-\begin{align*}
+\begin{align}
 \mathcal{L}
 &= \mathbf{u}^T S \mathbf{u} - \lambda (\mathbf{u}^T \mathbf{u}) \\
-\end{align*}
+\end{align}
 $$
 
 Take the derivative wrt. $\mathbf{u}$ and set it to zero,
 
 $$
-\begin{align*}
+\begin{align}
 \frac{\partial \mathcal{L}}{\partial \mathbf{u}}
 = 2 S \mathbf{u} - 2\lambda \mathbf{u}
 &= 0\\
 S\mathbf{u}
 &= \lambda \mathbf{u}
-\end{align*}
+\end{align}
 $$
 
 As seen, the $\mathbf{u}$ that maximizes the variance of $\mathbf{u}^T X$ is an
 eigenvector of $S$, so the maximum can be written as
 
 $$
-\begin{align*}
+\begin{align}
 \mathbf{u}^T S \mathbf{u} = \mathbf{u}^T \lambda \mathbf{u} = \lambda
-\end{align*}
+\end{align}
 $$
 
 that is **the eigenvalues of $S$ are the (local) maximum variances of the
@@ -98,11 +98,11 @@ To find the second principal component, we formulate a second optimization
 problem.
 
 $$
-\begin{align*}
+\begin{align}
 \max_{\mathbf{u}} \quad & \text{Var}(\mathbf{u}^T X)  \\
 \text{s.t.} \quad & \mathbf{u}^T \mathbf{u} = 1 \\
             \quad & \mathbf{u} \perp \mathbf{u}_1
-\end{align*}
+\end{align}
 $$
 
 Note the second eigenvalue $\lambda_2$ is also a (local) maximum variance with
@@ -114,11 +114,11 @@ Similarly, to find the $k$th principal component, the corresponding optimization
 problem is
 
 $$
-\begin{align*}
+\begin{align}
 \max_{\mathbf{u}} \quad & \text{Var}(\mathbf{u}^T X)  \\
 \text{s.t.} \quad & \mathbf{u}^T \mathbf{u} = 1 \\
             \quad & \mathbf{u} \perp \mathbf{u}_j, j = 1, \cdots, k-1
-\end{align*}
+\end{align}
 $$
 
 The ($\lambda_k$, $\mathbf{u}_k$) of $S$ is a solution.
@@ -211,7 +211,7 @@ $$
 If we define the standardized dataset $\tilde{X}$ as
 
 $$
-\begin{align*}
+\begin{align}
 \tilde{X}
 &= X - \begin{bmatrix}
 | & \cdots & | \\
@@ -223,7 +223,7 @@ $$
 \mathbf{x}_1 - \bar{\mathbf{x}} & \cdots & \mathbf{x}_n - \bar{\mathbf{x}}\\
 | & \cdots & |
 \end{bmatrix}
-\end{align*}
+\end{align}
 $$
 
 then the sample covariance matrix can be represented as
@@ -305,7 +305,7 @@ matrix as shown below. We'll use $\text{Var}_p$ and $S_p$ to indicate they're
 population statistics instead of sample ones.
 
 $$
-\begin{align*}
+\begin{align}
 \text{Var}_p(\mathbf{u}^T X)
 &= \mathbb{E}[(\mathbf{u}^T\mathbf{x} - \mathbb{E}[\mathbf{u}^T \mathbf{x}])^2] \\
 &= \mathbb{E}[(\mathbf{u}^T \mathbf{x})^2] - \mathbb{E}[\mathbf{u}^T\mathbf{x}]^2 \\
@@ -314,15 +314,15 @@ $$
 &= \mathbf{u}^T \Big( \mathbb{E}[\mathbf{x} \mathbf{x}^T] - \mathbb{E}[\mathbf{x}] \mathbb{E}[\mathbf{x}^T] \Big) \mathbf{u} \\
 &=\mathbf{u}^T\Big( \mathbb{E}[(\mathbf{x} - \mathbb{E}[\mathbf{x}]) (\mathbf{x} - \mathbb{E}[\mathbf{x}])^T \Big) \mathbf{u} \\
 &=\mathbf{u}^T S_p \mathbf{u} \\
-\end{align*}
+\end{align}
 $$
 
 That
 
 $$
-\begin{align*}
+\begin{align}
 \mathbb{E}[(\mathbf{x} - \mathbb{E}[\mathbf{x}]) (\mathbf{x} - \mathbb{E}[\mathbf{x}])^T] = \mathbb{E}[\mathbf{x} \mathbf{x}^T] - \mathbb{E}[\mathbf{x}] \mathbb{E}[\mathbf{x}^T]
-\end{align*}
+\end{align}
 $$
 
 is the random vector equivalent of
@@ -334,12 +334,12 @@ $$
 for the variance of a scalar random variable. A quick proof:
 
 $$
-\begin{align*}
+\begin{align}
 \mathbb{E}[(\mathbf{x} - \mathbb{E}[\mathbf{x}]) (\mathbf{x} - \mathbb{E}[\mathbf{x}])^T]
 &= \mathbb{E}[\mathbf{x} \mathbf{x}^T - \mathbb{E}[\mathbf{x}] \mathbf{x}^T - \mathbf{x} \mathbb{E}[\mathbf{x}^T] + \mathbb{E}[\mathbf{x}] \mathbb{E}[\mathbf{x}^T]] \\
 &= \mathbb{E}[\mathbf{x} \mathbf{x}^T ] - \mathbb{E}[\mathbf{x}]\mathbb{E}[\mathbf{x}^T] - \mathbb{E}[\mathbf{x}]\mathbb{E}[\mathbf{x}^T] + \mathbb{E}[\mathbf{x}]\mathbb{E}[\mathbf{x}^T] \\
 &= \mathbb{E}[\mathbf{x} \mathbf{x}^T ] - \mathbb{E}[\mathbf{x}]\mathbb{E}[\mathbf{x}^T]
-\end{align*}
+\end{align}
 $$
 
 ### Show covariance matrix $S$ has the same rank as $X$
@@ -354,10 +354,12 @@ Then, we show $S = \frac{1}{n} \tilde{X}\tilde{X}^T$ has the same rank as $X$.
 
 Suppose $\mathbf{x}$ is in the left nullspace of $\tilde{X}$, then
 
-\begin{align*}
+$$
+\begin{align}
 \mathbf{x}^T \tilde{X} &= 0 \\
 \mathbf{x}^T \tilde{X} \tilde{X}^T &= 0 \\
-\end{align*}
+\end{align}
+$$
 
 so $\mathbf{x}$ is also in the nullspace of $S$, i.e. $\mathbf{X}$ and $S$ have
 the same left nullspace, since they all have the same column space, and rank equals
@@ -374,10 +376,10 @@ Suppose $\mathbf{x}$ is an eigenvector and $\lambda$ is an eigenvalue of $A$,
 then
 
 $$
-\begin{align*}
+\begin{align}
 ABx &= \lambda x \\
 BA(Bx) &= \lambda Bx
-\end{align*}
+\end{align}
 $$
 
 So $\lambda$ is also an eigenvalue of $BA$ with the corresponding eigenvector
