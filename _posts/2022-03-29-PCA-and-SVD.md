@@ -129,7 +129,9 @@ principal components together would explain all the variances of the data
 because
 
 $$
-\text{Tr}(S) = \sum_{i=1}^r \lambda_i
+\begin{align}
+\text{Tr}(S) &= \sum_{i=1}^r \lambda_i
+\end{align}
 $$
 
 That is the trace of the sample covariance matrix, i.e. the sum of variances
@@ -205,7 +207,9 @@ columns and zeros in the full SVD do not bring additional information.
 Given the data matrix $X$, and the sample covariance matrix is
 
 $$
-S = \frac{1}{n-1}\sum_{i=1}^n (\mathbf{x}^{(i)} - \bar{\mathbf{x}}) (\mathbf{x}^{(i)} - \bar{\mathbf{x}})^T
+\begin{align}
+S &= \frac{1}{n-1}\sum_{i=1}^n (\mathbf{x}^{(i)} - \bar{\mathbf{x}}) (\mathbf{x}^{(i)} - \bar{\mathbf{x}})^T
+\end{align}
 $$
 
 If we define the standardized dataset $\tilde{X}$ as
