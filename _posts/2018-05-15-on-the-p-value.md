@@ -3,7 +3,6 @@ layout: post
 title: On the p-value
 author: Zhuyi Xue
 tags: statistics, p-value
-toc: true
 ---
 
 <style>

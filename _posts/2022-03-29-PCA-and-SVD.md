@@ -3,7 +3,6 @@ layout: post
 title:  PCA and SVD
 author: Zhuyi Xue
 tags: linear_algebra
-toc: true
 ---
 
 In this post, I describe how principal component analysis (PCA) works, and how
