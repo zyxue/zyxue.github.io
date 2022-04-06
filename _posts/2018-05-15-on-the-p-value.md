@@ -5,6 +5,10 @@ author: Zhuyi Xue
 tags: statistics, p-value
 ---
 
+* toc
+{:toc}
+
+
 <style>
 table.confusion-table {
 max-width: 100%;

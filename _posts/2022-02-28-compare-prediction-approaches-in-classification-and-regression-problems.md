@@ -5,6 +5,9 @@ author: Zhuyi Xue
 tags: machine learning, regression, classification
 ---
 
+* toc
+{:toc}
+
 This post summarizes Page 43 (classification) and Page 47 of
 [PRML](https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf).
 

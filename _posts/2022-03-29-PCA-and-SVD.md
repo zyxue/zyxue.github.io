@@ -5,6 +5,9 @@ author: Zhuyi Xue
 tags: linear_algebra
 ---
 
+* toc
+{:toc}
+
 In this post, I describe how principal component analysis (PCA) works, and how
 singular value decomposition (SVD) can be used to conduct PCA.
 
