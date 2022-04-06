@@ -1,5 +1,6 @@
 ---
 layout: post
+title: Compare prediction approaches in classification and regression problems 
 author: Zhuyi Xue
 tags: machine learning, regression, classification
 toc: true
