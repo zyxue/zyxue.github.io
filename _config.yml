@@ -12,7 +12,9 @@ email: ""
 description: >
   "This is Zhuyi Xue's technical blog."
 
-exclude: [Guardfile]
+exclude:
+  - Guardfile
+  - vendor/bundle
 
 baseurl: "" # the subpath of your site, e.g. /blog
 # the base hostname & protocol for your site
