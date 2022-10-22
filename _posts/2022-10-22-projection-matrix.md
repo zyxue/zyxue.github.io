@@ -37,7 +37,7 @@ $$
 $$
 
 $P = \frac{\mathbf{u} \mathbf{u}^T }{\mathbf{u}^T \mathbf{u}}$ is known as the
-projection matrix. If $\mathbf{u}$ is of unit length, $P = \mathbf{u} \mathbf{u}^T$.
+**projection matrix**. If $\mathbf{u}$ is of unit length, $P = \mathbf{u} \mathbf{u}^T$.
 
 # Multi-dimension
 
@@ -65,6 +65,6 @@ A \mathbf{w} &= A (A^T A)^{-1} A^T \mathbf{x} = P \mathbf{x} \\
 \end{align*}
 $$
 
-$P = A (A^T A)^{-1} A^T$ is known as the projection matrix. If $A$ is
+$P = A (A^T A)^{-1} A^T$ is known as the **projection matrix**. If $A$ is
 orthonormal, then $P = A A^T$. Apparently, $P$ in the multi-dimensional case is
 just a generalization of the $P$ in the 1D case.
