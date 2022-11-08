@@ -59,7 +59,7 @@ for a comparison of some common loss functions). Yet, using other loss function
 boosting was invented to make boosting works with any differential loss
 function. It is called gradient boosting in the sense that when a new weak
 learner (e.g. tree) is added, it is trained to fit the negative gradient of the
-loss function, analogous to an update step in iterative numerical optimization.
+loss function, analogous to an update step in gradient descent.
 
 
 **Reference**
