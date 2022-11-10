@@ -196,7 +196,7 @@ each step $t$, while those trees together predict the label $y_i$ as governed by
 the property of a loss function, e.g. when $\mathcal{L}$ is of the form of MSE,
 the ensemble predicts conditional mean. Properties of some common loss functions
 are analyzed in
-[here](https://github.com/zyxue/sutton-barto-rl-exercises/tree/master/supervised/loss_function_properties).
+[here](https://github.com/zyxue/sutton-barto-rl-exercises/tree/b0bdf5f9a6e54f76d65a04d69382809d262287c9/supervised/loss_function_properties).
 
 One more note on convexity of the loss function. Recall when optimizing a
 function using Newton's method, $\tilde{\mathcal{L}}$ has to be convex, i.e. $H$
@@ -411,4 +411,4 @@ $$
 
 * [XGBoost Section 2.2](https://arxiv.org/pdf/1603.02754.pdf).
 * Derivation of $g_i$ and $h_i$ for loss functions with simplified notations:
-  [derive-gradient-and-hessian-of-cross-entropy-and-MSE.ipynb](https://github.com/zyxue/sutton-barto-rl-exercises/blob/master/supervised/derive-gradient-and-hessian-of-cross-entropy-and-MSE.ipynb).
+  [derive-gradient-and-hessian-of-cross-entropy-and-MSE.ipynb](https://github.com/zyxue/sutton-barto-rl-exercises/blob/b0bdf5f9a6e54f76d65a04d69382809d262287c9/supervised/derive-gradient-and-hessian-of-cross-entropy-and-MSE.ipynb).
