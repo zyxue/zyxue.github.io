@@ -24,31 +24,64 @@ $$
 
 After fitting the model to the data  ($\mathbf{X}$, $y$), let
 
-$$\hat y = \mathbf{X} \beta$$
+$$
+\begin{align}
+\hat y = \mathbf{X} \beta
+\end{align}
+$$
+
+so
+
+$$
+\begin{align}
+\hat y = y - \epsilon \label{eq:y_hat_as_a_function_of_y_and_epsilon}
+\end{align}
+$$
 
 We would like to understand the relationship between the variance of $y$ and that of $\hat y$.
 
 $$
-\begin{align*}
+\begin{align}
 \mathbb{V}[y]
 &= \mathbb{V}[\hat y + \epsilon] \\
 & = \mathbb{V}[\hat y] + \mathbb{V}[\epsilon] + 2\text{Cov}(\hat y, \epsilon) \\
-&= \mathbb{V}[\hat y] + \mathbb{V}[\epsilon]
-\end{align*}
+&= \mathbb{V}[\hat y] + \mathbb{V}[\epsilon] \label{eq:y_variance_in_terms_of_y_hat_variance_and_epsilon_variance}
+\end{align}
 $$
 
 See proof for the second equality in the Supplemental. The third equation is because $\hat y$ and $\epsilon$ are independent random variables, thus their covariance is 0.
 
-Define
+Define the coefficient of determination as
 
 $$
-\begin{align*}
+\begin{align}
 R^2
-&= \frac{\mathbb{V}[\hat y]}{\mathbb{V}[y]} = \frac{\sum_i^n (\hat y_i - \bar{\hat y})^2}{\sum_i^n (y_i - \bar y)^2}  \\
-\end{align*}
+&= \frac{\mathbb{V}[\hat y]}{\mathbb{V}[y]} \label{eq:r_sqr_intuitive} \\
+&= \frac{\mathbb{V}[y] - \mathbb{V}[\epsilon]}{\mathbb{V}[y]} \\
+&= 1 - \frac{\mathbb{V}[\epsilon]}{\mathbb{V}[y]} \\
+&= 1 - \frac{\mathbb{V}[y - \hat{y}]}{\mathbb{V}[y]} \label{eq:r_sqr_common} \\
+\end{align}
 $$
 
-Therefore, $R^2$ measures the ratio of $\mathbb{V}[\hat y]$ over $\mathbb{V}[y]$, and it's commonly interpreted as the the amount of variance in $y$ that can be explained by the OLS model.
+I personally find Eq. \eqref{eq:r_sqr_intuitive} the more intuitve form of
+coefficient of determination, which measures the ratio of variance of $\hat y$
+over that of $y$, thus, it's commonly interpreted as the the amount of variance
+in $y$ that can be explained by the OLS model.
+
+Note, $\mathbb{V}[y]$ can also be considered the variance of predictions from a
+model that always predicts the mean, $\bar y$.
+
+Eq. \eqref{eq:r_sqr_common} is the more common form for $R^2$, derived based on
+Eq. \eqref{eq:y_variance_in_terms_of_y_hat_variance_and_epsilon_variance} and
+\eqref{eq:y_hat_as_a_function_of_y_and_epsilon}.
+
+Expanding Eq. \eqref{eq:r_sqr_common},
+
+$$
+\begin{align}
+R^2 = \frac{\sum_i^n (\hat y_i - \bar{\hat y})^2}{\sum_i^n (y_i - \bar y)^2}
+\end{align}
+$$
 
 # Pearson correlation coefficient
 
@@ -65,21 +98,21 @@ Now we've defined both coefficient of determination and Pearson correlation coef
 Note
 
 $$
-\begin{align*}
+\begin{align}
 \text{Cov}(y, \hat y)
 &= \text{Cov}((\hat y + \epsilon), \hat y) \\
 &= \text{Cov}(\hat y, \hat y) +  \text{Cov}(\epsilon, \hat y) \\
 &= \mathbb{V}(\hat y)
-\end{align*}
+\end{align}
 $$
 
 See proof for the second equality in the Supplemental. So
 
 $$
-\begin{align*}
+\begin{align}
 \rho^2
 &= \frac{\mathbb{V}[\hat y]^2}{\mathbb{V}[y] \mathbb{V}[\hat y]} = \frac{\mathbb{V}[\hat y]}{\mathbb{V}[y]}  = R^2
-\end{align*}
+\end{align}
 $$
 
 Therefore, $\rho^2 = R^2$, neat!
@@ -104,14 +137,14 @@ This fact will be used in both of the two proofs below.
 ### Proof for $\mathbb{V}[X + Y] = \mathbb{V}[X]  + \mathbb{V}[Y] + 2\text{Cov}(X, Y)$
 
 $$
-\begin{align*}
+\begin{align}
 \mathbb{V}[X + Y]
 &= \mathbb{E}[(X + Y)^2] - \mathbb{E}[X + Y]^2 \\
 &= \mathbb{E}[(X + Y)^2] - (\mathbb{E}[X] + \mathbb{E}[Y])^2 \\
 &= \mathbb{E}[X^2]  + \mathbb{E}[Y^2] + \mathbb{E}[2XY] - \mathbb{E}[X]^2 - \mathbb{E}[Y]^2 - 2\mathbb{E}[X]\mathbb{E}[Y] \\
 &= \left( \mathbb{E}[X^2] - \mathbb{E}[X]^2 \right) + \left(\mathbb{E}[Y^2] -  \mathbb{E}[Y]^2  \right ) + \left ( 2(\mathbb{E}[XY]) - \mathbb{E}[X]\mathbb{E}[Y] \right)\\
 &= \mathbb{V}[X]  + \mathbb{V}[Y] + 2\text{Cov}(X, Y)
-\end{align*}
+\end{align}
 $$
 
 The 4th equality used Eq. $\eqref{eq:cov2exp}$.
@@ -119,13 +152,13 @@ The 4th equality used Eq. $\eqref{eq:cov2exp}$.
 ### Proof for $\text{Cov}(X, (Y + Z)) = \text{Cov}(X, Y) + \text{Cov}(X, Z)$
 
 $$
-\begin{align*}
+\begin{align}
 \text{Cov}(X, (Y + Z))
 &= \mathbb{E}[X(Y + Z)] - \mathbb{E}[X] \mathbb{E}[Y + Z] \\
 &= \mathbb{E}[XY] + \mathbb{E}[XZ]  - \mathbb{E}[X] \mathbb{E}[Y] - \mathbb{E}[X] \mathbb{E}[Z] \\
 &= \big( \mathbb{E}[XY] - \mathbb{E}[X] \mathbb{E}[Y] \big) + \big( \mathbb{E}[XZ] - \mathbb{E}[X] \mathbb{E}[Z] \big) \\
 &= \text{Cov}(X, Y) + \text{Cov}(X, Z)
-\end{align*}
+\end{align}
 $$
 
 The 1st and 4th equalities used Eq. $\eqref{eq:cov2exp}$.
