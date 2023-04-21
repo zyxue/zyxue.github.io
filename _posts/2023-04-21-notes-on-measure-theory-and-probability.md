@@ -15,23 +15,28 @@ Definitions:
 
 * $\Omega$: sample space.
 * $\omega$: sample outcomes (aka. realization, elements).
-* $A$: event, subset of $\Omega$, $A \subset \Omega$.
+* $A$: event, subset of $\Omega$, $A \subseteq \Omega$.
 * $\mathcal{A}$: $\sigma$-algebra, aka. $\sigma$-field, a set of events that
   satisfy three criteria:
   * $\emptyset \in \mathcal{A}$.
   * if $A \in \mathcal{A}$, then $A^c \in \mathcal{A}$.
   * If $A_i \in \mathcal{A}$ for $i \in \mathbb{N}$, then $\cup_i A_i \in
     \mathcal{A}$ (countable unions).
-* $\mathbb{P}$: probability distribution, aka. probability measure, that maps an
-  event $A$ to $[0, 1]$. Or just measure if without restriction to probability.
+* $\mathbb{P}: \mathcal{A} \rightarrow \mathbb{R}$, probability distribution,
+  aka. probability measure, that maps an event $A$ to $[0, 1]$. $\forall A
+  \subseteq \Omega, 1 \ge \mathbb{P}(A) \ge 0$. $\mathbb{P}(\emptyset) = 0,
+  \mathbb{P}(\Omega) = 1$. Note, the elements in $\mathcal{A}$ are called
+  measurable sets. They're measurable in the sense that $\mathbb{P}$ can assign
+  value for them. Without restriction to probability, the quantity is just
+  called **measure**.
 * $(\Omega, \mathcal{A})$: measurable space.
 * $(\Omega, \mathcal{A}, \mathbb{P})$: probability space. Aka. measure space if
   without restriction to probability.
 * $X: \Omega \rightarrow \mathbb{R}$: random variable, a mapping from a sample
   outcome to a real number.
 * $$X^{-1}(x) = \{\omega \in \Omega: X(\omega) = w\}$$, known as the preimage.
-  Basically, $X^{-1}$ mapps an value back to the event in which all elements
-  satisfy $X(\omega) = x$.
+  Basically, $X^{-1}$ maps an value back to the event, denoted as $A$, in which
+  all elements satisfy $X(\omega) = x$.
 * The relatinoship between $\mathbb{P}$ and $X$: we denote $$\mathbb{P}(\{
   \omega \in \Omega: X(\omega) = x\}) = \mathbb{P}(A) =\mathbb{P}(X=x)$$. Here,
   $X=x$ is just a shorthand, meaning the set of all $\omega$ with $X(\omega) =
