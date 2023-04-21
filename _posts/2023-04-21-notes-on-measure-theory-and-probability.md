@@ -1,0 +1,53 @@
+---
+layout: post
+title: Measure theory and probability
+author: Zhuyi Xue
+tags: probability
+---
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+
+Definitions:
+
+* $\Omega$: sample space.
+* $\omega$: sample outcomes (aka. realization, elements).
+* $A$: event, subset of $\Omega$, $A \subset \Omega$.
+* $\mathcal{A}$: $\sigma$-algebra, aka. $\sigma$-field, a set of events that
+  satisfy three criteria:
+  * $\emptyset \in \mathcal{A}$.
+  * if $A \in \mathcal{A}$, then $A^c \in \mathcal{A}$.
+  * If $A_i \in \mathcal{A}$ for $i \in \mathbb{N}$, then $\cup_i A_i \in
+    \mathcal{A}$ (countable unions).
+* $\mathbb{P}$: probability distribution, aka. probability measure, that maps an
+  event $A$ to $[0, 1]$. Or just measure if without restriction to probability.
+* $(\Omega, \mathcal{A})$: measurable space.
+* $(\Omega, \mathcal{A}, \mathbb{P})$: probability space. Aka. measure space if
+  without restriction to probability.
+* $X: \Omega \rightarrow \mathbb{R}$: random variable, a mapping from a sample
+  outcome to a real number.
+* $$X^{-1}(x) = \{\omega \in \Omega: X(\omega) = w\}$$, known as the preimage.
+  Basically, $X^{-1}$ mapps an value back to the event in which all elements
+  satisfy $X(\omega) = x$.
+* The relatinoship between $\mathbb{P}$ and $X$: we denote $$\mathbb{P}(\{
+  \omega \in \Omega: X(\omega) = x\}) = \mathbb{P}(A) =\mathbb{P}(X=x)$$. Here,
+  $X=x$ is just a shorthand, meaning the set of all $\omega$ with $X(\omega) =
+  x$, denoted by $A$.
+
+Take the stochastic process of throwing a coin twice for example,
+
+* $$\Omega = \{HH, HT, TH, TT\}$$.
+* E.g. $\omega = HH$, if both throw ends in head.
+* E.g. $$A = \{HH, HT\}$$, i.e. all events with the first throw in head.
+* $$\mathbb{P}(\{HH, HT\}) = 2 / 4$$, i.e. the probability of having the
+  first throw in head. In comparison, the probability of having at least one
+  head is $$\mathbb{P}(\{HH, HT, TH\}) = 3 / 4$$.
+* Let $X$ be the number of heads, then $X(HH) = 2$, $X(HT) = 1$, $X(TT) = 0$,
+  e.g. $$\mathbb{P}(X = 1) = \mathbb{P}(\{HT, TH\}) = 2 / 4$$. $\mathbb{P}(X =
+  1)$ known as the probability of having one head, its value can be calculated
+  by dividing the number of all elements with one head divided by that of all
+  elements. All the elements with one head consistute the event $A$ we're interested
+  in here.
