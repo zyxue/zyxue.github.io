@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Measure theory and probability
+title: Notes on measure theory and probability
 author: Zhuyi Xue
 tags: probability
 ---
