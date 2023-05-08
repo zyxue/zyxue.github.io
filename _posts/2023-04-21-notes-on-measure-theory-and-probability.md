@@ -14,7 +14,7 @@ MathJax.Hub.Config({
 Definitions:
 
 * $\Omega$: **sample space**.
-* $\omega$: **sample outcomes** (aka. realization, elements).
+* $\omega$: **sample outcomes** (aka. outcomes, sample points, realization, elements).
 * $A$: **event**, subset of $\Omega$, $A \subseteq \Omega$.
 * $\mathcal{A}$: **$\sigma$-algebra**, aka. $\sigma$-field, a set of events that
   satisfy three criteria:
@@ -41,6 +41,11 @@ Definitions:
   \omega \in \Omega: X(\omega) = x\}) = \mathbb{P}(A) =\mathbb{P}(X=x)$$. Here,
   $X=x$ is just a shorthand, meaning the set of all $\omega$ with $X(\omega) =
   x$, denoted by $A$.
+* A orobability model consists of three components (Ref:
+  [Chapter 1 notes](https://ocw.mit.edu/courses/6-262-discrete-stochastic-processes-spring-2011/6d0c6fbaf3afa16cbc76fc1f27d1d34e_MIT6_262S11_chap01.pdf) of [Discrete Stochastic Processes course](https://ocw.mit.edu/courses/6-262-discrete-stochastic-processes-spring-2011/pages/course-notes/)):
+  1. A sample space $\Omega$.
+  1. A class of events $\mathcal{A}$.
+  1. A probability measure $\mathbb{P}$.
 
 Take the stochastic process of throwing a coin twice for example,
 
@@ -56,3 +61,4 @@ Take the stochastic process of throwing a coin twice for example,
   by dividing the number of all elements with one head divided by that of all
   elements. All the elements with one head consistute the event $A$ we're interested
   in here.
+
