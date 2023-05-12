@@ -130,16 +130,20 @@ See this [notebook](https://github.com/zyxue/book-notes-pattern-recognition-and-
 We derive the MGF of $\mathcal{N}(\mu, \sigma^2)$ as shown below.
 
 $$
-\begin{align*}
+\begin{align}
 M_X(\lambda)
 &= \mathbb{E}[e^{\lambda X}] \\
 &= \int \exp(\lambda x) \frac{1}{\sqrt{2\pi \sigma^2}} \exp \left[ -\frac{(x - \mu)^2}{2\sigma^2}\right ] dx \\
 &= \frac{1}{\sqrt{2\pi \sigma^2}} \int \exp\left[ -\frac{1}{2\sigma^2} \left(x^2 - 2\mu x + \mu^2 -  2\sigma^2 \lambda x \right ) \right ] dx \\
 &= \frac{1}{\sqrt{2\pi \sigma^2}} \int \exp\left[ -\frac{1}{2\sigma^2} \left( \left(x - \mu - \sigma^2 \lambda \right )^2 - \left( \mu + \sigma^2 \lambda \right )^2 + \mu^2  \right ) \right ] dx \\
-&=  \exp\left(\frac{\sigma^4 \lambda^2  + 2\mu \sigma^2 \lambda}{2\sigma^2} \right)  \frac{1}{\sqrt{2\pi \sigma^2}} \int \exp\left[ -\frac{1}{2\sigma^2} \left(x - \sigma^2 \lambda \right )^2  \right ] dx \\
+&=  \exp\left(\frac{\sigma^4 \lambda^2  + 2\mu \sigma^2 \lambda}{2\sigma^2} \right)  \frac{1}{\sqrt{2\pi \sigma^2}} \int \exp\left[ -\frac{1}{2\sigma^2} \left(x - \mu - \sigma^2 \lambda \right )^2  \right ] dx \label{eq:factored} \\
 &= \exp\left( \frac{\sigma^2 \lambda^2}{2} + \mu\lambda \right)
-\end{align*}
+\end{align}
 $$
+
+
+Note, in Eq. \eqref{eq:factored}, $\frac{1}{\sqrt{2\pi \sigma^2}} \int \exp\left[ -\frac{1}{2\sigma^2} \left(x - \sigma^2 \lambda \right )^2  \right ]$
+is the integration of the distribution of $\mathcal{N}(\mu + \sigma^2 \lambda, \sigma^2)$, so it equals 1.
 
 Therefore,
 
