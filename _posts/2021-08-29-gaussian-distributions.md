@@ -11,7 +11,7 @@ Put univariate and multivariate Gaussians together for comparison:
 
 $$
 \begin{align}
-p(x) 
+p(x)
 &= \frac{1}{\sqrt{2 \pi \sigma^2}} \exp \left \{- \frac{1}{2} \frac{(x - \mu)^2}{\sigma^2} \right \} \\
 &= \frac{1}{\sqrt{2 \pi \sigma^2}} \exp \left \{- \frac{1}{2} (x - \mu)\frac{1}{\sigma^2}(x - \mu) \right \} \\
 \end{align}
@@ -30,7 +30,7 @@ If in terms of precision ($\Lambda$):
 
 $$
 \begin{equation}
-p(\mathbf{x}) 
+p(\mathbf{x})
 = (2\pi)^{-\frac{D}{2}} |\Lambda|^{\frac{1}{2}} \exp \left \{ - \frac{1}{2} (\mathbf{x} - \boldsymbol{\mu})^T \Lambda(\mathbf{x} - \boldsymbol{\mu}) \right \}
 \end{equation}
 $$
@@ -42,23 +42,23 @@ Given
 
 $$
 \begin{align}
-\mathbf{x} 
+\mathbf{x}
 &= \begin{bmatrix}
-\mathbf{x}_a \\ 
+\mathbf{x}_a \\
 \mathbf{x}_b
 \end{bmatrix} \\
 \boldsymbol{\mu}
 &= \begin{bmatrix}
-\boldsymbol{\mu}_a \\ 
+\boldsymbol{\mu}_a \\
 \boldsymbol{\mu}_b
 \end{bmatrix} \\
-\Sigma 
+\Sigma
 &= \begin{bmatrix}
-\Sigma_{aa} & \Sigma_{ab} \\ 
+\Sigma_{aa} & \Sigma_{ab} \\
 \Sigma_{ba} & \Sigma_{bb}
 \end{bmatrix} \\
 \Lambda &= \begin{bmatrix}
-\Lambda_{aa} & \Lambda_{ab} \\ 
+\Lambda_{aa} & \Lambda_{ab} \\
 \Lambda_{ba} & \Lambda_{bb}
 \end{bmatrix} = \Sigma^{-1} \\
 \end{align}
@@ -78,7 +78,7 @@ $$
 \end{align}
 $$
 
-Alternatively, these can be also expressed in terms of partitioned covariance matrices, which is a bit more complex for 
+Alternatively, these can be also expressed in terms of partitioned covariance matrices, which is a bit more complex for
 $$\Sigma_{a|b}$$:
 
 $$
@@ -123,3 +123,25 @@ $$p(\mathbf{x}_a) \sim \mathcal{N}(\mathbf{x}_a | \boldsymbol{\mu}_a, \Sigma_{aa
 ### Maximum-likelihood estimates
 
 See this [notebook](https://github.com/zyxue/book-notes-pattern-recognition-and-machine-learning-bishop/blob/master/ch2-probability-distributions/ex-2.34-find-maximum-likelihood-estimate-of-covariance-matrix-of-a-multivariate-gaussian.ipynb).
+
+
+### Moment-Generating Function (MGF)
+
+We derive the MGF of $\mathcal{N}(\mu, \sigma^2)$ as shown below.
+
+$$
+\begin{align*}
+M_X(\lambda)
+&= \mathbb{E}[e^{\lambda X}] \\
+&= \int \exp(\lambda x) \frac{1}{\sqrt{2\pi \sigma^2}} \exp \left[ -\frac{(x - \mu)^2}{2\sigma^2}\right ] dx \\
+&= \frac{1}{\sqrt{2\pi \sigma^2}} \int \exp\left[ -\frac{1}{2\sigma^2} \left(x^2 - 2\mu x + \mu^2 -  2\sigma^2 \lambda x \right ) \right ] dx \\
+&= \frac{1}{\sqrt{2\pi \sigma^2}} \int \exp\left[ -\frac{1}{2\sigma^2} \left( \left(x - \mu - \sigma^2 \lambda \right )^2 - \left( \mu + \sigma^2 \lambda \right )^2 + \mu^2  \right ) \right ] dx \\
+&=  \exp\left(\frac{\sigma^4 \lambda^2  + 2\mu \sigma^2 \lambda}{2\sigma^2} \right)  \frac{1}{\sqrt{2\pi \sigma^2}} \int \exp\left[ -\frac{1}{2\sigma^2} \left(x - \sigma^2 \lambda \right )^2  \right ] dx \\
+&= \exp\left( \frac{\sigma^2 \lambda^2}{2} + \mu\lambda \right)
+\end{align*}
+$$
+
+Therefore,
+
+* for $\mathcal{N}(0, 1)$, $M_X(\lambda) = \exp \frac{\lambda^2}{2}$.
+* for $\mathcal{N}(0, \sigma^2)$, $M_X(\lambda) = \exp \frac{\sigma^2 \lambda^2}{2}$.
