@@ -47,6 +47,17 @@ f(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \frac{f^{(3)}(0)}{3!}x^3 + \cdots 
 \end{equation}
 $$
 
+When $f(x) = e^x$, Maclaurin has a very neat form,
+
+$$
+\begin{align}
+e^x
+&= \frac{x^0}{0!} + \frac{x^1}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots \\
+&= \sum_{t=0}^\infty \frac{x^t}{t!} \\
+&= 1 + x + \frac{x^2}{2} + \cdots \\
+\end{align}
+$$
+
 
 **Multi-dimensional form**
 
