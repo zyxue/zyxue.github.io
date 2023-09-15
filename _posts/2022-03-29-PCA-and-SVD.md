@@ -140,12 +140,12 @@ That is the trace of the sample covariance matrix, i.e. the sum of variances
 along all original coordinates, is equal to the sum of eigenvalues, i.e. the sum
 of variances along the projected coordinates.
 
-For a typical dataset where $n > p$,
+For a typical dataset where $n > d$,
 
-* when there is no colinearity among features, $r=p$.
-* when there is colienarity, $r < p$.
+* when there is no colinearity among features, $r=d$.
+* when there is colienarity, $r < d$.
 
-When $n < p$, e.g. for a typical gene expression data, $r = n$.
+When $n < d$, e.g. for a typical gene expression data, $r = n$.
 
 In practice, we usually take $k < r$ principal components.
 
@@ -250,7 +250,7 @@ $$
 
 By definition of SVD, $U$ and $\Sigma^2$ are the eigenvectors and eigenvalues of
 $S = \left( \frac{1}{\sqrt{n - 1}}\tilde{X} \right) \left( \frac{1}{\sqrt{n -
-1}} \tilde{X} \right)^T$, so $U$ consists of the principal components of of $X$,
+1}} \tilde{X} \right)^T$, so $U$ consists of the principal components of $X$,
 and $\Sigma^2$ consists of the variances of the coordinates after $X$ is
 projected onto $U$. The sum of the variances equals $\text{Tr}(S)$.
 
@@ -367,14 +367,14 @@ $$
 \end{align}
 $$
 
-so $\mathbf{x}$ is also in the nullspace of $S$, i.e. $\mathbf{X}$ and $S$ have
-the same left nullspace, since they all have the same column space, and rank equals
+so $\mathbf{x}$ is also in the nullspace of $S$, i.e. $X$ and $S$ have
+the same left nullspace, since they also have the same column space, and rank equals
 the number of dimensions of the column space minus that of the left nullspace,
 so $S$ and $X$ have the same rank.
 
 
 Similar proof can also show $X^T X$ has the same rank as $X$. In summary, all of
-$X^T X$, $X^T X$ and $X$ have the same rank.
+$X^T X$, $X X^T$ and $X$ have the same rank.
 
 ### Show $AB$ and $BA$ have the same eigenvalues
 
