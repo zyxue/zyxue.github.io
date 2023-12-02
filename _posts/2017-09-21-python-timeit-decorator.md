@@ -5,6 +5,37 @@ author: Zhuyi Xue
 tags: python, time, timeit, decorator
 ---
 
+**Update 2023-12-02:**
+
+A more properly typed version:
+
+{% highlight python %}
+import datetime
+import time
+from functools import wraps
+from typing import Callable, TypeVar
+
+from typing_extensions import ParamSpec
+
+P = ParamSpec("P")
+T = TypeVar("T")
+
+
+def timeit(func: Callable[P, T]) -> Callable[P, T]:
+    """Times a function, usually used as decorator"""
+
+    @wraps(func)
+    def timed_func(*args: P.args, **kwargs: P.kwargs) -> T:
+        """Returns the timed function"""
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        elapsed_time = datetime.timedelta(seconds=(time.time() - start_time))
+        print("time spent on %s: %s", func.__name__, elapsed_time)
+        return result
+
+    return timed_func
+{% endhighlight %}
+
 **Update 2020-04-13:**
 
 A simpler version:
