@@ -135,9 +135,11 @@ The output is
 
 #### Simple logging strategy
 
-One simple logging strategy is to reserve root logger for 3rd-party library
-loggers and set propagate of 1st-party modules logger to False to avoid log
-duplication, e.g.
+One simple logging strategy is to 
+
+1. set root logger level to INFO for showing INFO and up logs from 3rd-party library loggers
+2. set module logger level to DEBUG so that all logs from 1st-party module loggers will be emitted
+3. add a StreamHandler with level default to NOSET to root logger
 
 {% gist fcbc9ddece7e0abf76c56cb49ed76bb0 %}
 
