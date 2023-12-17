@@ -15,5 +15,5 @@ bundle install
 Then, to start the server,
 
 ```
-foreman start
+bundler exec foreman start
 ```
