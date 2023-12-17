@@ -11,6 +11,11 @@ MathJax.Hub.Config({
 });
 </script>
 
+<span style="color:red">THE DERIVATION IN THIS POST IS <i>INCORRECT</i>, PLEASE SEE [AN
+UPDATED
+ONE](https://zyxue.github.io/2023/12/17/coefficient-of-determination-and-pearson-correlation-coefficient-are-equivalent-in-OLS.html)
+INSTEAD</span>.
+
 # Coefficient of determination (aka. $R^2$)
 
 Consider the ordinary least square (OLS) model:
