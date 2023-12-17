@@ -47,6 +47,8 @@ $$
 \end{align}
 $$
 
+where $\bar{\mathbf{y}} = \mathbf{1} \bar{y}$, and $\bar{\mathbf{f}} = \mathbf{1} \bar{f}$.
+
 From Eq. \eqref{eq:before_replacement} to Eq. \eqref{eq:after_replacement}, the
 replacement of the first item is because
 

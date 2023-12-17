@@ -42,7 +42,7 @@ Following the naming convention of $RSS$ and $TSS$, We define
 $$ESS = \sum_i(f_i - \bar{y})^2$$
 
 as the **explained sum of squares**. Note, $f_i$ is subtracted by the mean of
-labels ($y$) instead of predictions ($f$). However, in the ordinary least
+labels ($\bar{y}$) instead of predictions ($\bar{f}$). However, in the ordinary least
 squares (OLS) given
 
 $$
@@ -60,7 +60,7 @@ $$
 
 See
 [here](https://zyxue.github.io/2021/09/08/analytical-solutions-to-different-sum-of-squares-loss-functions-for-linear-regression.html)
-for a proof of Eq. \eqref{eq:OLS}.
+for a proof of Eq. \eqref{eq:OLS}. $\mathbf{f} = (f_1, \cdots, f_N)^T$, $\mathbf{y} = (y_1, \cdots, y_N)^T$.
 
 Because the first column of $X$ is all ones, so we also have
 
@@ -115,6 +115,7 @@ $$
 \end{align}
 $$
 
+* $\bar{\mathbf{y}} = \mathbf{1} \bar{y}$
 * That the first part of Eq. $\eqref{eq:grouped}$ is equal to 0 is easily obtained by replacing $\mathbf{f}$ with Eq. $\eqref{eq:OLS}$.
 * That the second part is equal to 0 is a direct result of Eq. $\eqref{eq:reason_to_y_bar_equals_f_bar}$.
 
