@@ -14,7 +14,7 @@ MathJax.Hub.Config({
 This post proves $R^2 = \rho^2$ in ordinary least squares (OLS).
 
 In [a previous post on
-$R^2$](https://zyxue.github.io/2023/12/17/properties-of-r-squared-OLS.html), we
+$R^2$](https://zyxue.github.io/2023/12/16/properties-of-r-squared-OLS.html), we
 derived for OLS,
 
 $$
@@ -33,7 +33,7 @@ $$
 \end{align*}
 $$
 
-We'd like to prove $\text{Cov}(y, f) = \sigma_f^2$, i.e. the correlation is
+We'd like to prove $\text{Cov}(y, f) = \sigma_f^2$, i.e. the covariance is
 equal to the variance of $f$.
 
 $$
