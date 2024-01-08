@@ -73,7 +73,7 @@ Suppose $\mathbf{z} = (z_1, \cdots, z_d) \in \mathbb{R}^d$.
 
 $$
 \begin{align}
-f(z_k) = \frac{e^{z_k}}{\sum_{i=1}^{K} e^{z_k}}
+f(z_k) = \frac{e^{z_k}}{\sum_{i=1}^{K} e^{z_i}}
 \end{align}
 $$
 
@@ -84,9 +84,9 @@ Note, adding a constant ($C$) to each $z_k$ won't affect $f(z_k)$:
 
 $$
 \begin{align}
-\frac{e^{z_k + C}}{\sum_{i=1}^{K} e^{z_k + C}}
-= \frac{e^C e^{z_k}}{e^C \sum_{i=1}^{K} e^{z_k}}
-= \frac{e^{z_k}}{\sum_{i=1}^{K} e^{z_k}}
+\frac{e^{z_k + C}}{\sum_{i=1}^{K} e^{z_i + C}}
+= \frac{e^C e^{z_k}}{e^C \sum_{i=1}^{K} e^{z_i}}
+= \frac{e^{z_k}}{\sum_{i=1}^{K} e^{z_i}}
 \end{align}
 $$
 
@@ -101,12 +101,12 @@ more than two dimensions.
 
 $$
 \begin{align}
-p(z_k) &= \frac{e^{z_k}}{\sum_{i=1}^{K} e^{z_k}} \\
-p(z_k) &= \frac{e^{z_k}}{e^{z_k} + \sum_{i \ne k}^{K} e^{z_k}} \\
-p(z_k)e^{z_k} + p(z_k) \sum_{i \ne k}^{K} e^{z_k} &= e^{z_k} \\
-e^{z_k} &= \frac{p(z_k) \sum_{i \ne k}^{K} e^{z_k} }{1 - p(z_k)} \\
-z_k &= \log \frac{p(z_k) \sum_{i \ne k}^{K} e^{z_k} }{1 - p(z_k)}
+p(z_k) &= \frac{e^{z_k}}{\sum_{i=1}^{K} e^{z_i}} \\
+p(z_k) &= \frac{e^{z_k}}{e^{z_k} + \sum_{i \ne k}^{K} e^{z_i}} \\
+p(z_k)e^{z_k} + p(z_k) \sum_{i \ne k}^{K} e^{z_i} &= e^{z_k} \\
+e^{z_k} &= \frac{p(z_k) \sum_{i \ne k}^{K} e^{z_i} }{1 - p(z_k)} \\
+z_k &= \log \frac{p(z_k) \sum_{i \ne k}^{K} e^{z_i} }{1 - p(z_k)}
 \end{align}
 $$
 
-So $z_k$ is a log-odds weighted by $\sum_{i \ne k}^{K} e^{z_k} $.
+So $z_k$ is the log of weighted odds $\frac{p(z_k)}{1 - p(z_k)}$ by $\sum_{i \ne k}^{K} e^{z_i} $.
