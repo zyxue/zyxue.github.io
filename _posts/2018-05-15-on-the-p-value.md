@@ -193,7 +193,7 @@ context of a confusion table;thus, it is the frequentist view.
     <!-- <td></td> -->
   </tr>
   <tr>
-    <td rowspan="2">Column metrics</td>
+    <td rowspan="2"><strong>Column metrics</strong></td>
     <td class="true-positive-rate"><span class="nowrap">TPR = <span class="true-positive">TP</span> / <span class="marginal">CP</span></span> <br> True positive rate, <i>Sensitivity</i>, <i>Recall</i>, <i>Power</i></td>
     <td class="false-positive-rate"><span class="nowrap">FPR = <span class="false-positive">FP</span> / <span class="marginal">CN</span></span> <br> False positive rate, <i>$\alpha$ level</i></td>
     <!-- <td></td> -->
