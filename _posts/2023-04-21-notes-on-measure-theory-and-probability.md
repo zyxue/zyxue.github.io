@@ -14,21 +14,32 @@ MathJax.Hub.Config({
 Definitions:
 
 * $\Omega$: **sample space**.
-* $\omega$: **sample outcomes** (aka. outcomes, sample points, realization, elements).
+* $\omega$: **sample outcome** (aka. sample, outcomes, sample point, realization, element).
 * $A$: **event**, subset of $\Omega$, $A \subseteq \Omega$.
 * $\mathcal{A}$: **$\sigma$-algebra**, aka. $\sigma$-field, a set of events that
   satisfy three criteria:
   * $\emptyset \in \mathcal{A}$.
-  * if $A \in \mathcal{A}$, then $A^c \in \mathcal{A}$.
+  * if $A \in \mathcal{A}$, then $A^c \in \mathcal{A}$ (closed under complementation).
   * If $A_i \in \mathcal{A}$ for $i \in \mathbb{N}$, then $\cup_i A_i \in
-    \mathcal{A}$ (countable unions).
-* $\mathbb{P}: \mathcal{A} \rightarrow \mathbb{R}$, probability distribution,
-  aka. **probability measure**, that maps an event $A$ to $[0, 1]$. $\forall A
-  \subseteq \Omega, 1 \ge \mathbb{P}(A) \ge 0$. $\mathbb{P}(\emptyset) = 0,
-  \mathbb{P}(\Omega) = 1$. Note, the elements in $\mathcal{A}$ are called
-  measurable sets. They're measurable in the sense that $\mathbb{P}$ can assign
-  value for them. Without restriction to probability, the quantity is just
-  called **measure**.
+    \mathcal{A}$ (closed under countable unions).
+
+Note, while an event $A$ is *a set of sample outcomes* $\omega$ from the sample
+space $\Omega$, an $\sigma$-algebra is *a set of events*. There can be multiple
+$\sigma$-algebras associated with a given sample space, but in probability, the
+most important one is the smallest $\sigma$-algebra that includes all subsets of
+the sample space. Take the sample space of the throwing a coin once for example,
+$$\Omega = \{H, T\}$$, and the corresponding smallest $\sigma$-algebra with all
+subsets is $$\{\emptyset, \{H\}, \{T\}, \{H, T \} \}$$ with four elements.
+
+More definitions:
+
+* $\mathbb{P}: \mathcal{A} \rightarrow \mathbb{R}$, **probability function**
+  (aka. probability distribution, probability measure) that maps an event $A$ to
+  $[0, 1]$. $\forall A \subseteq \Omega, 1 \ge \mathbb{P}(A) \ge 0$.
+  $\mathbb{P}(\emptyset) = 0, \mathbb{P}(\Omega) = 1$. Note, the elements in
+  $\mathcal{A}$ are called measurable sets. They're measurable in the sense that
+  $\mathbb{P}$ can assign value for them. Without restriction to probability,
+  the quantity is just called **measure**.
 * $(\Omega, \mathcal{A})$: measurable space.
 * $(\Omega, \mathcal{A}, \mathbb{P})$: **probability space**. Aka. measure space if
   without restriction to probability.
@@ -47,11 +58,15 @@ Definitions:
   1. A class of events $\mathcal{A}$.
   1. A probability measure $\mathbb{P}$.
 
+Note, while the probability function $\mathbb{P}$ maps an event $A$ to a real
+value between 0 and 1, the random variable function $X$ maps a sample outcome
+$\omega$ to a real number.
+
 Take the stochastic process of throwing a coin twice for example,
 
 * $$\Omega = \{HH, HT, TH, TT\}$$.
 * E.g. $\omega = HH$, if both throw ends in head.
-* E.g. $$A = \{HH, HT\}$$, i.e. all events with the first throw in head.
+* E.g. $$A = \{HH, HT\}$$, i.e. all sample outcomes with the first throw in head.
 * $$\mathbb{P}(\{HH, HT\}) = 2 / 4$$, i.e. the probability of having the
   first throw in head. In comparison, the probability of having at least one
   head is $$\mathbb{P}(\{HH, HT, TH\}) = 3 / 4$$.
