@@ -201,7 +201,7 @@ context of a confusion table;thus, it is the frequentist view.
     <!-- <td></td> -->
   </tr>
   <tr>
-    <td class="false-negative-rate"><span class="nowrap">FNR = <span class="false-negative">FN</span> / <span class="marginal">CP</span></span> <br> False negative rate</td>
+    <td class="false-negative-rate"><span class="nowrap">FNR = <span class="false-negative">FN</span> / <span class="marginal">CP</span></span> <br> False negative rate, <i>$\beta$ level</i></td>
     <td class="true-negative-rate"><span class="nowrap">TNR = <span class="true-negative">TN</span> / <span class="marginal">CN</span></span> <br> True negative rate, <i>Specificity</i></td>
     <!-- <td></td> -->
     <!-- <td></td> -->
