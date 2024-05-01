@@ -24,7 +24,7 @@ Definitions:
     \mathcal{A}$ (closed under countable unions).
 
 Note, while an event $A$ is *a set of sample outcomes* $\omega$ from the sample
-space $\Omega$, an $\sigma$-algebra is *a set of events*. There can be multiple
+space $\Omega$, a $\sigma$-algebra is *a set of events*. There can be multiple
 $\sigma$-algebras associated with a given sample space, but in probability, the
 most important one is the smallest $\sigma$-algebra that includes all subsets of
 the sample space. Take the sample space of the throwing a coin once for example,
