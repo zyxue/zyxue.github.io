@@ -52,7 +52,7 @@ More definitions:
   \omega \in \Omega: X(\omega) = x\}) = \mathbb{P}(A) =\mathbb{P}(X=x)$$. Here,
   $X=x$ is just a shorthand, meaning the set of all $\omega$ with $X(\omega) =
   x$, denoted by $A$.
-* A orobability model consists of three components (Ref:
+* A probability model consists of three components (Ref:
   [Chapter 1 notes](https://ocw.mit.edu/courses/6-262-discrete-stochastic-processes-spring-2011/6d0c6fbaf3afa16cbc76fc1f27d1d34e_MIT6_262S11_chap01.pdf) of [Discrete Stochastic Processes course](https://ocw.mit.edu/courses/6-262-discrete-stochastic-processes-spring-2011/pages/course-notes/)):
   1. A sample space $\Omega$.
   1. A class of events $\mathcal{A}$.
