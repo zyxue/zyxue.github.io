@@ -194,15 +194,15 @@ context of a confusion table;thus, it is the frequentist view.
   </tr>
   <tr>
     <td rowspan="2"><strong>Column metrics</strong></td>
-    <td class="true-positive-rate"><span class="nowrap">TPR = <span class="true-positive">TP</span> / <span class="marginal">CP</span></span> <br> True positive rate, <i>Sensitivity</i>, <i>Recall</i>, <i>Power</i></td>
-    <td class="false-positive-rate"><span class="nowrap">FPR = <span class="false-positive">FP</span> / <span class="marginal">CN</span></span> <br> False positive rate, <i>$\alpha$ level</i></td>
+    <td class="true-positive-rate"><span class="nowrap">TPR = <span class="true-positive">TP</span> / <span class="marginal">CP</span></span> <br> True positive rate, <i>Sensitivity</i>, <i>Recall</i>, <i>Power (1-$\beta$)</i></td>
+    <td class="false-positive-rate"><span class="nowrap">FPR = <span class="false-positive">FP</span> / <span class="marginal">CN</span></span> <br> False positive rate, <i>$\alpha$ level</i>, significance level</td>
     <!-- <td></td> -->
     <!-- <td></td> -->
     <!-- <td></td> -->
   </tr>
   <tr>
-    <td class="false-negative-rate"><span class="nowrap">FNR = <span class="false-negative">FN</span> / <span class="marginal">CP</span></span> <br> False negative rate, <i>$\beta$ level</i></td>
-    <td class="true-negative-rate"><span class="nowrap">TNR = <span class="true-negative">TN</span> / <span class="marginal">CN</span></span> <br> True negative rate, <i>Specificity</i></td>
+    <td class="false-negative-rate"><span class="nowrap">FNR = <span class="false-negative">FN</span> / <span class="marginal">CP</span></span> <br> False negative rate, <i>$\beta$ level</i>, <a href="https://youtu.be/uHUOwZmfUzY?si=fMrspbCjq1XpEvmC&t=3575">operating characteristic</a></td>
+    <td class="true-negative-rate"><span class="nowrap">TNR = <span class="true-negative">TN</span> / <span class="marginal">CN</span></span> <br> True negative rate, <i>Specificity</i>, confidence level (1-$\alpha$)</td>
     <!-- <td></td> -->
     <!-- <td></td> -->
     <!-- <td></td> -->
