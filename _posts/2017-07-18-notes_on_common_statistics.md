@@ -48,17 +48,98 @@ f\big(\mathbb{E}[X]\big) \le \mathbb{E}[f(x)]
 
 **Markov's inequality**
 
+Suppose $X$ is a non-negative random variable, $f$ is the pdf and $a > 0$, then
+
+$$
 \begin{equation}
-\text{P}\big(\left|X\right| \ge a\big) \le \frac{\mathbb{E}[X]}{a}
+\mathbb{P}\big(X > a\big) \le \frac{\mathbb{E}[X]}{a}
 \end{equation}
+$$
 
-**Chebyshev's inequality**
+*Proof*:
+
+$$
+\begin{align}
+\mathbb{E}[X]
+&= \int_0^\infty x f(x) dx \\
+&= \int_0^a x f(x) dx + \int_a^\infty x f(x) dx \label{eq:markov_before_inequality} \\
+&\ge 0 + \int_a^\infty a f(x) dx \label{eq:markov_to_inequality} \\
+&\ge a \int_a^\infty f(x) dx \\
+&= a \mathbb{P}(X > a) \\
+\mathbb{P}(X > a)
+&\le \frac{\mathbb{E}[X]}{a}
+\end{align}
+$$
+
+Note, from Eq. $\eqref{eq:markov_before_inequality}$ to
+$\eqref{eq:markov_to_inequality}$, we just used the simple facts:
+
+* $\int_0^a x f(x) dx \ge 0$ and
+* $x \ge a$ in the integral $\int_a^\infty x f(x) dx$.
+
+The reson that $X$ needs to be non-negative is that otherwise the first
+integral would become $\int_{-\infty}^{a} x f(x) dx$, which isn't necessarily $\ge
+0$.
+
+**Chebyshev's inequality (specific version)**
 
 \begin{equation}
-\text{P}\big(\left|X - \mu\right| \gt a \big) \le \frac{\mathbb{V}[X]}{a^2}
+\mathbb{P}\left( \left|X - \mu \right| \gt a \right) \le \frac{\mathbb{V}[X]}{a^2}
 \end{equation}
 
 where $\mu=\mathbb{E}[X]$, and $a \gt 0$.
+
+*Proof*:
+
+We can derive Chebyshev's in equality from applying the Markov's inequality:
+
+$$
+\begin{align}
+\frac{\mathbb{V}[X]}{a^2}
+&=\frac{\mathbb{E}\left[ (X - \mu)^2 \right ]}{a^2} \label{eq:chebyshev_def_var} \\
+&\ge \mathbb{P}\left( (X - \mu)^2 > a^2 \right ) \label{eq:chebyshev_apply_markov} \\
+&= \mathbb{P}(|X - \mu| > a )
+\end{align}
+$$
+
+Note,
+
+* Eq. $\eqref{eq:chebyshev_def_var}$ is just the definition of variance.
+* Eq. $\eqref{eq:chebyshev_apply_markov}$ is the application of Markov's inequality
+  with $(X - \mu)^2$ as the random variable.
+
+**Chebyshev's inequality (general version)**
+
+$$
+\begin{align*}
+\mathbb{P}(g(X) \ge r) \le \frac{\mathbb{E}[g(X)]}{r}
+\end{align*}
+$$
+
+where $g(X)$ is a non-negative function, and $r > 0$.
+
+*Proof*:
+
+$$
+\begin{align}
+\mathbb{E}[g(X)]
+&= \int_{-\infty}^{\infty} g(x) f(x) dx \\
+&= \int_{g(X) < r} g(x) f(x) dx + \int_{g(X) \ge r} g(x) f(x) dx \\
+&\ge 0 + r \int_{g(X) > r} f(x) dx \\
+&= r\mathbb{P} \left( g(X) > r \right) \\
+\mathbb{P} \left( g(X) > r \right)
+&\le \frac{\mathbb{E}[g(X)]}{r}
+\end{align}
+$$
+
+The proof uses the same idea as that for Markov's inequality, but more general.
+
+* When $g(X) = |X|$, the the general-version Chebyshev's inequality becomes
+  Markov's inequality.
+* When $g(X) = (X - \mu)^2$, then it becomes the specific-version Chebyshev's
+  inequality
+
+**Proof**
 
 **Hoeffding's inequality**
 
@@ -66,7 +147,7 @@ TODO, see All of Statistics book
 
 # Approximation
 
-Approximate binomial distribution with 
+Approximate binomial distribution with
 
 * Possion distribution when $n$ is large and $p$ is small ($\to 0$).
 * Normal distribution when $n$ is large and $p$ is close to $1/2$.
