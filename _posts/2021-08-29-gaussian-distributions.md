@@ -149,3 +149,13 @@ Therefore,
 
 * for $\mathcal{N}(0, 1)$, $M_X(\lambda) = \exp \frac{\lambda^2}{2}$.
 * for $\mathcal{N}(0, \sigma^2)$, $M_X(\lambda) = \exp \frac{\sigma^2 \lambda^2}{2}$.
+
+
+### Sample statistics
+
+Suppose $X \sim \mathcal{N}(\mu, \sigma^2)$, then given i.i.d. $X_1, \cdots,
+X_n$, the sample statistics have the following distribution:
+
+* Sample mean $\bar{X}_n \sim \mathcal{N}(\mu, \frac{\sigma^2}{n})$, and
+* Standardize sample mean: $\frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \sim \mathcal{N}(0, 1)$
+* Sample variance: $\frac{(n - 1) S_n^2}{\sigma^2} \sim \chi_{n-1}^2$, where  $S_n^2 = \frac{1}{n - 1} \sum_{i=1}^n (X_i - \bar{X})^2$.
