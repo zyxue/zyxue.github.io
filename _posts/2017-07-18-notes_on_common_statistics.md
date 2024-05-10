@@ -5,9 +5,12 @@ author: Zhuyi Xue
 tags: statistics
 ---
 
-# Laws
+* toc
+{:toc}
 
-**Law of total expectation** (Adam's Law)
+## Laws
+
+### Law of total expectation (Adam's Law)
 
 \begin{equation}
 \mathbb{E}[X] = \mathbb{E}\big[\mathbb{E}[X|N]\big] = \mathbb{E}[\mu N] = \mu\mathbb{E}[N]
@@ -19,7 +22,7 @@ e.g.
 * $N$ is the number of customers visited that shop
 * $\mu$ is the mean amount of money a customer spends
 
-**Law of total variance** (Eve's law)
+### Law of total variance (Eve's law)
 
 <script type="math/tex; mode=display">% <![CDATA[
 \begin{align}
@@ -30,15 +33,15 @@ e.g.
 \end{align}
 %]**></script>
 
-# Inequalities
+## Inequalities
 
-**Cauchy-Schwarz inequality**
+### Cauchy-Schwarz inequality
 
 \begin{equation}
 \mathbb{E}[XY] \le \sqrt{\mathbb{E}[X^2]\mathbb{E}[Y^2]}
 \end{equation}
 
-**Jensen's inequality**
+### Jensen's inequality
 
 If $f$ is a convex function
 
@@ -46,13 +49,13 @@ If $f$ is a convex function
 f\big(\mathbb{E}[X]\big) \le \mathbb{E}[f(x)]
 \end{equation}
 
-**Markov's inequality**
+### Markov's inequality
 
 Suppose $X$ is a non-negative random variable, $f$ is the pdf and $a > 0$, then
 
 $$
 \begin{equation}
-\mathbb{P}\big(X > a\big) \le \frac{\mathbb{E}[X]}{a}
+\mathbb{P}\big(X \ge a\big) \le \frac{\mathbb{E}[X]}{a}
 \end{equation}
 $$
 
@@ -65,8 +68,8 @@ $$
 &= \int_0^a x f(x) dx + \int_a^\infty x f(x) dx \label{eq:markov_before_inequality} \\
 &\ge 0 + \int_a^\infty a f(x) dx \label{eq:markov_to_inequality} \\
 &\ge a \int_a^\infty f(x) dx \\
-&= a \mathbb{P}(X > a) \\
-\mathbb{P}(X > a)
+&= a \mathbb{P}(X \ge a) \\
+\mathbb{P}(X \ge a)
 &\le \frac{\mathbb{E}[X]}{a}
 \end{align}
 $$
@@ -81,10 +84,10 @@ The reson that $X$ needs to be non-negative is that otherwise the first
 integral would become $\int_{-\infty}^{a} x f(x) dx$, which isn't necessarily $\ge
 0$.
 
-**Chebyshev's inequality (specific version)**
+### Chebyshev's inequality (specific version)
 
 \begin{equation}
-\mathbb{P}\left( \left|X - \mu \right| \gt a \right) \le \frac{\mathbb{V}[X]}{a^2}
+\mathbb{P}\left( \left|X - \mu \right| \ge a \right) \le \frac{\mathbb{V}[X]}{a^2}
 \end{equation}
 
 where $\mu=\mathbb{E}[X]$, and $a \gt 0$.
@@ -97,8 +100,8 @@ $$
 \begin{align}
 \frac{\mathbb{V}[X]}{a^2}
 &=\frac{\mathbb{E}\left[ (X - \mu)^2 \right ]}{a^2} \label{eq:chebyshev_def_var} \\
-&\ge \mathbb{P}\left( (X - \mu)^2 > a^2 \right ) \label{eq:chebyshev_apply_markov} \\
-&= \mathbb{P}(|X - \mu| > a )
+&\ge \mathbb{P}\left( (X - \mu)^2 \ge a^2 \right ) \label{eq:chebyshev_apply_markov} \\
+&= \mathbb{P}(|X - \mu| \ge a )
 \end{align}
 $$
 
@@ -108,7 +111,7 @@ Note,
 * Eq. $\eqref{eq:chebyshev_apply_markov}$ is the application of Markov's inequality
   with $(X - \mu)^2$ as the random variable.
 
-**Chebyshev's inequality (general version)**
+### Chebyshev's inequality (general version)
 
 $$
 \begin{align*}
@@ -138,83 +141,118 @@ The proof uses the same idea as that for Markov's inequality, but more general.
   Markov's inequality.
 * When $g(X) = (X - \mu)^2$, then it becomes the specific-version Chebyshev's
   inequality
+**Proof*
 
-**Proof**
-
-**Hoeffding's inequality**
+### Hoeffding's inequality
 
 TODO, see All of Statistics book
 
-# Approximation
+## Properties of random sample
 
-Approximate binomial distribution with
+Suppose we have an i.i.d. sample, $X_1, \cdots, X_n$, from a population with
+mean $\mu$ and variance $\sigma^2$.
 
-* Possion distribution when $n$ is large and $p$ is small ($\to 0$).
-* Normal distribution when $n$ is large and $p$ is close to $1/2$.
+### Sample mean
 
-# Population statistics
+$$
+\begin{align}
+\bar{X}_n
+&= \frac{1}{n}\sum_{i=1}^{n}X_i \label{eq:sampleMean}
+\end{align}
+$$
 
-Suppose there are $$N$$ samples in total in the population.
+The subscript $_n$ just means it is the mean of a sample of size $n$. We can show
+that $\bar{X}_n$ converges to $\mu$ when $n \rightarrow \infty$, given $\sigma^2
+< \infty$.
 
-**Population mean**
+*Proof*:
 
-\begin{equation}
-    \mu = \frac{1}{N}\sum_{i=1}^{N}X_i
-    \label{eq:populationMean}
-\end{equation}
+$$
+\begin{align}
+\lim_{n \rightarrow \infty} \mathbb{P}(|\bar{X}_n - \mu| \ge \epsilon)
+&\le \lim_{n \rightarrow \infty} \frac{\mathbb{V}[\bar{X}_n - \mu]}{\epsilon^2} \label{eq:lln_chebyshev} \\
+&= \lim_{n \rightarrow \infty} \frac{\sigma^2/n}{\epsilon} \\
+&= \lim_{n \rightarrow \infty} \frac{\sigma^2}{n\epsilon} \\
+&= 0 \\
+\end{align}
+$$
 
-**Population variance**
+Equivalently,
 
-\begin{equation}
-    \sigma ^2 = \frac{1}{N}\sum_{i=1}^{N}(X_i - \mu) ^2
-    \label{eq:populationVariance}
-\end{equation}
+$$
+\begin{align}
+\lim_{n \rightarrow \infty} \mathbb{P}(|\bar{X}_n - \mu| < \epsilon) \label{eq:lln_equivalent}
+&= 1
+\end{align}
+$$
 
-$\sigma$ is the population standard deviatin.
+Note, Eq. $\eqref{eq:lln_chebyshev}$ is an application of the Chebyshev's
+inequality. This property of $\bar{X}_n$ is known as the **weak law of a large
+numbers**.
 
-# Sample statistics
+**Important properties**, $\mathbb{E}[\bar{X}_n] = \mu$, $\mathbb{V}[\bar{X}_n]
+= \sigma^2 / n$. By central limit theorem, when $n$ is large, $\bar{X}_n \sim
+\mathcal{N} \left(\mu, \frac{\sigma^2}{n} \right)$.
 
-Suppose we take a sample of sample size $$n$$ from the population.
+### Sample variance
 
-**Sample mean**
+$$
+\begin{align}
+S ^2
+&= \frac{1}{n - 1}\sum_{i=1}^{n}(X_i - \bar{X}) ^2 \label{eq:sampleVariance}
+\end{align}
+$$
 
-*Note*: $$\overline{X}$$ is used instead of $$\mu$$.
+Note, the denominator uses $n - 1$ instead of $n$, which would lead to a biased
+estimator (see proof of bias
+[here](https://stats.stackexchange.com/a/544455/112141)). This modification is
+also called [Bessel's
+correction](https://en.wikipedia.org/wiki/Bessel%27s_correction).
 
-\begin{equation}
-    \overline{X} = \frac{1}{n}\sum_{i=1}^{n}X_i
-    \label{eq:sampleMean}
-\end{equation}
+### Sample standard deviation
 
-**Sample variance**
+$$
+\begin{align}
+S = \sqrt{S^2} = \sqrt{\frac{1}{n - 1}\sum_{i=1}^{n}(X_i - \bar{X}) ^2}
+\end{align}
+$$
 
-$$n-1$$ is used instead of $$n$$ after
-[Bessel's correction](https://en.wikipedia.org/wiki/Bessel%27s_correction). The
-intuition behind such correction is that sample variance tends to underestimate
-population variance, so we intentionally enlarge it a bit. Please see
-[Bessel's correction](https://en.wikipedia.org/wiki/Bessel%27s_correction) for more details.
+While $S^2$ is an unbiased estimator of $\sigma^2$, i.e. $\mathbb{E}[S^2] =
+\sigma^2$, $S$ is a biased estimator of $\sigma$, in particular $\mathbb{E}[S] \le
+\sigma$.
 
-*Note*: $$s^2$$ is used instead of $$\sigma ^2$$.
+*Proof*:
 
-\begin{equation}
-    s ^2 = \frac{1}{n - 1}\sum_{i=1}^{n}(X_i - \overline{X}) ^2
-    \label{eq:sampleVariance}
-\end{equation}
+$$
+\begin{align}
+\mathbb{V}[S]
+&= \mathbb{E}[S^2] - (\mathbb{E}[S])^2 \\
+&= \sigma^2 - (\mathbb{E}[S])^2 \\
+&= (\sigma + \mathbb{E}[S])(\sigma - \mathbb{E}[S]) \\
+\end{align}
+$$
 
-and $s$ is the sample standard deviation.
+Given $\mathbb{V}[S] \ge 0$ and $(\sigma + \mathbb{E}[S]) \ge 0$, so $\sigma -
+\mathbb{E}[S] \ge 0$.
 
+### Standard error of sample mean (SEM)
 
-**Standard error**
+SEM is just the standard deviation of the sample mean $\bar{X}_n$, i.e.
 
-The full name is the standard error of the mean (SEM), which is the standard
-deviation of sample mean ($$\overline{X}$$), which is still a random variable
-(r.v.).
+$$
+\begin{align}
+\textrm{SEM}
+&= \sqrt{\mathbb{V}\left[ \bar{X}_n \right]} =\frac{\sigma}{\sqrt{n}}
+\end{align}
+$$
 
-\begin{equation}
-    \textrm{SEM} = \frac{s}{\sqrt n}
-    \label{eq:standardErrorCorrected}
-\end{equation}
+and it can be estimated with $\widehat{\textrm{SEM}} = S/\sqrt{n}$. (TODO: analyze the property of this estimator.)
 
-# Standardization
+Note, do not confuse $\textrm{SEM}^2$ with sample variance $S^2$. The former is
+the variance of the sample mean, a fixed number, while the later is an estimator
+of the population variance, a random variable.
+
+### Standardization
 
 [Standardization](https://en.wikipedia.org/wiki/Feature_scaling#Standardization)
 is a common transformation that brings data to be centered at 0 with unit standard deviation.
@@ -222,31 +260,108 @@ is a common transformation that brings data to be centered at 0 with unit standa
 Let's denote the transformed value of $$X_i$$ as $$X_i'$$,
 
 \begin{equation}
-    X'_i = \frac{X_i - \overline{X}}{s}
+    X'_i = \frac{X_i - \bar{X}}{s}
     \label{eq:standardization}
 \end{equation}
 
-Apparently, the mean after standardization $$\overline{x'}$$ becomes 0. Let's
+Apparently, the mean after standardization $$\bar{x'}$$ becomes 0. Let's
 calculate the variance of the transformed data,
 
 <script type="math/tex; mode=display">% <![CDATA[
 \begin{align}
     s'^2 & = \frac{\sum_{i=1}^{n}(X'_i) ^2}{n - 1} \nonumber \\
-         & = \frac{\sum_{i=1}^{n}(\frac{X_i - \overline{X}}{s}) ^2}{n - 1}                                                     & \text{replacing}\ X_i'\ \text{with Eq. \eqref{eq:standardization}} \nonumber \\
-         & = \frac{1}{s^2} \frac{\sum_{i=1}^{n}({X_i - \overline{X}}) ^2}{n - 1}                                               & \text{move constant}\  s^2\ \text{to the front} \nonumber \\
-         & = \frac{n - 1}{\sum_{i=1}^{n}({X_i - \overline{X}}) ^2} \frac{\sum_{i=1}^{n}({X_i - \overline{X}}) ^2}{n - 1}       & \text{replacing }\ s^2\ \text{with Eq. \eqref{eq:sampleVariance}} \nonumber \\
+         & = \frac{\sum_{i=1}^{n}(\frac{X_i - \bar{X}}{s}) ^2}{n - 1}                                                     & \text{replacing}\ X_i'\ \text{with Eq. \eqref{eq:standardization}} \nonumber \\
+         & = \frac{1}{s^2} \frac{\sum_{i=1}^{n}({X_i - \bar{X}}) ^2}{n - 1}                                               & \text{move constant}\  s^2\ \text{to the front} \nonumber \\
+         & = \frac{n - 1}{\sum_{i=1}^{n}({X_i - \bar{X}}) ^2} \frac{\sum_{i=1}^{n}({X_i - \bar{X}}) ^2}{n - 1}       & \text{replacing }\ s^2\ \text{with Eq. \eqref{eq:sampleVariance}} \nonumber \\
          & = 1 \nonumber \\
          \label{eq:standarizedSampleStd}
 \end{align}
 %]]></script>
 
+## Convergence
 
-<!-- <script type="math/tex; mode=display">% <![CDATA[ -->
-<!-- \begin{align} -->
-<!-- \nabla_{\theta} E_x[f(x)] &= \nabla_{\theta} \sum_x p(x) f(x) & \text{definition of expectation} \\ -->
-<!-- & = \sum_x \nabla_{\theta} p(x) f(x) & \text{swap sum and gradient} \\ -->
-<!-- & = \sum_x p(x) \frac{\nabla_{\theta} p(x)}{p(x)} f(x) & \text{both multiply and divide by } p(x) \\ -->
-<!-- & = \sum_x p(x) \nabla_{\theta} \log p(x) f(x) & \text{use the fact that } \nabla_{\theta} \log(z) = \frac{1}{z} \nabla_{\theta} z \\ -->
-<!-- & = E_x[f(x) \nabla_{\theta} \log p(x) ] & \text{definition of expectation} -->
-<!-- \end{align} % -->
-<!-- ]]></script> -->
+
+Convergence in distribution:
+
+$$
+\begin{align*}
+\lim_{n \rightarrow \infty} F_{X_n}(x) &= F_X(x) \\
+\end{align*}
+$$
+
+Convergence in probability:
+
+$$
+\begin{align*}
+\lim_{n \rightarrow \infty} \mathbb{P}(|X_n - X| < \epsilon) &= 1 \\
+\end{align*}
+$$
+
+Convergence almost surely:
+
+$$
+\begin{align*}
+\mathbb{P} \left(\lim_{n \rightarrow \infty} |X_n - X| < \epsilon \right) &= 1 \\
+\end{align*}
+$$
+
+
+In general:
+
+* `Convergence almost surely` => `Convergence in probability`
+* `Convergence in probability` => `Convergence in distribution`
+* `Convergence in distribution` <=> `Convergence in probability to a constant`
+  (Sufficent and necessary)
+
+*Proof for `Convergence in probability` => `Convergence in distribution`*:
+
+Strategy: we derive both a lower bound and an upper bound for $F_{X_n}(x)$ given
+$X_n \stackrel{\mathbb{P}}{\rightarrow} X$. Let $\epsilon > 0$.
+
+Lower bound:
+
+$$
+\begin{align*}
+F_{X}(x - \epsilon)
+&= \mathbb{P}(X \le x - \epsilon) \\
+&= \mathbb{P}(X \le x - \epsilon, X_n \le x) + \mathbb{P}(X \le x - \epsilon, X_n > x) \\
+&\le \mathbb{P}(X_n \le x) + \mathbb{P}(|X - X_n| > \epsilon) \\
+&\le F_{X_n}(x) + \mathbb{P}(|X - X_n| > \epsilon) \\
+\end{align*}
+$$
+
+Upper bound:
+
+$$
+\begin{align*}
+F_{X_n}(x)
+&= \mathbb{P}(X_n \le x) \\
+&= \mathbb{P}(X_n \le x, X \le x + \epsilon) + \mathbb{P}(X_n \le x, X > x + \epsilon) \\
+&\le \mathbb{P}(X \le x + \epsilon) + \mathbb{P}(|X - X_n| > \epsilon) \\
+&\le F_X(x + \epsilon) + \mathbb{P}(|X - X_n| > \epsilon) \\
+\end{align*}
+$$
+
+Therefore,
+
+$$
+\begin{align*}
+F_{X_n}(x)
+&\ge F_X(x - \epsilon) - \mathbb{P}(|X - X_n|) > \epsilon \\
+F_{X_n}(x)
+&\le F_X(x + \epsilon) + \mathbb{P}(|X - X_n|) > \epsilon \\
+\end{align*}
+$$
+
+In the limit, given $\lim_{n \rightarrow \infty} \mathbb{P}(|X - X_n|) >
+\epsilon = 0$ because $X_n \stackrel{\mathbb{P}}{\rightarrow} X$, let
+$\epsilon \rightarrow 0$, then $\lim_{n \rightarrow \infty} F_{X_n}(x) =
+F_X(x)$.
+
+
+## Approximation
+
+Approximate binomial distribution with
+
+* Possion distribution when $n$ is large and $p$ is small ($\to 0$).
+* Normal distribution when $n$ is large and $p$ is close to $1/2$.
