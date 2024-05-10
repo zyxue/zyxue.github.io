@@ -5,9 +5,12 @@ author: Zhuyi Xue
 tags: statistics
 ---
 
+* toc
+{:toc}
+
 Put univariate and multivariate Gaussians together for comparison:
 
-### Univariate Gaussian:
+### Univariate Gaussian
 
 $$
 \begin{align}
@@ -18,7 +21,7 @@ p(x)
 $$
 
 
-### Multivariate Gaussian:
+### Multivariate Gaussian
 
 $$
 \begin{equation}
@@ -107,7 +110,7 @@ i.e.
 $$p(\mathbf{x}_a) \sim \mathcal{N}(\mathbf{x}_a | \boldsymbol{\mu}_a, \Sigma_{aa})$$, which is straightforward.
 
 
-### Conjugate prior for Gaussian distributions with different unknown parameters:
+### Conjugate prior for Gaussian distributions with different unknown parameters
 
 | mean    | variance/precision | dimension    | conjugate prior                                        |
 |---------|--------------------|--------------|--------------------------------------------------------|
