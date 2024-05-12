@@ -12,24 +12,24 @@ Memo for Taylor series, approximating $f(x)$ from $a$.
 $$
 \begin{align}
 g(x)
-&= f(a) + f'(a)(x - a) + \frac{f''(a)}{2!}(x - a)^2 + \frac{f^{(3)}(a)}{3!}(x - a)^3 + \cdots + \frac{f^{(n)}(a)}{n!}(x - a)^n + \cdots \\
+&= f(a) + f'(a)(x - a) + \frac{f''(a)}{2!}(x - a)^2 + \frac{f^{(3)}(a)}{3!}(x - a)^3 + \cdots + \frac{f^{(n)}(a)}{n!}(x - a)^n + \cdots \label{eq:taylor_general} \\
 &= \sum_{i=0}^n \frac{1}{i!} f^{(i)}(a) (x - a)^i \\
 &\approx f(x)
 \end{align}
 $$
 
-The intuition is that when we want to approximate a function $f(x)$ with a
-polynomial $g(x)$ such that
+The intuition is that when approximating a function $f(x)$ with a polynomial
+$g(x)$ starting from $x=a$, we'd like keep
 
 $$
 g^{(i)}(a) = f^{(i)}(a)
 $$
 
-i.e. the n-th derivative of $g$ and $f$ at $x=a$ are the same.
+for all $i = 1, 2, \cdots$. That is to keep the i-th derivatives of $g$ and $f$
+at $x=a$ equal. This property is easy to verify for Eq. $\eqref{eq:taylor_general}$.
 
-An **equivalent form** of the above is to replace $x$ with $a + \Delta x$, given we
-are expanding $g(x)$ at the vicinity of $a$, then the Taylor series can be
-written as
+An **equivalent form** of the above is to replace $x$ with $a + \Delta x$, given
+we are expanding $g(x)$ around $a$, then the Taylor series can be written as
 
 $$
 \begin{equation}
@@ -39,7 +39,8 @@ $$
 
 **Maclaurin series**
 
-When $a = 0$, the corresponding Taylor series is also called Maclaurin series.
+When $a = 0$, i.e. approximating $f(x)$ starting from $0$, the corresponding
+Taylor series is also called Maclaurin series.
 
 $$
 \begin{equation}
