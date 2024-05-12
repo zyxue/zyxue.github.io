@@ -114,9 +114,9 @@ Note,
 ### Chebyshev's inequality (general version)
 
 $$
-\begin{align*}
+\begin{align}
 \mathbb{P}(g(X) \ge r) \le \frac{\mathbb{E}[g(X)]}{r}
-\end{align*}
+\end{align}
 $$
 
 where $g(X)$ is a non-negative function, and $r > 0$.
@@ -187,8 +187,8 @@ $$
 $$
 
 Note, Eq. $\eqref{eq:lln_chebyshev}$ is an application of the Chebyshev's
-inequality. This property of $\bar{X}_n$ is known as the **weak law of a large
-numbers**.
+inequality. This property of $\bar{X}_n$ is known as the **weak law of large
+numbers** (*large number* refers to a *large sample size*).
 
 **Important properties**, $\mathbb{E}[\bar{X}_n] = \mu$, $\mathbb{V}[\bar{X}_n]
 = \sigma^2 / n$. By central limit theorem, when $n$ is large, $\bar{X}_n \sim
@@ -198,7 +198,7 @@ numbers**.
 
 $$
 \begin{align}
-S ^2
+S_n ^2
 &= \frac{1}{n - 1}\sum_{i=1}^{n}(X_i - \bar{X}) ^2 \label{eq:sampleVariance}
 \end{align}
 $$
@@ -213,27 +213,27 @@ correction](https://en.wikipedia.org/wiki/Bessel%27s_correction).
 
 $$
 \begin{align}
-S = \sqrt{S^2} = \sqrt{\frac{1}{n - 1}\sum_{i=1}^{n}(X_i - \bar{X}) ^2}
+S_n = \sqrt{S_n^2} = \sqrt{\frac{1}{n - 1}\sum_{i=1}^{n}(X_i - \bar{X}) ^2}
 \end{align}
 $$
 
-While $S^2$ is an unbiased estimator of $\sigma^2$, i.e. $\mathbb{E}[S^2] =
-\sigma^2$, $S$ is a biased estimator of $\sigma$, in particular $\mathbb{E}[S] \le
+While $S_n^2$ is an unbiased estimator of $\sigma^2$, i.e. $\mathbb{E}[S_n^2] =
+\sigma_n^2$, $S_n$ is a biased estimator of $\sigma$, in particular $\mathbb{E}[S_n] \le
 \sigma$.
 
 *Proof*:
 
 $$
 \begin{align}
-\mathbb{V}[S]
-&= \mathbb{E}[S^2] - (\mathbb{E}[S])^2 \\
-&= \sigma^2 - (\mathbb{E}[S])^2 \\
-&= (\sigma + \mathbb{E}[S])(\sigma - \mathbb{E}[S]) \\
+\mathbb{V}[S_n]
+&= \mathbb{E}[S_n^2] - (\mathbb{E}[S_n])^2 \\
+&= \sigma^2 - (\mathbb{E}[S_n])^2 \\
+&= (\sigma + \mathbb{E}[S_n])(\sigma - \mathbb{E}[S_n]) \\
 \end{align}
 $$
 
-Given $\mathbb{V}[S] \ge 0$ and $(\sigma + \mathbb{E}[S]) \ge 0$, so $\sigma -
-\mathbb{E}[S] \ge 0$.
+Given $\mathbb{V}[S] \ge 0$ and $(\sigma + \mathbb{E}[S_n]) \ge 0$, so $\sigma -
+\mathbb{E}[S_n] \ge 0$.
 
 ### Standard error of sample mean (SEM)
 
@@ -241,14 +241,14 @@ SEM is just the standard deviation of the sample mean $\bar{X}_n$, i.e.
 
 $$
 \begin{align}
-\textrm{SEM}
+\textrm{SEM}_n
 &= \sqrt{\mathbb{V}\left[ \bar{X}_n \right]} =\frac{\sigma}{\sqrt{n}}
 \end{align}
 $$
 
-and it can be estimated with $\widehat{\textrm{SEM}} = S/\sqrt{n}$. (TODO: analyze the property of this estimator.)
+and it can be estimated with $\widehat{\textrm{SEM}_n} = S_n/\sqrt{n}$. (TODO: analyze the property of this estimator.)
 
-Note, do not confuse $\textrm{SEM}^2$ with sample variance $S^2$. The former is
+Note, do not confuse $\textrm{SEM}_n^2$ with sample variance $S_n^2$. The former is
 the variance of the sample mean, a fixed number, while the later is an estimator
 of the population variance, a random variable.
 
@@ -284,36 +284,44 @@ calculate the variance of the transformed data,
 Convergence in distribution:
 
 $$
-\begin{align*}
+\begin{align}
 \lim_{n \rightarrow \infty} F_{X_n}(x) &= F_X(x) \\
-\end{align*}
+\end{align}
 $$
+
+which is denoted as $X_n \stackrel{F}{\longrightarrow} X$, where $F$ is the cdf.
 
 Convergence in probability:
 
 $$
-\begin{align*}
+\begin{align}
 \lim_{n \rightarrow \infty} \mathbb{P}(|X_n - X| < \epsilon) &= 1 \\
-\end{align*}
+\end{align}
 $$
+
+which is denoted as $X_n \stackrel{\mathbb{P}}{\longrightarrow} X$.
 
 Convergence almost surely:
 
 $$
-\begin{align*}
+\begin{align}
 \mathbb{P} \left(\lim_{n \rightarrow \infty} |X_n - X| < \epsilon \right) &= 1 \\
-\end{align*}
+\end{align}
 $$
+
+which is denoted as $X_n \stackrel{a.s.}{\longrightarrow} X$.
 
 
 In general:
 
-* `Convergence almost surely` => `Convergence in probability`
-* `Convergence in probability` => `Convergence in distribution`
-* `Convergence in distribution` <=> `Convergence in probability to a constant`
-  (Sufficent and necessary)
+* $X_n \stackrel{a.s.}{\longrightarrow} X$ => $X_n
+  \stackrel{\mathbb{P}}{\longrightarrow} X$ (Sufficent).
+* $X_n \stackrel{\mathbb{P}}{\longrightarrow} X$ => $X_n
+  \stackrel{F}{\longrightarrow} X$ (Sufficent).
+* $X_n \stackrel{F}{\longrightarrow} X$ <=> $X_n \stackrel{\mathbb{P}}{\longrightarrow} c$
+  (Sufficent and necessary, $c$ is a constant).
 
-*Proof for `Convergence in probability` => `Convergence in distribution`*:
+*Proof for $X_n \stackrel{\mathbb{P}}{\longrightarrow} X$ => $X_n \stackrel{F}{\longrightarrow} X$:
 
 Strategy: we derive both a lower bound and an upper bound for $F_{X_n}(x)$ given
 $X_n \stackrel{\mathbb{P}}{\rightarrow} X$. Let $\epsilon > 0$.
@@ -321,43 +329,54 @@ $X_n \stackrel{\mathbb{P}}{\rightarrow} X$. Let $\epsilon > 0$.
 Lower bound:
 
 $$
-\begin{align*}
+\begin{align}
 F_{X}(x - \epsilon)
 &= \mathbb{P}(X \le x - \epsilon) \\
 &= \mathbb{P}(X \le x - \epsilon, X_n \le x) + \mathbb{P}(X \le x - \epsilon, X_n > x) \\
 &\le \mathbb{P}(X_n \le x) + \mathbb{P}(|X - X_n| > \epsilon) \\
-&\le F_{X_n}(x) + \mathbb{P}(|X - X_n| > \epsilon) \\
-\end{align*}
+&= F_{X_n}(x) + \mathbb{P}(|X - X_n| > \epsilon) \\
+\end{align}
 $$
 
 Upper bound:
 
 $$
-\begin{align*}
+\begin{align}
 F_{X_n}(x)
 &= \mathbb{P}(X_n \le x) \\
 &= \mathbb{P}(X_n \le x, X \le x + \epsilon) + \mathbb{P}(X_n \le x, X > x + \epsilon) \\
 &\le \mathbb{P}(X \le x + \epsilon) + \mathbb{P}(|X - X_n| > \epsilon) \\
-&\le F_X(x + \epsilon) + \mathbb{P}(|X - X_n| > \epsilon) \\
-\end{align*}
+&= F_X(x + \epsilon) + \mathbb{P}(|X - X_n| > \epsilon) \\
+\end{align}
 $$
 
 Therefore,
 
 $$
-\begin{align*}
+\begin{align}
 F_{X_n}(x)
-&\ge F_X(x - \epsilon) - \mathbb{P}(|X - X_n|) > \epsilon \\
+&\ge F_X(x - \epsilon) - \mathbb{P}(|X - X_n| > \epsilon) \\
 F_{X_n}(x)
-&\le F_X(x + \epsilon) + \mathbb{P}(|X - X_n|) > \epsilon \\
-\end{align*}
+&\le F_X(x + \epsilon) + \mathbb{P}(|X - X_n| > \epsilon) \\
+\end{align}
 $$
 
-In the limit, given $\lim_{n \rightarrow \infty} \mathbb{P}(|X - X_n|) >
-\epsilon = 0$ because $X_n \stackrel{\mathbb{P}}{\rightarrow} X$, let
-$\epsilon \rightarrow 0$, then $\lim_{n \rightarrow \infty} F_{X_n}(x) =
-F_X(x)$.
+In the limit, because $X_n \stackrel{\mathbb{P}}{\rightarrow} X$, $\lim_{n
+\rightarrow \infty} \mathbb{P}(|X - X_n| > \epsilon) = 0$, then take $\epsilon
+\rightarrow 0$, we have $\lim_{n \rightarrow \infty} F_{X_n}(x) = F_X(x)$.
 
+In the case when $X$ is a constant, i.e. $X = c$, then with $\epsilon
+\rightarrow 0$,
+
+* if $x < c$, then $F_X(x - \epsilon) = F_X(x + \epsilon) = 0$, so
+$F_{X_n}(x) = 0$;
+* if $x = c$, then $F_X(x - \epsilon) = 0, F_X(x + \epsilon) =
+1$, so $0 \le F_{X_n} \le 1$;
+* if $x > c$, then $F_X(x - \epsilon) = F_X(x + \epsilon) = 1$, so $F_{X_n}(x) =
+1$.
+
+So the property $X_n \stackrel{\mathbb{P}}{\longrightarrow} c$ => $X_n
+  \stackrel{F}{\longrightarrow} c$ still holds.
 
 ## Approximation
 
