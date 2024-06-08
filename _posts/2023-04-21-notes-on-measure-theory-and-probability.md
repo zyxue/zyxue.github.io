@@ -14,7 +14,7 @@ MathJax.Hub.Config({
 Definitions:
 
 * $\Omega$: **sample space**.
-* $\omega$: **sample outcome** (aka. sample, outcomes, sample point, realization, element).
+* $\omega$: **sample outcome** (aka. sample, outcomes, sample point, realization, element, observation).
 * $A$: **event**, subset of $\Omega$, $A \subseteq \Omega$.
 * $\mathcal{A}$: **$\sigma$-algebra**, aka. $\sigma$-field, a set of events that
   satisfy three criteria:
