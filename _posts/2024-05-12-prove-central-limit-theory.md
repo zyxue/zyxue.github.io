@@ -11,13 +11,13 @@ MathJax.Hub.Config({
 });
 </script>
 
-The **Central Limit Theorem (CLT) says if $X_1, \cdots, X_n$ are iid random
+The **Central Limit Theorem (CLT)** says if $X_1, \cdots, X_n$ are iid random
 variables with with mean $\mu$ and variance $\sigma^2$, then the distribution of
 $$\bar{X}_n = \frac{1}{N} \sum_{i=1}^n X_i$$ converges to a normal distribution, i.e.
 
 $$
 \begin{align}
-\bar{X}_n \stackrel{F}{\longrightarrow} \mathcal{N} \left(\mu, \frac{\sigma^2}{n} \right) \label{eq:clt_bar_X_n_distribution}
+\bar{X}_n \xrightarrow{F} \mathcal{N} \left(\mu, \frac{\sigma^2}{n} \right) \label{eq:clt_bar_X_n_distribution}
 \end{align}
 $$
 
@@ -25,7 +25,7 @@ Note, Eq. $\eqref{eq:clt_bar_X_n_distribution}$ is equivalent to
 
 $$
 \begin{align}
-Z_n = \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \stackrel{F}{\longrightarrow} \mathcal{N} \left(0, 1 \right) \label{eq:clt_Z_n_distribution}
+Z_n = \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \xrightarrow{F} \mathcal{N} \left(0, 1 \right) \label{eq:clt_Z_n_distribution}
 \end{align}
 $$
 
@@ -95,10 +95,10 @@ $$
 
 Note,
 
-* in Eq. $\eqref{eq:M_Zn_omit_higher_order_terms}$, we omitted higher order
+* In Eq. $\eqref{eq:M_Zn_omit_higher_order_terms}$, we omitted higher order
   terms as they vanishes relative to the second-order term as $n \rightarrow
   \infty$.
-* in Eq. $\eqref{eq:M_Zn_final_result}$, we used the fact that $\lim_{n
+* In Eq. $\eqref{eq:M_Zn_final_result}$, we used the fact that $\lim_{n
   \rightarrow \infty} \left(1 + \frac{x}{n} \right )^n = e^n$, which is proved
   in Appendix.
 
@@ -106,14 +106,13 @@ Because $e^{t^2/2}$ is the MGF of a standard normal distribution (see proof
 [here](https://zyxue.github.io/2021/08/29/gaussian-distributions.html#moment-generating-function-mgf)),
 we've proved the CLT.
 
-**Some thoughts** related to expectation, LLN and CTL:
+**Some thoughts** related to expectation, law of large numbers (LLN) and CLT:
 
-* Given a sample $X_1, \cdots, X_n$, we know that the expectations
-  $\mathbb{E}[\bar{X}_n] = \mu$ and $\mathbb{V}[\bar{X}_n] =
-  \frac{\sigma^2}{n}$, but this is more related to the behavior of $\bar{X}_n$
-  when the number of samples ($m$) goes to infinity, while CLT is more about how
-  $\bar{X}_n$ behaves when the sample size $n$ increases.
-* From law of large numbers (i.e. large sample sizes, LLN), we know that
+* Given a i.i.d. sample $X_1, \cdots, X_n$,
+  * by properties of expectation, $\mathbb{E}[\bar{X}_n] = \mu$ and $\mathbb{V}[\bar{X}_n] = \frac{\sigma^2}{n}$, which is about the properties of $\bar{X}_n$ when when the number of samples ($m$) is large or goes to infinity.
+  * by LLN, $$\lim_{n \rightarrow \infty} \bar{X}_n = \mu$$, which is the property of $\bar{X}_n$ when the sample size ($n$) increases. Note, the large number as in LLN refers to sample size.
+  * by CLT, $$\bar{X}_n \xrightarrow{F} \mathcal{N} \left(\mu, \frac{\sigma^2}{n} \right)$$, which is about the behavior of $\bar{X}_n$ when both the number of samples ($m$) is large and the sample size ($n$) being large.
+* From LLN (i.e. large sample sizes, LLN), we know that
   $\bar{X} \stackrel{\mathbb{P}}{\longrightarrow} \mu$, i.e. a point mass, when
   $n \rightarrow \infty$. CLT shows that in the limit, $\frac{\sigma^2}{n}$ from
   Eq. $\eqref{eq:clt_bar_X_n_distribution}$ goes to $0$, which means the normal
@@ -123,32 +122,36 @@ Note
 
 ## Appendix
 
-### Prove $\bar{X}_n \stackrel{F}{\longrightarrow} \mathcal{N} \left(\mu, \frac{\sigma^2}{n} \right)$ is equivalent to $\frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \stackrel{F}{\longrightarrow} \mathcal{N} \left(0, 1 \right)$
+### Prove $\bar{X}_n \xrightarrow{F} \mathcal{N} \left(\mu, \frac{\sigma^2}{n} \right)$ is equivalent to $\frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \xrightarrow{F} \mathcal{N} \left(0, 1 \right)$
 
-By definition of convergence in distribution, we have
+Given $\bar{X}_n \xrightarrow{F} \mathcal{N} \left(\mu, \frac{\sigma^2}{n} \right)$, we have
 
 $$
 \begin{align}
-\lim_{n \rightarrow \infty} \mathbb{}P(\bar{X}_n \le x)
-&= \int_{-\infty}^x \frac{1}{\sqrt{2 \pi \sigma^2 / n}} e^{-\frac{1}{2}\frac{(t - \mu)^2}{\sigma^2}} dt \\
-&= \int_{-\infty}^{\frac{x - \mu}{\sigma/\sqrt{n}}} \frac{1}{\sqrt{2 \pi}} e^{-\frac{v^2}{2}} dv \label{eq:replace_t_with_v}\\
-&= \Phi\left(\frac{x - \mu}{\sigma/\sqrt{n}}\right)
+\lim_{n \rightarrow \infty} \mathbb{P}(\bar{X}_n \le x)
+&= \lim_{n \rightarrow \infty} \mathbb{P} \left(\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} \le \frac{x - \mu}{\sigma/\sqrt{n}} \right)  \label{eq:simple_transform} \\
+&= \int_{-\infty}^x \frac{1}{\sqrt{2 \pi \sigma^2 / n}} e^{-\frac{1}{2}\frac{(t - \mu)^2}{\sigma^2}} dt \label{eq:by_def_convergence_in_distribution} \\
+&= \int_{-\infty}^{\frac{x - \mu}{\sigma/\sqrt{n}}} \frac{1}{\sqrt{2 \pi}} e^{-\frac{v^2}{2}} dv \label{eq:replace_t_with_v} \\
+&= \Phi\left(\frac{x - \mu}{\sigma/\sqrt{n}}\right) \label{eq:in_terms_of_phi} \\
 \end{align}
 $$
 
 Note,
 
-* In Eq. $\eqref{eq:replace_t_with_v}$ we replaced $t$ with $v =
-\frac{t - \mu}{\sigma / \sqrt{n}}$.
+* Eq. $\eqref{eq:simple_transform}$ is a simple transformation of LHS.
+* Eq. $\eqref{eq:by_def_convergence_in_distribution}$ is by [definition of
+  convergence in
+  distribution](https://zyxue.github.io/2017/07/18/notes_on_common_statistics.html#convergence)
+  for $\bar{X}_n \xrightarrow{F} \mathcal{N} \left(\mu,
+  \frac{\sigma^2}{n} \right)$.
+* Eq. $\eqref{eq:replace_t_with_v}$ is a result of replacing $t$ with $v = \frac{t - \mu}{\sigma / \sqrt{n}}$.
 * $\Phi$ denotes the cdf of the standard normal distribution.
 
-The LHS can also be rewritten as $\lim_{n \rightarrow \infty} \mathbb{}P
-\left(\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} \le \frac{x -
-\mu}{\sigma/\sqrt{n}} \right)$ by transforming both sides of the inequality, so
+Combining Eq. $\eqref{eq:simple_transform}$ and $\eqref{eq:in_terms_of_phi}$, therefore
 
 $$
 \begin{align}
-\lim_{n \rightarrow \infty} \mathbb{}P \left(\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} \le \frac{x - \mu}{\sigma/\sqrt{n}} \right) = \Phi\left(\frac{x - \mu}{\sigma/\sqrt{n}}\right)
+\lim_{n \rightarrow \infty} \mathbb{P} \left(\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} \le \frac{x - \mu}{\sigma/\sqrt{n}} \right) = \Phi\left(\frac{x - \mu}{\sigma/\sqrt{n}}\right)
 \end{align}
 $$
 
@@ -156,12 +159,12 @@ If we denote $z = \frac{x - \mu}{\sigma / \sqrt{n}}$, then
 
 $$
 \begin{align}
-\lim_{n \rightarrow \infty} \mathbb{}P \left(\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} \le z \right) = \Phi(z) \\
+\lim_{n \rightarrow \infty} \mathbb{P} \left(\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} \le z \right) = \Phi(z) \\
 \end{align}
 $$
 
 which is the definition of $\frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}}
-\stackrel{F}{\longrightarrow} \mathcal{N} \left(0, 1 \right)$.
+\xrightarrow{F} \mathcal{N} \left(0, 1 \right)$. Q.E.D.
 
 ### Prove $\lim_{n \rightarrow \infty} \left(1 + \frac{x}{n} \right )^n = e^n$
 
